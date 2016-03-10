@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FCSlib</id>
+    <version>$version$</version>
+    <title>FCSlib</title>
+    <authors>Oliver Sturm</authors>
+    <owners>Oliver Sturm</owners>
+    <licenseUrl>https://github.com/oliversturm/FCSlib/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/oliversturm/FCSlib</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Functional C# library</description>
+    <summary>Functional C# library</summary>
+    <copyright>Copyright Oliver Sturm 2008-2016</copyright>
+    <tags>c# functional</tags>
+  </metadata>
+</package>
