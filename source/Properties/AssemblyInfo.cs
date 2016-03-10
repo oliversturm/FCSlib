@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Oliver Sturm")]
 [assembly: AssemblyProduct("FCSlib")]
-[assembly: AssemblyCopyright("Copyright © Oliver Sturm 2008")]
+[assembly: AssemblyCopyright("Copyright © Oliver Sturm 2008-2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
