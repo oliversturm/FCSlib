@@ -1,0 +1,2 @@
+# FCSlib
+Functional C# library
