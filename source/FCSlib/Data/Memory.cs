@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2016 Oliver Sturm <oliver@oliversturm.com>
+// Copyright (C) 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,7 @@ using System.Text;
 using System.Reflection;
 
 namespace FCSlib.Data {
-  public class Memory<P, R> : IMemory<P, R> {
+  public class Memory<P, R> : IMemory<P, R> where P : notnull {
     Dictionary<P, R> storage = new Dictionary<P, R>( );
 
     public bool HasResultFor(P val) {

@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2016 Oliver Sturm <oliver@oliversturm.com>
+// Copyright (C) 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -27,14 +27,14 @@ using System.Reflection;
 namespace FCSlib.Data.Collections {
   public sealed class List<T> : System.Collections.Generic.IEnumerable<T> {
     #region Head, Tail and IsEmpty
-    private readonly T head;
+    private readonly T? head;
     private readonly List<T> tail;
     private readonly bool isEmpty;
     public T Head {
       get {
         if (isEmpty)
           throw new InvalidOperationException("No head in an empty list");
-        return head;
+        return head ?? throw new InvalidOperationException("Head uninitialized");
       }
     }
     public List<T> Tail {
@@ -142,6 +142,8 @@ namespace FCSlib.Data.Collections {
 
     private List( ) {
       isEmpty = true;
+      // this.head is null in this case
+      this.tail = List<T>.Empty;
     }
 
     public List(System.Collections.Generic.IEnumerable<T> source) {
@@ -153,8 +155,11 @@ namespace FCSlib.Data.Collections {
         for (int i = sal - 1; i > 0; i--)
           tail = tail.Cons(sa[i]);
       }
-      else
+      else {
         isEmpty = true;
+        // this.head is null in this case
+        this.tail = List<T>.Empty;
+      }
     }
     #endregion
 
@@ -174,9 +179,9 @@ namespace FCSlib.Data.Collections {
       var result = "[";
       if (!IsEmpty)
         result +=
-        Functional.FoldL1(
-          (r, x) => r + ", " + x,
-          Functional.Map(x => x.ToString( ), this));
+          Functional.FoldL1(
+            (r, x) => r + ", " + x,
+            Functional.Map(x => x?.ToString( ), this));
       result += "]";
       return result;
     }

@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2016 Oliver Sturm <oliver@oliversturm.com>
+// Copyright (C) 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -27,7 +27,7 @@ using System.Collections.Generic;
 using System.Collections;
 
 namespace FCSlib.Data.Collections {
-  public sealed class UnbalancedBinaryTree<T> : IEnumerable<T> {
+  public sealed class UnbalancedBinaryTree<T> : IEnumerable<T?> {
     private readonly bool isEmpty;
     public bool IsEmpty { get { return isEmpty; } }
 
@@ -43,8 +43,8 @@ namespace FCSlib.Data.Collections {
         return right;
       }
     }
-    private readonly T value;
-    public T Value {
+    private readonly T? value;
+    public T? Value {
       get {
         return value;
       }
@@ -56,9 +56,10 @@ namespace FCSlib.Data.Collections {
     #region Constructors
     public UnbalancedBinaryTree( ) {
       isEmpty = true;
+      this.left = this.right = UnbalancedBinaryTree<T>.Empty;
     }
     
-    public UnbalancedBinaryTree(UnbalancedBinaryTree<T> left, T value, UnbalancedBinaryTree<T> right) {
+    public UnbalancedBinaryTree(UnbalancedBinaryTree<T> left, T? value, UnbalancedBinaryTree<T> right) {
       this.left = left;
       this.right = right;
       this.value = value;
@@ -66,7 +67,7 @@ namespace FCSlib.Data.Collections {
     
     #endregion
 
-    public static bool Contains(T value, UnbalancedBinaryTree<T> tree) {
+    public static bool Contains(T? value, UnbalancedBinaryTree<T> tree) {
       if (tree.IsEmpty)
         return false;
       else {
@@ -84,7 +85,7 @@ namespace FCSlib.Data.Collections {
       return UnbalancedBinaryTree<T>.Contains(value, this);
     }
 
-    public static UnbalancedBinaryTree<T> Insert(T value, UnbalancedBinaryTree<T> tree) {
+    public static UnbalancedBinaryTree<T> Insert(T? value, UnbalancedBinaryTree<T> tree) {
       if (tree.IsEmpty) {
         return new UnbalancedBinaryTree<T>(Empty, value, Empty);
       }
@@ -105,27 +106,27 @@ namespace FCSlib.Data.Collections {
       }
     }
 
-    public UnbalancedBinaryTree<T> Insert(T value) {
+    public UnbalancedBinaryTree<T> Insert(T? value) {
       return UnbalancedBinaryTree<T>.Insert(value, this);
     }
 
-    IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator( ) {
+    IEnumerator<T?> System.Collections.Generic.IEnumerable<T?>.GetEnumerator( ) {
       if (IsEmpty)
         yield break;
 
-      foreach (T val in Left)
+      foreach (T? val in Left)
         yield return val;
       yield return Value;
-      foreach (T val in Right)
+      foreach (T? val in Right)
         yield return val;
     }
 
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator( ) {
-      return ((IEnumerable<T>) this).GetEnumerator( );
+      return ((IEnumerable<T?>) this).GetEnumerator( );
     }
 
     public override string ToString( ) {
-      return String.Format("[{0} {1} {2}]", Left, IsEmpty ? "Empty" : Value.ToString(), Right);
+      return String.Format("[{0} {1} {2}]", Left, IsEmpty ? "Empty" : Value?.ToString(), Right);
     }
   }
 }

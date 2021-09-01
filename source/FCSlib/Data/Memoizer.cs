@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2016 Oliver Sturm <oliver@oliversturm.com>
+// Copyright (C) 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,9 +21,9 @@ using System.Text;
 using System.Reflection;
 
 namespace FCSlib.Data {
-  public static class Memoizer<P, R> {
+  public static class Memoizer<P, R> where P : notnull {
     static object memoryListLock = new object( );
-    static Dictionary<string, IMemory<P, R>> memories;
+    static Dictionary<string, IMemory<P, R>>? memories;
     static Dictionary<string, IMemory<P, R>> Memories {
       get {
         lock (memoryListLock) {
@@ -34,11 +34,12 @@ namespace FCSlib.Data {
       }
     }
     public static T CreateMemory<T>(string key) where T : IMemory<P, R>, new( ) {
+      var mems = Memories;
+      if (mems.ContainsKey(key))
+        throw new InvalidOperationException("The memory key '" + key + "' is already in use.");
       lock (memoryListLock) {
-        if (Memories.ContainsKey(key))
-          throw new InvalidOperationException("The memory key '" + key + "' is already in use.");
         T memory = new T( );
-        memories[key] = memory;
+        mems[key] = memory;
         return memory;
       }
     }

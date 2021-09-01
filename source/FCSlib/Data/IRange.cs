@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2016 Oliver Sturm <oliver@oliversturm.com>
+// Copyright (C) 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -15,17 +15,14 @@
   
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Reflection;
 
-namespace FCSlib.Data.Collections {
-  public static class CollectionExtensions {
-    public static List<T> ToList<T>(this System.Collections.Generic.IEnumerable<T> source) {
-      return new List<T>(source);
-    }
-    public static Queue<T> ToQueue<T>(this System.Collections.Generic.IEnumerable<T> source) {
-      return new Queue<T>(source);
-    }
+namespace FCSlib.Data {
+  public interface IRange<T> : IEnumerable<T> {
+    T Start { get; }
+    T End { get; }
+    bool Contains(T value);
   }
 }

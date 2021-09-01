@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{C537F0C9-CAFF-435B-A1C3-A47ADB3E81F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCSlib", "FCSlib\FCSlib.csproj", "{DC6C1779-31A7-488D-89DA-915CBF7C8E31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C537F0C9-CAFF-435B-A1C3-A47ADB3E81F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C537F0C9-CAFF-435B-A1C3-A47ADB3E81F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C537F0C9-CAFF-435B-A1C3-A47ADB3E81F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C537F0C9-CAFF-435B-A1C3-A47ADB3E81F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6C1779-31A7-488D-89DA-915CBF7C8E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6C1779-31A7-488D-89DA-915CBF7C8E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6C1779-31A7-488D-89DA-915CBF7C8E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6C1779-31A7-488D-89DA-915CBF7C8E31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

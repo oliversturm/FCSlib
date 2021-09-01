@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2016 Oliver Sturm <oliver@oliversturm.com>
+// Copyright (C) 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,7 +28,7 @@ using System.Collections;
 using System.Diagnostics;
 
 namespace FCSlib.Data.Collections {
-  public sealed class RedBlackTree<T> : IEnumerable<T> {
+  public sealed class RedBlackTree<T> : IEnumerable<T?> {
     public enum Color {
       Red,
       Black
@@ -51,8 +51,8 @@ namespace FCSlib.Data.Collections {
         return right;
       }
     }
-    private readonly T value;
-    public T Value {
+    private readonly T? value;
+    public T? Value {
       get {
         return value;
       }
@@ -63,9 +63,10 @@ namespace FCSlib.Data.Collections {
     #region Constructors
     private RedBlackTree( )  {
       isEmpty = true;
+      this.left = this.right = RedBlackTree<T>.Empty;
     }
  
-    public RedBlackTree(Color nodeColor, RedBlackTree<T> left, T value, RedBlackTree<T> right) {
+    public RedBlackTree(Color nodeColor, RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
       this.nodeColor = nodeColor;
       this.left = left;
       this.right = right;
@@ -76,7 +77,7 @@ namespace FCSlib.Data.Collections {
 
     #region Balance
     private static RedBlackTree<T> Balance(Color nodeColor,
-      RedBlackTree<T> left, T value, RedBlackTree<T> right) {
+      RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
       if (nodeColor == RedBlackTree<T>.Color.Black) {
         if (!(left.IsEmpty) &&
           left.NodeColor == RedBlackTree<T>.Color.Red &&
@@ -146,8 +147,8 @@ namespace FCSlib.Data.Collections {
 
     #region Inserting
 
-    public static RedBlackTree<T> Insert(T value, RedBlackTree<T> tree) {
-      Func<RedBlackTree<T>, RedBlackTree<T>> ins = null;
+    public static RedBlackTree<T> Insert(T? value, RedBlackTree<T> tree) {
+      Func<RedBlackTree<T>, RedBlackTree<T>> ins = default!;
       ins = t => {
         if (t.IsEmpty)
           return new RedBlackTree<T>(Color.Red, Empty, value, Empty);
@@ -164,26 +165,26 @@ namespace FCSlib.Data.Collections {
       return new RedBlackTree<T>(Color.Black, insResult.Left, insResult.Value, insResult.Right);
     }
 
-    public RedBlackTree<T> Insert(T value) {
+    public RedBlackTree<T> Insert(T? value) {
       return RedBlackTree<T>.Insert(value, this);
     }
 
 
     #endregion
 
-    IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator( ) {
+    IEnumerator<T?> System.Collections.Generic.IEnumerable<T?>.GetEnumerator( ) {
       if (IsEmpty)
         yield break;
 
-      foreach (T val in Left)
+      foreach (T? val in Left)
         yield return val;
       yield return Value;
-      foreach (T val in Right)
+      foreach (T? val in Right)
         yield return val;
     }
 
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator( ) {
-      return ((IEnumerable<T>) this).GetEnumerator( );
+      return ((IEnumerable<T?>) this).GetEnumerator( );
     }
 
     public override string ToString( ) {
