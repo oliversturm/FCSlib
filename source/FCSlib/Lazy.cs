@@ -21,7 +21,7 @@ using System.Text;
 
 namespace FCSlib {
   public sealed class Lazy<T> {
-    public Lazy(Func<T> function) {
+    public Lazy(Func<T?> function) {
       this.function = function;
     }
 
@@ -29,19 +29,19 @@ namespace FCSlib {
       this.value = value;
     }
 
-    readonly Func<T> function;
-    T value;
+    readonly Func<T?>? function;
+    T? value;
     bool forced;
     object forceLock = new object( );
-    Exception exception;
+    Exception? exception;
 
-    public T Force( ) {
+    public T? Force( ) {
       lock (forceLock) {
         return UnsynchronizedForce( );
       }
     }
 
-    public T UnsynchronizedForce( ) {
+    public T? UnsynchronizedForce( ) {
       if (exception != null)
         throw exception;
       if (function != null && !forced) {
@@ -57,7 +57,7 @@ namespace FCSlib {
       return value;
     }
 
-    public T Value {
+    public T? Value {
       get { return Force( ); }
     }
 
@@ -69,7 +69,7 @@ namespace FCSlib {
       get { return exception != null; }
     }
 
-    public Exception Exception {
+    public Exception? Exception {
       get { return exception; }
     }
   }

@@ -868,48 +868,66 @@ namespace FCSlib {
     #endregion
 
     #region Memoization
-    public static Func<P, R> Memoize<P, R>(this Func<P, R> f) {
+    public static Func<P, R?> Memoize<P, R>(this Func<P, R?> f) where P : notnull {
       MethodInfo fInfo = f.Method;
-      return Memoize<P, R>(f, GetDefaultMemoryKey(fInfo));
+      return Memoize<P, R?>(f, GetDefaultMemoryKey(fInfo));
     }
     
-    public static Func<P, R> Memoize<P, R>(this Func<P, R> f, string memoryKey) {
+    public static Func<P, R?> Memoize<P, R>(this Func<P, R?> f, string memoryKey) where P : notnull {
       return arg => {
-        var memory = Memoizer<P, R>.GetMemory(memoryKey);
+        var memory = Memoizer<P, R?>.GetMemory(memoryKey);
         if (!memory.HasResultFor(arg))
           memory.Remember(arg, f(arg));
         return memory.ResultFor(arg);
       };
     }
     
+    // We know that this value won't be null after initialization. However, I'm not sure what 
+    // the desired pattern is for COD properties like this (make the backing store variable
+    // nullable makes sense of course, technically). And even though I am completely sure 
+    // that the GetMethod call will always return a non-null value, I'm not aware of a 
+    // way of telling C# so. Basically, the property should not need to be nullable,
+    // but I don't think that's possible.
 
     private static MethodInfo? deepMemoizeMethodInfo;
     private static MethodInfo DeepMemoizeMethodInfo {
       get {
         if (deepMemoizeMethodInfo == null) {
           deepMemoizeMethodInfo = typeof(Functional).GetMethod("DeepMemoize", BindingFlags.Public | BindingFlags.Static);
+          if (deepMemoizeMethodInfo == null) {
+            // Can't really happen - we know this
+            throw new InvalidOperationException("Hell has frozen over");
+          }
         }
         return deepMemoizeMethodInfo;
       }
     }
 
-    static string GetDefaultMemoryKey(MethodInfo fInfo) {
-      return fInfo.DeclaringType.FullName + "+" + fInfo.Name;
+    static string GetDefaultMemoryKey(MethodInfo? fInfo) {
+      if (fInfo == null) {
+        throw new InvalidOperationException("Can't execute GetDefaultMemoryKey with a null method");
+      } // else
+
+      // Why does C# still complain about a possible null reference in the following
+      // line even though I'm throwing an exception above in the null case?
+      // This is still the case even if I add an "else" above. The ?. operator
+      // gets rid of the compiler error, but that should really not be necessary.
+      return fInfo?.DeclaringType?.FullName + "+" + fInfo?.Name;
     }
 
-    public static Func<P, R> DeepMemoize<P, R>(this Func<P, R> f) {
+    public static Func<P, R?> DeepMemoize<P, R>(this Func<P, R?> f) where P : notnull {
       return arg => {
         MethodInfo fInfo = f.Method;
         string memoryKey = GetDefaultMemoryKey(fInfo);
         var memory = Memoizer<P, R>.GetMemory(memoryKey);
         if (!memory.HasResultFor(arg)) {
-          R result = f(arg);
+          R? result = f(arg);
           Type resultType = typeof(R);
           if (typeof(System.Delegate).IsAssignableFrom(resultType)) {
             Type[] parameterTypes = resultType.GetGenericArguments( );
 
             MethodInfo typedDeepMemoizeMethod = DeepMemoizeMethodInfo.MakeGenericMethod(parameterTypes);
-            R memoizedResult = (R) typedDeepMemoizeMethod.Invoke(null, new object[] { result });
+            var memoizedResult = (R?) typedDeepMemoizeMethod.Invoke(null, new object?[] { result });
             memory.Remember(arg, memoizedResult);
           }
           else
@@ -1090,8 +1108,11 @@ namespace FCSlib {
     #endregion
     #endregion
 
-    public static T[] InitArray<T>(int length, Func<int, T> elementInit) {
-      var array = Array.CreateInstance(typeof(T), length) as T[];
+    public static T?[] InitArray<T>(int length, Func<int, T> elementInit) {
+      var array = Array.CreateInstance(typeof(T), length) as T?[];
+      // Somehow C# thinks that array could be null at this point. Don't know how but let's catch it.
+      if (array == null)
+        throw new InvalidOperationException("Pray for your array!");
       for (int i = 0; i < length; i++)
         array[i] = elementInit(i);
       return array;

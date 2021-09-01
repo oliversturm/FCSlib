@@ -21,9 +21,9 @@ using System.Text;
 using System.Reflection;
 
 namespace FCSlib.Data {
-  public interface IMemory<P, R> {
+  public interface IMemory<P, R> where P : notnull {
     bool HasResultFor(P val);
-    R ResultFor(P val);
-    void Remember(P val, R result);
+    R? ResultFor(P val);
+    void Remember(P val, R? result);
   }
 }

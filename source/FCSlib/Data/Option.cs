@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2016 Oliver Sturm <oliver@oliversturm.com>
+// Copyright (C) 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,9 +41,15 @@ namespace FCSlib.Data {
     }
   }
 
+  // Type T can be nullable - depending on actual instance values, it may be
+  // desirable to make the option Some or None so it could be argued that
+  // Some(null) shouldn't be possible - then again, if we assume that null
+  // is a valid value in some scenarios of a null-enabled programming language
+  // then even Some(null) could be a valid construct.
+
   public sealed class Option<T> {
-    private readonly T value;
-    public T Value {
+    private readonly T? value;
+    public T? Value {
       get { return value; }
     }
     private readonly bool hasValue;
@@ -57,7 +63,7 @@ namespace FCSlib.Data {
       get { return !hasValue; }
     }
 
-    public Option(T value) {
+    public Option(T? value) {
       this.value = value;
       this.hasValue = true;
     }
@@ -82,15 +88,15 @@ namespace FCSlib.Data {
     public override int GetHashCode( ) {
       int hashCode = hasValue.GetHashCode( );
       if (hasValue)
-        hashCode ^= value.GetHashCode( );
+        hashCode ^= value?.GetHashCode( ) ?? 0;
       return hashCode;
     }
 
-    public override bool Equals(object obj) {
+    public override bool Equals(object? obj) {
       return base.Equals(obj);
     }
 
-    public Option<R> Bind<R>(Func<T, Option<R>> g) {
+    public Option<R> Bind<R>(Func<T?, Option<R>> g) {
       if (IsNone)
         return Option.None;
       return g(Value);

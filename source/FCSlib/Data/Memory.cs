@@ -22,17 +22,17 @@ using System.Reflection;
 
 namespace FCSlib.Data {
   public class Memory<P, R> : IMemory<P, R> where P : notnull {
-    Dictionary<P, R> storage = new Dictionary<P, R>( );
+    Dictionary<P, R?> storage = new( );
 
     public bool HasResultFor(P val) {
       return storage.ContainsKey(val);
     }
 
-    public R ResultFor(P val) {
+    public R? ResultFor(P val) {
       return storage[val];
     }
 
-    public void Remember(P val, R result) {
+    public void Remember(P val, R? result) {
       storage[val] = result;
     }
   }
