@@ -119,9 +119,9 @@ namespace FCSlib {
       p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => p13 => p14 => p15 => p16 => action(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16);
 
 
-    public static Func<T2, Func<T1, R>> Swap<T1, T2, R>(Func<T1, Func<T2, R>> func) {
-      return p2 => p1 => func(p1)(p2);
-    }
+    public static Func<T2, Func<T1, R>> Swap<T1, T2, R>(Func<T1, Func<T2, R>> func) =>
+      p2 => p1 => func(p1)(p2);
+
     #endregion
 
     #region Uncurrying
