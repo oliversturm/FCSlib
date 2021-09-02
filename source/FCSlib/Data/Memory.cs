@@ -12,7 +12,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
-  
+
 
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ using System.Reflection;
 
 namespace FCSlib.Data {
   public class Memory<P, R> : IMemory<P, R> where P : notnull {
-    Dictionary<P, R?> storage = new( );
+    Dictionary<P, R?> storage = new();
 
     public bool HasResultFor(P val) {
       return storage.ContainsKey(val);

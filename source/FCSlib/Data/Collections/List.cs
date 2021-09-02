@@ -12,7 +12,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
-  
+
 
 // Loosely based on the algorithm described by Chris Okasaki in his book
 // "Purely Functional Data Structures", published by Cambridge University Press.
@@ -45,7 +45,7 @@ namespace FCSlib.Data.Collections {
       }
     }
     public bool IsEmpty { get { return isEmpty; } }
-    public static readonly List<T> Empty = new List<T>( );
+    public static readonly List<T> Empty = new();
     #endregion
 
     #region Cons
@@ -75,7 +75,7 @@ namespace FCSlib.Data.Collections {
         return other;
       List<T> newList = other;
 
-      foreach (var element in one.Reverse( ))
+      foreach (var element in one.Reverse())
         newList = newList.Cons(element);
 
       return newList;
@@ -140,14 +140,14 @@ namespace FCSlib.Data.Collections {
         tail = List<T>.Empty;
     }
 
-    private List( ) {
+    private List() {
       isEmpty = true;
       // this.head is null in this case
       this.tail = List<T>.Empty;
     }
 
     public List(System.Collections.Generic.IEnumerable<T> source) {
-      T[] sa = source.ToArray( );
+      T[] sa = source.ToArray();
       int sal = sa.Length;
       if (sal > 0) {
         head = sa[0];
@@ -164,24 +164,24 @@ namespace FCSlib.Data.Collections {
     #endregion
 
     #region IEnumerable support
-    public System.Collections.Generic.IEnumerator<T> GetEnumerator( ) {
+    public System.Collections.Generic.IEnumerator<T> GetEnumerator() {
       for (var element = this; element != List<T>.Empty; element = element.Tail)
         yield return element.Head;
     }
 
-    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator( ) {
-      return this.GetEnumerator( );
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+      return this.GetEnumerator();
     }
     #endregion
 
     #region ToString
-    public override string ToString( ) {
+    public override string ToString() {
       var result = "[";
       if (!IsEmpty)
         result +=
           Functional.FoldL1(
             (r, x) => r + ", " + x,
-            Functional.Map(x => x?.ToString( ), this));
+            Functional.Map(x => x?.ToString(), this));
       result += "]";
       return result;
     }

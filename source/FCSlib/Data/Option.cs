@@ -12,7 +12,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
-  
+
 
 using System;
 using System.Collections.Generic;
@@ -22,13 +22,13 @@ using System.Reflection;
 
 namespace FCSlib.Data {
   public sealed class Option {
-    private Option( ) { }
+    private Option() { }
 
     public static Option<T> Some<T>(T value) {
       return new Option<T>(value);
     }
 
-    public static readonly Option None = new Option( );
+    public static readonly Option None = new();
   }
 
   public static class OptionHelpers {
@@ -37,7 +37,7 @@ namespace FCSlib.Data {
     }
 
     public static Option<T> ToNotNullOption<T>(this T val) where T : class {
-      return val != null ? val.ToOption( ) : Option.None;
+      return val != null ? val.ToOption() : Option.None;
     }
   }
 
@@ -68,10 +68,10 @@ namespace FCSlib.Data {
       this.hasValue = true;
     }
 
-    private Option( ) {
+    private Option() {
     }
 
-    private static readonly Option<T> None = new Option<T>( );
+    private static readonly Option<T> None = new();
 
     public static bool operator ==(Option<T> a, Option<T> b) {
       return a.HasValue == b.HasValue &&
@@ -85,10 +85,10 @@ namespace FCSlib.Data {
       return Option<T>.None;
     }
 
-    public override int GetHashCode( ) {
-      int hashCode = hasValue.GetHashCode( );
+    public override int GetHashCode() {
+      int hashCode = hasValue.GetHashCode();
       if (hasValue)
-        hashCode ^= value?.GetHashCode( ) ?? 0;
+        hashCode ^= value?.GetHashCode() ?? 0;
       return hashCode;
     }
 

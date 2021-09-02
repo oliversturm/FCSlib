@@ -12,7 +12,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
-  
+
 
 using System;
 using System.Collections.Generic;
@@ -58,6 +58,34 @@ namespace FCSlib {
       return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => func(p1, p2, p3, p4, p5, p6, p7, p8, p9);
     }
 
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, TR>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TR>(this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TR> func) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => func(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, TR>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TR>(this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TR> func) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => func(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, Func<T12, TR>>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TR>(this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TR> func) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => func(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, Func<T12, Func<T13, TR>>>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TR>(this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TR> func) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => p13 => func(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, Func<T12, Func<T13, Func<T14, TR>>>>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TR>(this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TR> func) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => p13 => p14 => func(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, Func<T12, Func<T13, Func<T14, Func<T15, TR>>>>>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TR>(this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TR> func) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => p13 => p14 => p15 => func(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, Func<T12, Func<T13, Func<T14, Func<T15, Func<T16, TR>>>>>>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TR>(this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TR> func) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => p13 => p14 => p15 => p16 => func(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16);
+    }
+
     public static Func<T1, Action<T2>> Curry<T1, T2>(this Action<T1, T2> action) {
       return p1 => p2 => action(p1, p2);
     }
@@ -89,6 +117,35 @@ namespace FCSlib {
     public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Action<T9>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action) {
       return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => action(p1, p2, p3, p4, p5, p6, p7, p8, p9);
     }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Action<T10>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> action) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => action(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Action<T11>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> action) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => action(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, Action<T12>>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> action) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => action(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, Func<T12, Action<T13>>>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> action) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => p13 => action(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, Func<T12, Func<T13, Action<T14>>>>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> action) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => p13 => p14 => action(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, Func<T12, Func<T13, Func<T14, Action<T15>>>>>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> action) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => p13 => p14 => p15 => action(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15);
+    }
+
+    public static Func<T1, Func<T2, Func<T3, Func<T4, Func<T5, Func<T6, Func<T7, Func<T8, Func<T9, Func<T10, Func<T11, Func<T12, Func<T13, Func<T14, Func<T15, Action<T16>>>>>>>>>>>>>>>> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> action) {
+      return p1 => p2 => p3 => p4 => p5 => p6 => p7 => p8 => p9 => p10 => p11 => p12 => p13 => p14 => p15 => p16 => action(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16);
+    }
+
 
     public static Func<T2, Func<T1, R>> Swap<T1, T2, R>(Func<T1, Func<T2, R>> func) {
       return p2 => p1 => func(p1)(p2);
@@ -453,7 +510,7 @@ namespace FCSlib {
       return (arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) => action(arg, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
     }
 
-    public static Action<T3, T4, T5, T6, T7, T8, T9> Apply<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9>  action, T1 arg, T2 arg2) {
+    public static Action<T3, T4, T5, T6, T7, T8, T9> Apply<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, T1 arg, T2 arg2) {
       return (arg3, arg4, arg5, arg6, arg7, arg8, arg9) => action(arg, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
     }
 
@@ -469,7 +526,7 @@ namespace FCSlib {
       return (arg6, arg7, arg8, arg9) => action(arg, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
     }
 
-    public static Action<T7, T8, T9> Apply<T1, T2, T3, T4, T5, T6, T7, T8, T9> (Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, T1 arg, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6) {
+    public static Action<T7, T8, T9> Apply<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action, T1 arg, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6) {
       return (arg7, arg8, arg9) => action(arg, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
     }
 
@@ -872,7 +929,7 @@ namespace FCSlib {
       MethodInfo fInfo = f.Method;
       return Memoize<P, R?>(f, GetDefaultMemoryKey(fInfo));
     }
-    
+
     public static Func<P, R?> Memoize<P, R>(this Func<P, R?> f, string memoryKey) where P : notnull {
       return arg => {
         var memory = Memoizer<P, R?>.GetMemory(memoryKey);
@@ -881,7 +938,7 @@ namespace FCSlib {
         return memory.ResultFor(arg);
       };
     }
-    
+
     // We know that this value won't be null after initialization. However, I'm not sure what 
     // the desired pattern is for COD properties like this (make the backing store variable
     // nullable makes sense of course, technically). And even though I am completely sure 
@@ -924,10 +981,10 @@ namespace FCSlib {
           R? result = f(arg);
           Type resultType = typeof(R);
           if (typeof(System.Delegate).IsAssignableFrom(resultType)) {
-            Type[] parameterTypes = resultType.GetGenericArguments( );
+            Type[] parameterTypes = resultType.GetGenericArguments();
 
             MethodInfo typedDeepMemoizeMethod = DeepMemoizeMethodInfo.MakeGenericMethod(parameterTypes);
-            var memoizedResult = (R?) typedDeepMemoizeMethod.Invoke(null, new object?[] { result });
+            var memoizedResult = (R?)typedDeepMemoizeMethod.Invoke(null, new object?[] { result });
             memory.Remember(arg, memoizedResult);
           }
           else
@@ -1033,7 +1090,7 @@ namespace FCSlib {
     public static Action Lambda(Action f) {
       return f;
     }
-    
+
     public static Action<TArg> Lambda<TArg>(Action<TArg> f) {
       return f;
     }
@@ -1124,7 +1181,7 @@ namespace FCSlib {
         yield return function(sourceVal);
     }
 
-    public static Func<Converter<T, R>, IEnumerable<T>, IEnumerable<R>> MapDelegate<T, R>( ) {
+    public static Func<Converter<T, R>, IEnumerable<T>, IEnumerable<R>> MapDelegate<T, R>() {
       return Map<T, R>;
     }
 
@@ -1134,7 +1191,7 @@ namespace FCSlib {
           yield return val;
     }
 
-    public static Func<Predicate<T>, IEnumerable<T>, IEnumerable<T>> FilterDelegate<T>( ) {
+    public static Func<Predicate<T>, IEnumerable<T>, IEnumerable<T>> FilterDelegate<T>() {
       return Filter<T>;
     }
 
@@ -1145,7 +1202,7 @@ namespace FCSlib {
       return result;
     }
 
-    public static Func<Func<R, T, R>, R, IEnumerable<T>, R> FoldLDelegate<T, R>( ) {
+    public static Func<Func<R, T, R>, R, IEnumerable<T>, R> FoldLDelegate<T, R>() {
       return FoldL<T, R>;
     }
 
@@ -1153,7 +1210,7 @@ namespace FCSlib {
       return FoldL(accumulator, First(list), Skip(1, list));
     }
 
-    public static Func<Func<T, T, T>, IEnumerable<T>, T> FoldL1Delegate<T>( ) {
+    public static Func<Func<T, T, T>, IEnumerable<T>, T> FoldL1Delegate<T>() {
       return FoldL1<T>;
     }
 
@@ -1161,7 +1218,7 @@ namespace FCSlib {
       return FoldL((r, x) => accumulator(x, r), startVal, Functional.Reverse(list));
     }
 
-    public static Func<Func<T, R, R>, R, IEnumerable<T>, R> FoldRDelegate<T, R>( ) {
+    public static Func<Func<T, R, R>, R, IEnumerable<T>, R> FoldRDelegate<T, R>() {
       return FoldR<T, R>;
     }
 
@@ -1169,7 +1226,7 @@ namespace FCSlib {
       return FoldL1((r, x) => accumulator(x, r), Functional.Reverse(list));
     }
 
-    public static Func<Func<T, T, T>, IEnumerable<T>, T> FoldR1Delegate<T>( ) {
+    public static Func<Func<T, T, T>, IEnumerable<T>, T> FoldR1Delegate<T>() {
       return FoldR1<T>;
     }
     #endregion
@@ -1185,17 +1242,17 @@ namespace FCSlib {
       }
     }
 
-    public static Func<IEnumerable<T>, IEnumerable<T>> ReverseDelegate<T>( ) {
+    public static Func<IEnumerable<T>, IEnumerable<T>> ReverseDelegate<T>() {
       return Reverse<T>;
     }
 
     public static T First<T>(this IEnumerable<T> source) {
-      var enumerator = source.GetEnumerator( );
-      enumerator.MoveNext( );
+      var enumerator = source.GetEnumerator();
+      enumerator.MoveNext();
       return enumerator.Current;
     }
 
-    public static Func<IEnumerable<T>, T> FirstDelegate<T>( ) {
+    public static Func<IEnumerable<T>, T> FirstDelegate<T>() {
       return First<T>;
     }
 
@@ -1209,7 +1266,7 @@ namespace FCSlib {
       }
     }
 
-    public static Func<int,IEnumerable<T>,IEnumerable<T>> TakeDelegate<T>( ) {
+    public static Func<int, IEnumerable<T>, IEnumerable<T>> TakeDelegate<T>() {
       return Take<T>;
     }
 
@@ -1222,7 +1279,7 @@ namespace FCSlib {
       }
     }
 
-    public static Func<Predicate<T>, IEnumerable<T>, IEnumerable<T>> TakeWhileDelegate<T>( ) {
+    public static Func<Predicate<T>, IEnumerable<T>, IEnumerable<T>> TakeWhileDelegate<T>() {
       return TakeWhile<T>;
     }
 
@@ -1237,7 +1294,7 @@ namespace FCSlib {
       }
     }
 
-    public static Func<int, IEnumerable<T>, IEnumerable<T>> SkipDelegate<T>( ) {
+    public static Func<int, IEnumerable<T>, IEnumerable<T>> SkipDelegate<T>() {
       return Skip<T>;
     }
 
@@ -1246,13 +1303,13 @@ namespace FCSlib {
         action(item);
     }
 
-    public static Action<IEnumerable<T>, Action<T>> EachDelegate<T>( ) {
+    public static Action<IEnumerable<T>, Action<T>> EachDelegate<T>() {
       return Each<T>;
     }
 
     public static void Each<T>(this IEnumerable<T> source, Action action) {
       foreach (var item in source)
-        action( );
+        action();
     }
 
     public static IEnumerable<T> Concat<T>(IEnumerable<IEnumerable<T>> sequences) {
@@ -1279,7 +1336,7 @@ namespace FCSlib {
       }
     }
 
-    public static Func<Func<T, T>, T, Func<T, bool>, IEnumerable<T>> SequenceDelegate<T>( ) {
+    public static Func<Func<T, T>, T, Func<T, bool>, IEnumerable<T>> SequenceDelegate<T>() {
       return Sequence<T>;
     }
     #endregion

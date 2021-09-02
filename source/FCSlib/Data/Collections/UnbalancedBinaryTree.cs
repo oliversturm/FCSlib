@@ -12,7 +12,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
-  
+
 
 // Loosely based on the algorithm described by Chris Okasaki in his book
 // "Purely Functional Data Structures", published by Cambridge University Press.
@@ -50,21 +50,21 @@ namespace FCSlib.Data.Collections {
       }
     }
 
-    public static readonly UnbalancedBinaryTree<T> Empty = new UnbalancedBinaryTree<T>( );
+    public static readonly UnbalancedBinaryTree<T> Empty = new();
 
 
     #region Constructors
-    public UnbalancedBinaryTree( ) {
+    public UnbalancedBinaryTree() {
       isEmpty = true;
       this.left = this.right = UnbalancedBinaryTree<T>.Empty;
     }
-    
+
     public UnbalancedBinaryTree(UnbalancedBinaryTree<T> left, T? value, UnbalancedBinaryTree<T> right) {
       this.left = left;
       this.right = right;
       this.value = value;
     }
-    
+
     #endregion
 
     public static bool Contains(T? value, UnbalancedBinaryTree<T> tree) {
@@ -110,7 +110,7 @@ namespace FCSlib.Data.Collections {
       return UnbalancedBinaryTree<T>.Insert(value, this);
     }
 
-    IEnumerator<T?> System.Collections.Generic.IEnumerable<T?>.GetEnumerator( ) {
+    IEnumerator<T?> System.Collections.Generic.IEnumerable<T?>.GetEnumerator() {
       if (IsEmpty)
         yield break;
 
@@ -121,11 +121,11 @@ namespace FCSlib.Data.Collections {
         yield return val;
     }
 
-    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator( ) {
-      return ((IEnumerable<T?>) this).GetEnumerator( );
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+      return ((IEnumerable<T?>)this).GetEnumerator();
     }
 
-    public override string ToString( ) {
+    public override string ToString() {
       return String.Format("[{0} {1} {2}]", Left, IsEmpty ? "Empty" : Value?.ToString(), Right);
     }
   }

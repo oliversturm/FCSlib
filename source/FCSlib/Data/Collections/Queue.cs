@@ -12,7 +12,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
-  
+
 
 // Loosely based on the algorithm described by Chris Okasaki in his book
 // "Purely Functional Data Structures", published by Cambridge University Press.
@@ -32,13 +32,13 @@ namespace FCSlib.Data.Collections {
       get { return f.IsEmpty; }
     }
 
-    public static readonly Queue<T> Empty = new Queue<T>( );
+    public static readonly Queue<T> Empty = new();
     private Queue(List<T> f, List<T> r) {
       this.f = f;
       this.r = r;
     }
 
-    public Queue( )
+    public Queue()
       : this(List<T>.Empty, List<T>.Empty) {
     }
 
@@ -86,7 +86,7 @@ namespace FCSlib.Data.Collections {
       }
     }
 
-    public override string ToString( ) {
+    public override string ToString() {
       return String.Format("[f:{0} r:{1}]", f, r);
     }
   }

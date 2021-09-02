@@ -12,7 +12,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
-  
+
 
 // Loosely based on the algorithm described by Chris Okasaki in his book
 // "Purely Functional Data Structures", published by Cambridge University Press.
@@ -58,21 +58,21 @@ namespace FCSlib.Data.Collections {
       }
     }
 
-    public static readonly RedBlackTree<T> Empty = new RedBlackTree<T>( );
+    public static readonly RedBlackTree<T> Empty = new();
 
     #region Constructors
-    private RedBlackTree( )  {
+    private RedBlackTree() {
       isEmpty = true;
       this.left = this.right = RedBlackTree<T>.Empty;
     }
- 
+
     public RedBlackTree(Color nodeColor, RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
       this.nodeColor = nodeColor;
       this.left = left;
       this.right = right;
       this.value = value;
     }
-        
+
     #endregion
 
     #region Balance
@@ -172,7 +172,7 @@ namespace FCSlib.Data.Collections {
 
     #endregion
 
-    IEnumerator<T?> System.Collections.Generic.IEnumerable<T?>.GetEnumerator( ) {
+    IEnumerator<T?> System.Collections.Generic.IEnumerable<T?>.GetEnumerator() {
       if (IsEmpty)
         yield break;
 
@@ -183,11 +183,11 @@ namespace FCSlib.Data.Collections {
         yield return val;
     }
 
-    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator( ) {
-      return ((IEnumerable<T?>) this).GetEnumerator( );
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+      return ((IEnumerable<T?>)this).GetEnumerator();
     }
 
-    public override string ToString( ) {
+    public override string ToString() {
       string colStr = NodeColor == Color.Black ? "B" : "R";
       if (IsEmpty)
         return String.Format("[{0} Empty]", colStr);

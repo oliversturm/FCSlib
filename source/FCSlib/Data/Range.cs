@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2016 Oliver Sturm <oliver@oliversturm.com>
+// Copyright (C) 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
