@@ -25,7 +25,6 @@ using System.Linq.Expressions;
 
 namespace FCSlib {
   public static partial class Functional {
-
     #region Composition
     #region 2 functions
     public static Func<TSource, TEndResult> Compose<TSource, TIntermediateResult, TEndResult>(

@@ -25,7 +25,6 @@ using System.Linq.Expressions;
 
 namespace FCSlib {
   public static partial class Functional {
-
     #region Partial application
     #region Func, 2 params
     public static Func<T2, TR> Apply<T1, T2, TR>(Func<T1, T2, TR> function, T1 arg1) {

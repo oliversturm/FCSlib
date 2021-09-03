@@ -26,16 +26,6 @@ using System.Linq.Expressions;
 namespace FCSlib {
   public static partial class Functional {
 
-    public static T?[] InitArray<T>(int length, Func<int, T> elementInit) {
-      var array = Array.CreateInstance(typeof(T), length) as T?[];
-      // Somehow C# thinks that array could be null at this point. Don't know how but let's catch it.
-      if (array == null)
-        throw new InvalidOperationException("Pray for your array!");
-      for (int i = 0; i < length; i++)
-        array[i] = elementInit(i);
-      return array;
-    }
-
     #region Standard higher order functions
     public static IEnumerable<R> Map<T, R>(Converter<T, R> function, IEnumerable<T> list) {
       foreach (T sourceVal in list)
