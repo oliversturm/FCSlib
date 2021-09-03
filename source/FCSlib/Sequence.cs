@@ -25,8 +25,6 @@ using System.Linq.Expressions;
 
 namespace FCSlib {
   public static partial class Functional {
-
-    #region Sequence function
     public static IEnumerable<T> Sequence<T>(Func<T, T> getNext, T startVal, Func<T, bool> endReached) {
       if (getNext == null)
         yield break;
@@ -38,10 +36,6 @@ namespace FCSlib {
       }
     }
 
-    public static Func<Func<T, T>, T, Func<T, bool>, IEnumerable<T>> SequenceDelegate<T>() {
-      return Sequence<T>;
-    }
-    #endregion
-
+    public static Func<Func<T, T>, T, Func<T, bool>, IEnumerable<T>> SequenceDelegate<T>() => Sequence<T>;
   }
 }
