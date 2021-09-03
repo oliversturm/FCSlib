@@ -26,62 +26,6 @@ using System.Linq.Expressions;
 namespace FCSlib {
   public static partial class Functional {
 
-    #region Standard higher order functions
-    public static IEnumerable<R> Map<T, R>(Converter<T, R> function, IEnumerable<T> list) {
-      foreach (T sourceVal in list)
-        yield return function(sourceVal);
-    }
-
-    public static Func<Converter<T, R>, IEnumerable<T>, IEnumerable<R>> MapDelegate<T, R>() {
-      return Map<T, R>;
-    }
-
-    public static IEnumerable<T> Filter<T>(Predicate<T> predicate, IEnumerable<T> list) {
-      foreach (T val in list)
-        if (predicate(val))
-          yield return val;
-    }
-
-    public static Func<Predicate<T>, IEnumerable<T>, IEnumerable<T>> FilterDelegate<T>() {
-      return Filter<T>;
-    }
-
-    public static R FoldL<T, R>(Func<R, T, R> accumulator, R startVal, IEnumerable<T> list) {
-      R result = startVal;
-      foreach (T sourceVal in list)
-        result = accumulator(result, sourceVal);
-      return result;
-    }
-
-    public static Func<Func<R, T, R>, R, IEnumerable<T>, R> FoldLDelegate<T, R>() {
-      return FoldL<T, R>;
-    }
-
-    public static T FoldL1<T>(Func<T, T, T> accumulator, IEnumerable<T> list) {
-      return FoldL(accumulator, First(list), Skip(1, list));
-    }
-
-    public static Func<Func<T, T, T>, IEnumerable<T>, T> FoldL1Delegate<T>() {
-      return FoldL1<T>;
-    }
-
-    public static R FoldR<T, R>(Func<T, R, R> accumulator, R startVal, IEnumerable<T> list) {
-      return FoldL((r, x) => accumulator(x, r), startVal, Functional.Reverse(list));
-    }
-
-    public static Func<Func<T, R, R>, R, IEnumerable<T>, R> FoldRDelegate<T, R>() {
-      return FoldR<T, R>;
-    }
-
-    public static T FoldR1<T>(Func<T, T, T> accumulator, IEnumerable<T> list) {
-      return FoldL1((r, x) => accumulator(x, r), Functional.Reverse(list));
-    }
-
-    public static Func<Func<T, T, T>, IEnumerable<T>, T> FoldR1Delegate<T>() {
-      return FoldR1<T>;
-    }
-    #endregion
-
     #region Sequence helpers 
     public static IEnumerable<T> Reverse<T>(IEnumerable<T> source) {
       FCSColl::List<T> stack = FCSColl::List<T>.Empty;
