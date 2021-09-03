@@ -1544,16 +1544,6 @@ namespace FCSlib {
 
     #endregion
 
-    #region Lazy
-    public static Lazy<T> Lazy<T>(this Func<T> func) {
-      return new Lazy<T>(func);
-    }
-
-    public static Lazy<T> Lazy<T>(T value) {
-      return new Lazy<T>(value);
-    }
-    #endregion
-
     #region Lambda construction
     #region Basic Func, none or one parameter
     public static Func<TR> Lambda<TR>(Func<TR> f) {
