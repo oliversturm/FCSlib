@@ -17,7 +17,7 @@
 // Loosely based on the algorithm described by Chris Okasaki in his book
 // "Purely Functional Data Structures", published by Cambridge University Press.
 // The algorithm in question is described in Figure 2.2.
-// Used with permission, C# code (C) Copyright 2009-2011 Oliver Sturm <oliver@oliversturm.com>
+// Used with permission, C# code (C) Copyright 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 
 using System;
 using System.Linq;

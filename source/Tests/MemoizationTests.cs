@@ -15,6 +15,7 @@
 
 using NUnit.Framework;
 using FCSlib;
+using FCSlib.Data;
 
 namespace Tests;
 
@@ -67,5 +68,73 @@ public class MemoizationTests {
 
     Assert.AreEqual(firstValue, secondValue);
   }
+
+  [Test]
+  public void CreateMemoryUsingKey() {
+    var memory = Memoizer<int, int>.CreateMemory("creatememoryusingkey_testkey");
+    Assert.IsNotNull(memory);
+  }
+
+  [Test]
+  public void CreateExistingMemory() {
+    var memory = Memoizer<int, int>.CreateMemory("createexistingmemory_testkey");
+    Assert.Throws<InvalidOperationException>(() => {
+      var memory2 = Memoizer<int, int>.CreateMemory("createexistingmemory_testkey");
+    });
+  }
+
+  [Test]
+  public void GetNewMemory() {
+    var memory = Memoizer<int, int>.GetMemory("getnewmemory_testkey");
+    Assert.IsNotNull(memory);
+  }
+
+  [Test]
+  public void GetExistingMemory() {
+    var memory = Memoizer<int, int>.GetMemory("getexistingmemory_testkey");
+    var memory2 = Memoizer<int, int>.GetMemory("getexistingmemory_testkey");
+    Assert.IsNotNull(memory2);
+    Assert.AreSame(memory, memory2);
+  }
+
+  [Test]
+  public void MemoryRemember() {
+    var memory = Memoizer<int, int>.GetMemory("memoryremember_testkey");
+    memory.Remember(1, 42);
+    memory.Remember(2, 52);
+    memory.Remember(2, 104);
+  }
+
+  [Test]
+  public void MemoryHasResultFor() {
+    var memory = Memoizer<int, int>.GetMemory("memoryhasresultfor_testkey");
+    memory.Remember(1, 42);
+    Assert.IsTrue(memory.HasResultFor(1));
+    Assert.IsFalse(memory.HasResultFor(2));
+  }
+
+  [Test]
+  public void MemoryResultFor() {
+    var memory = Memoizer<int, int>.GetMemory("memoryresultfor_testkey");
+    memory.Remember(1, 42);
+    memory.Remember(2, 52);
+    memory.Remember(2, 104);
+
+    Assert.AreEqual(42, memory.ResultFor(1));
+    Assert.AreEqual(104, memory.ResultFor(2));
+  }
+
+  [Test]
+  public void MemoryNoResultFor() {
+    var memory = Memoizer<int, int>.GetMemory("memorynoresultfor_testkey");
+    memory.Remember(1, 42);
+    memory.Remember(2, 52);
+    memory.Remember(2, 104);
+
+    Assert.Throws<KeyNotFoundException>(() => {
+      memory.ResultFor(3);
+    });
+  }
+
 }
 
