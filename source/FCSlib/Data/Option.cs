@@ -29,6 +29,17 @@ namespace FCSlib.Data {
     }
 
     public static readonly Option None = new();
+
+    // Just for consistency - this type is only used to 
+    // temporarily represent a None
+    // C# thinks these three should be static, so deactivate
+    // the warnings first.
+
+#pragma warning disable CA1822
+    public bool HasValue => false;
+    public bool IsSome => false;
+    public bool IsNone => true;
+#pragma warning restore CA1822
   }
 
   public static class OptionHelpers {
@@ -36,7 +47,10 @@ namespace FCSlib.Data {
       return Option.Some(val);
     }
 
-    public static Option<T> ToNotNullOption<T>(this T val) where T : class {
+    // I'm reminded that C# doesn't support a generic constraint
+    // for "nullable", i.e. "class?" but also "int?". Wonder
+    // if there are any news about this.
+    public static Option<T> ToNotNullOption<T>(this T val) where T : class? {
       return val != null ? val.ToOption() : Option.None;
     }
   }

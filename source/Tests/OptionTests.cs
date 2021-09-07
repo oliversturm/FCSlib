@@ -38,14 +38,72 @@ public class OptionTests {
   public void BasicNone() {
     var o = Option.None;
 
-    // Need to remind myself why I implemented
-    // None in both the generic and the non-generic type,
-    // and why I didn't include the properties 
-    // in both types.
-
-    // Assert.IsTrue(o.HasValue);
-    // Assert.AreEqual(3, o.Value);
-    // Assert.IsTrue(o.IsSome);
-    // Assert.IsFalse(o.IsNone);
+    Assert.IsFalse(o.HasValue);
+    Assert.IsFalse(o.IsSome);
+    Assert.IsTrue(o.IsNone);
   }
+
+  [Test]
+  public void CompareGenericEqual() {
+    var o1 = Option.Some(3);
+    var o2 = Option.Some(3);
+
+    Assert.IsTrue(o1 == o2);
+  }
+
+  [Test]
+  public void CompareGenericNotEqual() {
+    var o1 = Option.Some(3);
+    var o2 = Option.Some(4);
+
+    Assert.IsFalse(o1 == o2);
+    Assert.IsTrue(o1 != o2);
+  }
+
+  [Test]
+  public void CompareNones() {
+    var o1 = Option.None;
+    var o2 = Option.None;
+
+    Assert.IsTrue(o1 == o2);
+  }
+
+  [Test]
+  public void CompareOneNone() {
+    var o1 = Option.Some(3);
+    var o2 = Option.None;
+
+    Assert.IsFalse(o1 == o2);
+    Assert.IsTrue(o1 != o2);
+  }
+
+  [Test]
+  public void ListOfOptions() {
+    List<Option<int>> os = new();
+    os.Add(Option.Some(3));
+    os.Add(Option.Some(5));
+    os.Add(Option.None);
+  }
+
+  [Test]
+  public void ToOption() {
+    var o = 3.ToOption();
+
+    Assert.IsTrue(o.HasValue);
+    Assert.AreEqual(3, o.Value);
+    Assert.IsTrue(o.IsSome);
+    Assert.IsFalse(o.IsNone);
+  }
+
+  [Test]
+  public void ValueToNotNullOption() {
+    string s = "thing";
+    var o = s.ToNotNullOption();
+
+    Assert.IsTrue(o.HasValue);
+    Assert.AreEqual("thing", o.Value);
+    Assert.IsTrue(o.IsSome);
+    Assert.IsFalse(o.IsNone);
+  }
+
 }
