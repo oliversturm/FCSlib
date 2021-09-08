@@ -263,6 +263,20 @@ public class OptionTests {
   }
 
   [Test]
+  public void SwitchOnOption() {
+    var result = 5.ToOption() &
+      (v => 7.ToOption() &
+        (v2 => (v + v2).ToOption()));
+
+    // Todo: consider adding deconstruct here
+    var testResult = result switch { { IsSome: true } some => $"Result is {some.Value}",
+      _ => "No idea what this is"
+    };
+
+    Assert.AreEqual("Result is 12", testResult);
+  }
+
+  [Test]
   public void OperatorBindNone() {
     var result = 5.ToOption() &
       (v => Option<int>.None &
