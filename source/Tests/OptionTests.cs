@@ -16,6 +16,7 @@
 using NUnit.Framework;
 using FCSlib;
 using FCSlib.Data;
+using FCSColl = FCSlib.Data.Collections;
 
 namespace Tests;
 
@@ -85,7 +86,7 @@ public class OptionTests {
     os.Add(Option.None);
   }
 
-  static void AssertIsSome<T>(Option<T> o, T val) {
+  static void AssertIsSome<T>(Option<T> o, T? val) {
     Assert.IsTrue(o.HasValue);
     Assert.AreEqual(val, o.Value);
     Assert.IsTrue(o.IsSome);
@@ -98,11 +99,12 @@ public class OptionTests {
     Assert.IsTrue(o.IsNone);
   }
 
-  static void AssertIsNone(Option o) {
-    Assert.IsFalse(o.HasValue);
-    Assert.IsFalse(o.IsSome);
-    Assert.IsTrue(o.IsNone);
-  }
+  // Don't need this in current tests
+  // static void AssertIsNone(Option o) {
+  //   Assert.IsFalse(o.HasValue);
+  //   Assert.IsFalse(o.IsSome);
+  //   Assert.IsTrue(o.IsNone);
+  // }
 
   [Test]
   public void ToOption() {
@@ -277,14 +279,6 @@ public class OptionTests {
   }
 
   [Test]
-  public void StaticBindSomeAutoConversion() {
-    var result = Option<int>.Bind(5,
-    v => Option<int>.Bind<int>(7, v2 => v + v2));
-
-    AssertIsSome(result, 12);
-  }
-
-  [Test]
   public void StaticOptionBindSomeAutoConversion() {
     var result =
       Option.Bind(5,
@@ -294,4 +288,117 @@ public class OptionTests {
     AssertIsSome(result, 12);
   }
 
+  //               Paul
+  //          /           \
+  //    Adam                Willy
+  //         \            /
+  //       Bernie       Suzie
+
+  [Test]
+  public void GetThirdLeftChild() {
+    var tree = new FCSColl::UnbalancedBinaryTree<string>();
+    tree = tree.Insert("Paul");
+    tree = tree.Insert("Adam");
+    tree = tree.Insert("Bernie");
+    tree = tree.Insert("Willy");
+    tree = tree.Insert("Suzie");
+    // Following the tree to the left three times should
+    // find nothing - so we expect None. Point is, we
+    // don't need any explicit checks and conditional
+    // execution paths for this.
+
+    var result =
+      Option
+        .Bind(tree, t => t?.Left)
+        .Bind(t => t?.Left)
+        .Bind(t => t?.Left);
+
+    AssertIsNone(result);
+  }
+
+  [Test]
+  public void GetSecondLeftChildOperator() {
+    var tree = new FCSColl::UnbalancedBinaryTree<string>();
+    tree = tree.Insert("Paul");
+    tree = tree.Insert("Adam");
+    tree = tree.Insert("Bernie");
+    tree = tree.Insert("Willy");
+    tree = tree.Insert("Suzie");
+    // Following the tree to the left three times should
+    // find nothing - so we expect None. Point is, we
+    // don't need any explicit checks and conditional
+    // execution paths for this.
+
+    var result =
+      tree.ToNonDefaultOption() &
+      (t => t?.Left) &
+      (t => t?.Left);
+
+    AssertIsNone(result);
+  }
+
+  [Test]
+  public void GetThirdLeftChildOperator() {
+    var tree = new FCSColl::UnbalancedBinaryTree<string>();
+    tree = tree.Insert("Paul");
+    tree = tree.Insert("Adam");
+    tree = tree.Insert("Bernie");
+    tree = tree.Insert("Willy");
+    tree = tree.Insert("Suzie");
+    // Following the tree to the left three times should
+    // find nothing - so we expect None. Point is, we
+    // don't need any explicit checks and conditional
+    // execution paths for this.
+
+    var result =
+      tree.ToNonDefaultOption() &
+      (t => t?.Left) &
+      (t => t?.Left) &
+      (t => t?.Left);
+
+    AssertIsNone(result);
+  }
+
+  [Test]
+  public void GetLeftRightChild() {
+    var tree = new FCSColl::UnbalancedBinaryTree<string>();
+    tree = tree.Insert("Paul");
+    tree = tree.Insert("Adam");
+    tree = tree.Insert("Bernie");
+    tree = tree.Insert("Willy");
+    tree = tree.Insert("Suzie");
+    // Following the tree to the left and then to the right
+    // should yield Bernie
+
+    var result =
+      Option
+        .Bind(tree, t => t?.Left)
+        .Bind(t => t?.Right);
+
+    result =
+      tree.ToNonDefaultOption() &
+      (t => t?.Left) &
+      (t => t?.Right);
+
+    Assert.AreEqual("Bernie", result.Value?.Value);
+  }
+
+  [Test]
+  public void GetLeftRightChildOperator() {
+    var tree = new FCSColl::UnbalancedBinaryTree<string>();
+    tree = tree.Insert("Paul");
+    tree = tree.Insert("Adam");
+    tree = tree.Insert("Bernie");
+    tree = tree.Insert("Willy");
+    tree = tree.Insert("Suzie");
+    // Following the tree to the left and then to the right
+    // should yield Bernie
+
+    var result =
+      tree.ToNonDefaultOption() &
+      (t => t?.Left) &
+      (t => t?.Right);
+
+    Assert.AreEqual("Bernie", result.Value?.Value);
+  }
 }

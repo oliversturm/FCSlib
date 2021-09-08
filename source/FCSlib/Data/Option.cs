@@ -30,12 +30,11 @@ namespace FCSlib.Data {
 
     public static Option<R> Bind<T, R>(Option<T> o, Func<T?, Option<R>> g) => o.Bind(g);
 
+    public static Option<R> Bind<T, R>(Option<T> o, Func<T?, R> g) => o.Bind(g);
+
     public static Option<R> Bind<T, R>(T value, Func<T?, Option<R>> g) => value.ToNonDefaultOption().Bind(g);
 
-    public static Option<R> Bind<T, R>(T value, Func<T?, R> g) {
-      Func<T?, Option<R>> f = t => g(t).ToNonDefaultOption();
-      return value.ToNonDefaultOption().Bind(f);
-    }
+    public static Option<R> Bind<T, R>(T value, Func<T?, R> g) => value.ToNonDefaultOption().Bind(g);
 
 
     // Just for consistency - this type is only used to 
@@ -64,10 +63,16 @@ namespace FCSlib.Data {
     // or for bools that equal false. If you want to use this 
     // with value types, you probably want to make them nullable,
     // i.e. use int? or bool?.
-    public static Option<T> ToNonDefaultOption<T>(this T val) =>
-      EqualityComparer<T>.Default.Equals(
-        val, default(T)) ?
-        Option.None : val.ToOption();
+    public static Option<T> ToNonDefaultOption<T>(this T val) {
+      T? defaultValue = default(T);
+      if (val is IHaveCustomDefaultValue<T> haveCustomDefaultValue) {
+        defaultValue = haveCustomDefaultValue.DefaultValue;
+      }
+
+      return EqualityComparer<T>.Default.Equals(
+          val, defaultValue) ?
+          Option.None : val.ToOption();
+    }
   }
 
   public sealed class Option<T> {
@@ -97,8 +102,6 @@ namespace FCSlib.Data {
     public static implicit operator Option<T>(Option option) =>
       Option<T>.None;
 
-    public static implicit operator Option<T>(T val) => new(val);
-
     public override int GetHashCode() {
       int hashCode = HasValue.GetHashCode();
       if (HasValue)
@@ -112,35 +115,18 @@ namespace FCSlib.Data {
     public Option<R> Bind<R>(Func<T?, Option<R>> g) =>
       IsNone ? Option.None : g(Value);
 
-    public static Option<R> Bind<R>(Option<T> o, Func<T?, Option<R>> g) => o.Bind(g);
+    public Option<R> Bind<R>(Func<T?, R> g) {
+      Func<T?, Option<R>> f = t => g(t).ToNonDefaultOption();
+      return Bind(f);
+    }
 
-    public static Option<T> operator &(Option<T> x, Func<T?, Option<T>> g) =>
-      x.Bind(g);
+    // Note the types - the operators work only if the 
+    // return type is the same as the input type, since operators
+    // can't have extra generic types. Optimally it would be 
+    // operator &<R>, to mirror the signature of Bind<R> above.
+    public static Option<T?> operator &(Option<T> o, Func<T?, Option<T?>> g) => o.Bind(g);
 
-    // For future reference: I considered a structure like this,
-    // to automatically bring back a new result from Bind into
-    // the monadic system. However, this doesn't work for structural
-    // reasons. For instance, based on the simply & operator 
-    // above, I can do this:
-    //
-    //  var result = 5.ToOption() &
-    //     (v => 7.ToOption() &
-    //       (v2 => (v + v2).ToOption()));
-    //
-    // However, with the hypothetical operator below, the structure
-    // of the call would change to this:
-    //
-    // var result = (5.ToOption() & (x => 7)) & (y => PROBLEM);
-    //
-    // The issue is that the second step that should perform
-    // the calculation can't access the second value - only one
-    // of the two values is available because the nesting is
-    // different. So I abandoned this approach.
+    public static Option<T?> operator &(Option<T> o, Func<T?, T?> g) => o.Bind(g);
 
-    // public static Option<T> operator &(Option<T> x, Func<T?, T> g) {
-    //   Func<T?, Option<T>> f = t => g(t).ToNonDefaultOption();
-    //   return x.Bind(f);
-    // }
   }
-
 }
