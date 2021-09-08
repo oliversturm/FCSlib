@@ -241,7 +241,7 @@ public class OptionTests {
     var result = 5.ToOption().Bind(
       v => 7.ToOption().Bind(
         v2 => (v + v2).ToOption()));
-    Assert.AreEqual(12, result.Value);
+    AssertIsSome(result, 12);
   }
 
   [Test]
@@ -249,7 +249,7 @@ public class OptionTests {
     var result = 5.ToOption().Bind(
       v => Option<int>.None.Bind(
         v2 => (v + v2).ToOption()));
-    Assert.IsTrue(result.IsNone);
+    AssertIsNone(result);
   }
 
   [Test]
@@ -257,7 +257,7 @@ public class OptionTests {
     var result = 5.ToOption() &
       (v => 7.ToOption() &
         (v2 => (v + v2).ToOption()));
-    Assert.AreEqual(12, result.Value);
+    AssertIsSome(result, 12);
   }
 
   [Test]
@@ -265,7 +265,33 @@ public class OptionTests {
     var result = 5.ToOption() &
       (v => Option<int>.None &
         (v2 => (v + v2).ToOption()));
-    Assert.IsTrue(result.IsNone);
+    AssertIsNone(result);
+  }
+
+  [Test]
+  public void BindSomeAutoConversion() {
+    var result = 5.ToOption().Bind(
+      v => 7.ToOption().Bind<int>(
+        v2 => (v + v2)));
+    AssertIsSome(result, 12);
+  }
+
+  [Test]
+  public void StaticBindSomeAutoConversion() {
+    var result = Option<int>.Bind(5,
+    v => Option<int>.Bind<int>(7, v2 => v + v2));
+
+    AssertIsSome(result, 12);
+  }
+
+  [Test]
+  public void StaticOptionBindSomeAutoConversion() {
+    var result =
+      Option.Bind(5,
+        v => Option.Bind(7,
+          v2 => v + v2));
+
+    AssertIsSome(result, 12);
   }
 
 }

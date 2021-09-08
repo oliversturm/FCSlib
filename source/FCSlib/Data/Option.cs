@@ -28,6 +28,16 @@ namespace FCSlib.Data {
 
     public static readonly Option None = new();
 
+    public static Option<R> Bind<T, R>(Option<T> o, Func<T?, Option<R>> g) => o.Bind(g);
+
+    public static Option<R> Bind<T, R>(T value, Func<T?, Option<R>> g) => value.ToNonDefaultOption().Bind(g);
+
+    public static Option<R> Bind<T, R>(T value, Func<T?, R> g) {
+      Func<T?, Option<R>> f = t => g(t).ToNonDefaultOption();
+      return value.ToNonDefaultOption().Bind(f);
+    }
+
+
     // Just for consistency - this type is only used to 
     // temporarily represent a None
     // C# thinks these three should be static, so deactivate
@@ -87,6 +97,8 @@ namespace FCSlib.Data {
     public static implicit operator Option<T>(Option option) =>
       Option<T>.None;
 
+    public static implicit operator Option<T>(T val) => new(val);
+
     public override int GetHashCode() {
       int hashCode = HasValue.GetHashCode();
       if (HasValue)
@@ -99,6 +111,8 @@ namespace FCSlib.Data {
 
     public Option<R> Bind<R>(Func<T?, Option<R>> g) =>
       IsNone ? Option.None : g(Value);
+
+    public static Option<R> Bind<R>(Option<T> o, Func<T?, Option<R>> g) => o.Bind(g);
 
     public static Option<T> operator &(Option<T> x, Func<T?, Option<T>> g) =>
       x.Bind(g);
