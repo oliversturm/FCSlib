@@ -28,7 +28,7 @@ using System.Collections;
 using System.Diagnostics;
 
 namespace FCSlib.Data.Collections {
-  public sealed class RedBlackTree<T> : IEnumerable<T?> {
+  public sealed class RedBlackTree<T> : IEnumerable<T?>, IHaveCustomDefaultValue<RedBlackTree<T>> {
     public enum Color {
       Red,
       Black
@@ -59,6 +59,8 @@ namespace FCSlib.Data.Collections {
     }
 
     public static readonly RedBlackTree<T> Empty = new();
+
+    public RedBlackTree<T> DefaultValue => Empty;
 
     #region Constructors
     private RedBlackTree() {

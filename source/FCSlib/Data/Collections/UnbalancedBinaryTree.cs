@@ -27,7 +27,7 @@ using System.Collections.Generic;
 using System.Collections;
 
 namespace FCSlib.Data.Collections {
-  public sealed class UnbalancedBinaryTree<T> : IEnumerable<T?> {
+  public sealed class UnbalancedBinaryTree<T> : IEnumerable<T?>, IHaveCustomDefaultValue<UnbalancedBinaryTree<T>> {
     private readonly bool isEmpty;
     public bool IsEmpty { get { return isEmpty; } }
 
@@ -52,6 +52,7 @@ namespace FCSlib.Data.Collections {
 
     public static readonly UnbalancedBinaryTree<T> Empty = new();
 
+    public UnbalancedBinaryTree<T> DefaultValue => Empty;
 
     #region Constructors
     public UnbalancedBinaryTree() {

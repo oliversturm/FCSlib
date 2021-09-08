@@ -25,7 +25,7 @@ using System.Text;
 using System.Reflection;
 
 namespace FCSlib.Data.Collections {
-  public sealed class Queue<T> {
+  public sealed class Queue<T> : IHaveCustomDefaultValue<Queue<T>> {
     private readonly List<T> f, r;
 
     public bool IsEmpty {
@@ -33,6 +33,9 @@ namespace FCSlib.Data.Collections {
     }
 
     public static readonly Queue<T> Empty = new();
+
+    public Queue<T> DefaultValue => Empty;
+
     private Queue(List<T> f, List<T> r) {
       this.f = f;
       this.r = r;

@@ -25,7 +25,7 @@ using System.Text;
 using System.Reflection;
 
 namespace FCSlib.Data.Collections {
-  public sealed class List<T> : System.Collections.Generic.IEnumerable<T> {
+  public sealed class List<T> : System.Collections.Generic.IEnumerable<T>, IHaveCustomDefaultValue<List<T>> {
     #region Head, Tail and IsEmpty
     private readonly T? head;
     private readonly List<T> tail;
@@ -46,6 +46,9 @@ namespace FCSlib.Data.Collections {
     }
     public bool IsEmpty { get { return isEmpty; } }
     public static readonly List<T> Empty = new();
+
+    public List<T> DefaultValue => Empty;
+
     #endregion
 
     #region Cons
