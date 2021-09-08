@@ -24,9 +24,7 @@ namespace FCSlib.Data {
   public sealed class Option {
     private Option() { }
 
-    public static Option<T> Some<T>(T value) {
-      return new Option<T>(value);
-    }
+    public static Option<T> Some<T>(T value) => new(value);
 
     public static readonly Option None = new();
 
@@ -43,52 +41,35 @@ namespace FCSlib.Data {
   }
 
   public static class OptionHelpers {
-    public static Option<T> ToOption<T>(this T val) {
-      return Option.Some(val);
-    }
+    public static Option<T> ToOption<T>(this T val) =>
+      Option.Some(val);
 
     // This method has always existed. It can be used for nullable
     // reference types.
-    public static Option<T> ToNotNullOption<T>(this T val) where T : class? {
-      return val != null ? val.ToOption() : Option.None;
-    }
+    public static Option<T> ToNotNullOption<T>(this T val) where T : class? =>
+      val != null ? val.ToOption() : Option.None;
 
     // This method supports all types, but it returns None if 
     // the value equals the default, i.e. for ints that equal 0,
     // or for bools that equal false. If you want to use this 
     // with value types, you probably want to make them nullable,
     // i.e. use int? or bool?.
-    public static Option<T> ToNonDefaultOption<T>(this T val) {
-      return EqualityComparer<T>.Default.Equals(val, default(T)) ? Option.None : val.ToOption();
-    }
-
+    public static Option<T> ToNonDefaultOption<T>(this T val) =>
+      EqualityComparer<T>.Default.Equals(
+        val, default(T)) ?
+        Option.None : val.ToOption();
   }
 
-  // Type T can be nullable - depending on actual instance values, it may be
-  // desirable to make the option Some or None so it could be argued that
-  // Some(null) shouldn't be possible - then again, if we assume that null
-  // is a valid value in some scenarios of a null-enabled programming language
-  // then even Some(null) could be a valid construct.
-
   public sealed class Option<T> {
-    private readonly T? value;
-    public T? Value {
-      get { return value; }
-    }
-    private readonly bool hasValue;
-    public bool HasValue {
-      get { return hasValue; }
-    }
-    public bool IsSome {
-      get { return hasValue; }
-    }
-    public bool IsNone {
-      get { return !hasValue; }
-    }
+    public T? Value { get; init; }
+    public bool HasValue { get; init; }
+
+    public bool IsSome => HasValue;
+    public bool IsNone => !IsSome;
 
     public Option(T? value) {
-      this.value = value;
-      this.hasValue = true;
+      this.Value = value;
+      this.HasValue = true;
     }
 
     private Option() {
@@ -96,34 +77,28 @@ namespace FCSlib.Data {
 
     public static readonly Option<T> None = new();
 
-    public static bool operator ==(Option<T> a, Option<T> b) {
-      return a.HasValue == b.HasValue &&
+    public static bool operator ==(Option<T> a, Option<T> b) =>
+      a.HasValue == b.HasValue &&
         EqualityComparer<T>.Default.Equals(a.Value, b.Value);
-    }
-    public static bool operator !=(Option<T> a, Option<T> b) {
-      return !(a == b);
-    }
 
-    public static implicit operator Option<T>(Option option) {
-      return Option<T>.None;
-    }
+    public static bool operator !=(Option<T> a, Option<T> b) =>
+      !(a == b);
+
+    public static implicit operator Option<T>(Option option) =>
+      Option<T>.None;
 
     public override int GetHashCode() {
-      int hashCode = hasValue.GetHashCode();
-      if (hasValue)
-        hashCode ^= value?.GetHashCode() ?? 0;
+      int hashCode = HasValue.GetHashCode();
+      if (HasValue)
+        hashCode ^= Value?.GetHashCode() ?? 0;
       return hashCode;
     }
 
-    public override bool Equals(object? obj) {
-      return base.Equals(obj);
-    }
+    public override bool Equals(object? obj) =>
+      base.Equals(obj);
 
-    public Option<R> Bind<R>(Func<T?, Option<R>> g) {
-      if (IsNone)
-        return Option.None;
-      return g(Value);
-    }
+    public Option<R> Bind<R>(Func<T?, Option<R>> g) =>
+      IsNone ? Option.None : g(Value);
 
     public static Option<T> operator &(Option<T> x, Func<T?, Option<T>> g) =>
       x.Bind(g);
