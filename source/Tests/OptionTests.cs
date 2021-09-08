@@ -85,14 +85,30 @@ public class OptionTests {
     os.Add(Option.None);
   }
 
+  static void AssertIsSome<T>(Option<T> o, T val) {
+    Assert.IsTrue(o.HasValue);
+    Assert.AreEqual(val, o.Value);
+    Assert.IsTrue(o.IsSome);
+    Assert.IsFalse(o.IsNone);
+  }
+
+  static void AssertIsNone<T>(Option<T> o) {
+    Assert.IsFalse(o.HasValue);
+    Assert.IsFalse(o.IsSome);
+    Assert.IsTrue(o.IsNone);
+  }
+
+  static void AssertIsNone(Option o) {
+    Assert.IsFalse(o.HasValue);
+    Assert.IsFalse(o.IsSome);
+    Assert.IsTrue(o.IsNone);
+  }
+
   [Test]
   public void ToOption() {
     var o = 3.ToOption();
 
-    Assert.IsTrue(o.HasValue);
-    Assert.AreEqual(3, o.Value);
-    Assert.IsTrue(o.IsSome);
-    Assert.IsFalse(o.IsNone);
+    AssertIsSome(o, 3);
   }
 
   [Test]
@@ -100,10 +116,156 @@ public class OptionTests {
     string s = "thing";
     var o = s.ToNotNullOption();
 
-    Assert.IsTrue(o.HasValue);
-    Assert.AreEqual("thing", o.Value);
-    Assert.IsTrue(o.IsSome);
-    Assert.IsFalse(o.IsNone);
+    AssertIsSome(o, "thing");
+  }
+
+  [Test]
+  public void NoValueToNotNullOption() {
+    string? s = null;
+    var o = s.ToNotNullOption();
+
+    AssertIsNone(o);
+  }
+
+
+  [Test]
+  public void StringValueToNonDefaultOption() {
+    string s = "thing";
+    var o = s.ToNonDefaultOption();
+
+    AssertIsSome(o, "thing");
+  }
+
+  [Test]
+  public void NullableStringValueToNonDefaultOption() {
+    string? s = "thing";
+    var o = s.ToNonDefaultOption();
+
+    AssertIsSome(o, "thing");
+  }
+
+  [Test]
+  public void NullStringValueToNonDefaultOption() {
+    string? s = null;
+    var o = s.ToNonDefaultOption();
+
+    AssertIsNone(o);
+  }
+
+  [Test]
+  public void IntValueToNonDefaultOption() {
+    int i = 5;
+    var o = i.ToNonDefaultOption();
+
+    AssertIsSome(o, 5);
+  }
+
+  [Test]
+  public void ZeroIntValueToNonDefaultOption() {
+    int i = 0;
+    var o = i.ToNonDefaultOption();
+
+    AssertIsNone(o);
+  }
+
+  [Test]
+  public void NullableIntValueToNonDefaultOption() {
+    int? i = 5;
+    var o = i.ToNonDefaultOption();
+
+    AssertIsSome(o, 5);
+  }
+
+  [Test]
+  public void NullableZeroIntValueToNonDefaultOption() {
+    int? i = 0;
+    var o = i.ToNonDefaultOption();
+
+    AssertIsSome(o, 0);
+  }
+
+  [Test]
+  public void NullIntValueToNonDefaultOption() {
+    int? i = null;
+    var o = i.ToNonDefaultOption();
+
+    AssertIsNone(o);
+  }
+
+
+
+  [Test]
+  public void BoolValueToNonDefaultOption() {
+    bool b = true;
+    var o = b.ToNonDefaultOption();
+
+    AssertIsSome(o, true);
+  }
+
+  [Test]
+  public void FalseBoolValueToNonDefaultOption() {
+    bool b = false;
+    var o = b.ToNonDefaultOption();
+
+    AssertIsNone(o);
+  }
+
+
+  [Test]
+  public void NullableBoolValueToNonDefaultOption() {
+    bool? b = true;
+    var o = b.ToNonDefaultOption();
+
+    AssertIsSome(o, true);
+  }
+
+  [Test]
+  public void NullableFalseBoolValueToNonDefaultOption() {
+    bool? b = false;
+    var o = b.ToNonDefaultOption();
+
+    AssertIsSome(o, false);
+  }
+
+  [Test]
+  public void NullBoolValueToNonDefaultOption() {
+    bool? b = null;
+    var o = b.ToNonDefaultOption();
+
+    AssertIsNone(o);
+  }
+
+
+  [Test]
+  public void BindSome() {
+    var result = 5.ToOption().Bind(
+      v => 7.ToOption().Bind(
+        v2 => (v + v2).ToOption()));
+    Assert.AreEqual(12, result.Value);
+  }
+
+  [Test]
+  public void BindNone() {
+    var result = 5.ToOption().Bind(
+      v => Option<int>.None.Bind(
+        v2 => (v + v2).ToOption()));
+    Assert.IsTrue(result.IsNone);
+  }
+
+  [Test]
+  public void OperatorBindSome() {
+    var result = 5.ToOption() &
+      (v => 7.ToOption() &
+        (v2 => (v + v2).ToOption()));
+    Assert.AreEqual(12, result.Value);
+  }
+
+  [Test]
+  public void OperatorBindNone() {
+    var result = 5.ToOption() &
+      (v => Option<int>.None &
+        (v2 => (v + v2).ToOption()));
+    Assert.IsTrue(result.IsNone);
   }
 
 }

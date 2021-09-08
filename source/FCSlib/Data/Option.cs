@@ -47,12 +47,21 @@ namespace FCSlib.Data {
       return Option.Some(val);
     }
 
-    // I'm reminded that C# doesn't support a generic constraint
-    // for "nullable", i.e. "class?" but also "int?". Wonder
-    // if there are any news about this.
+    // This method has always existed. It can be used for nullable
+    // reference types.
     public static Option<T> ToNotNullOption<T>(this T val) where T : class? {
       return val != null ? val.ToOption() : Option.None;
     }
+
+    // This method supports all types, but it returns None if 
+    // the value equals the default, i.e. for ints that equal 0,
+    // or for bools that equal false. If you want to use this 
+    // with value types, you probably want to make them nullable,
+    // i.e. use int? or bool?.
+    public static Option<T> ToNonDefaultOption<T>(this T val) {
+      return EqualityComparer<T>.Default.Equals(val, default(T)) ? Option.None : val.ToOption();
+    }
+
   }
 
   // Type T can be nullable - depending on actual instance values, it may be
@@ -85,7 +94,7 @@ namespace FCSlib.Data {
     private Option() {
     }
 
-    private static readonly Option<T> None = new();
+    public static readonly Option<T> None = new();
 
     public static bool operator ==(Option<T> a, Option<T> b) {
       return a.HasValue == b.HasValue &&
@@ -115,6 +124,34 @@ namespace FCSlib.Data {
         return Option.None;
       return g(Value);
     }
+
+    public static Option<T> operator &(Option<T> x, Func<T?, Option<T>> g) =>
+      x.Bind(g);
+
+    // For future reference: I considered a structure like this,
+    // to automatically bring back a new result from Bind into
+    // the monadic system. However, this doesn't work for structural
+    // reasons. For instance, based on the simply & operator 
+    // above, I can do this:
+    //
+    //  var result = 5.ToOption() &
+    //     (v => 7.ToOption() &
+    //       (v2 => (v + v2).ToOption()));
+    //
+    // However, with the hypothetical operator below, the structure
+    // of the call would change to this:
+    //
+    // var result = (5.ToOption() & (x => 7)) & (y => PROBLEM);
+    //
+    // The issue is that the second step that should perform
+    // the calculation can't access the second value - only one
+    // of the two values is available because the nesting is
+    // different. So I abandoned this approach.
+
+    // public static Option<T> operator &(Option<T> x, Func<T?, T> g) {
+    //   Func<T?, Option<T>> f = t => g(t).ToNonDefaultOption();
+    //   return x.Bind(f);
+    // }
   }
 
 }
