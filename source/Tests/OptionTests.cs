@@ -443,4 +443,72 @@ public class OptionTests {
 
     Assert.AreEqual("Bernie", result.Value?.Value);
   }
+
+  [Test]
+  public void OptionallyTestSome() {
+    var result = Optionally(42, x => x * x, Some(3));
+    Assert.AreEqual(9, result);
+  }
+
+  [Test]
+  public void OptionallyTestSomeWithThunk() {
+    bool calledThunk = false;
+    var result = Optionally(() => {
+      calledThunk = true;
+      return 42;
+    }, x => x * x, Some(3));
+    Assert.AreEqual(9, result);
+    Assert.IsFalse(calledThunk);
+  }
+
+  [Test]
+  public void OptionallyTestSomeCurried() {
+    var result = Optionally(42)(x => x * x)(Some(3));
+    Assert.AreEqual(9, result);
+  }
+
+  [Test]
+  public void OptionallyTestSomeCurriedWithThunk() {
+    bool calledThunk = false;
+    var result = Optionally(() => {
+      calledThunk = true;
+      return 42;
+    })(x => x * x)(Some(3));
+    Assert.AreEqual(9, result);
+    Assert.IsFalse(calledThunk);
+  }
+
+  [Test]
+  public void OptionallyTestNone() {
+    var result = Optionally(42, x => x * x, None);
+    Assert.AreEqual(42, result);
+  }
+
+  [Test]
+  public void OptionallyTestNoneWithThunk() {
+    bool calledThunk = false;
+    var result = Optionally(() => {
+      calledThunk = true;
+      return 42;
+    }, x => x * x, None);
+    Assert.AreEqual(42, result);
+    Assert.IsTrue(calledThunk);
+  }
+
+  [Test]
+  public void OptionallyTestNoneCurried() {
+    var result = Optionally(42)(x => x * x)(None);
+    Assert.AreEqual(42, result);
+  }
+
+  [Test]
+  public void OptionallyTestNoneCurriedWithThunk() {
+    bool calledThunk = false;
+    var result = Optionally(() => {
+      calledThunk = true;
+      return 42;
+    })(x => x * x)(None);
+    Assert.AreEqual(42, result);
+    Assert.IsTrue(calledThunk);
+  }
 }

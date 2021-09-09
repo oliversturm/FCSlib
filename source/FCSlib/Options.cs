@@ -28,5 +28,13 @@ namespace FCSlib {
 
     public static Option<R> Bind<T, R>(Option<T> o, Func<T?, Option<R>> g) => Option.Bind(o, g);
     public static Option<R> Bind<T, R>(Option<T> o, Func<T?, R> g) => Option.Bind(o, g);
+
+    public static T? Optionally<T>(T? defaultValue, Func<T?, T> f, Option<T> o) => IsSome(o) ? f(o.Value) : defaultValue;
+
+    public static T? Optionally<T>(Func<T?> getDefaultValue, Func<T?, T> f, Option<T> o) => IsSome(o) ? f(o.Value) : getDefaultValue();
+
+    public static Func<Func<T?, T>, Func<Option<T>, T?>> Optionally<T>(T? defaultValue) => f => o => Optionally(defaultValue, f, o);
+
+    public static Func<Func<T?, T>, Func<Option<T>, T?>> Optionally<T>(Func<T?> getDefaultValue) => f => o => Optionally(getDefaultValue, f, o);
   }
 }
