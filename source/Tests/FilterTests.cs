@@ -32,5 +32,13 @@ public class FilterTests {
     Assert.AreEqual(4, result[1]);
   }
 
+  [Test]
+  public void Curried() {
+    var greater3 = Filter<int>(x => x > 3);
+    var result = greater3(new int[] { 1, 2, 3, 4 }).ToList();
+
+    Assert.AreEqual(1, result.Count);
+    Assert.AreEqual(4, result[0]);
+  }
 }
 

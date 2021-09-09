@@ -12,12 +12,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
-  
 
-using System;
-using System.Linq;
-using System.Text;
-using System.Reflection;
 
 namespace FCSlib.Data.Collections {
   public static class CollectionExtensions {

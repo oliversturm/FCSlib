@@ -14,15 +14,6 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-using FCSlib.Data;
-using FCSColl = FCSlib.Data.Collections;
-using System.Linq.Expressions;
-
 namespace FCSlib {
   public static partial class Functional {
     public static IEnumerable<T> Filter<T>(Predicate<T> predicate, IEnumerable<T> list) {
@@ -32,5 +23,7 @@ namespace FCSlib {
     }
 
     public static Func<Predicate<T>, IEnumerable<T>, IEnumerable<T>> FilterDelegate<T>() => Filter<T>;
+
+    public static Func<IEnumerable<T>, IEnumerable<T>> Filter<T>(Predicate<T> predicate) => list => Filter(predicate, list);
   }
 }

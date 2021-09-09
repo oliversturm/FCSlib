@@ -14,12 +14,6 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-
 namespace FCSlib.Data {
   public sealed class Option {
     private Option() { }

@@ -12,29 +12,24 @@
 //
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
-  
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Collections;
 
 namespace FCSlib.Data {
   public static class Range {
-    private static byte GetNext(byte val) { return (byte) (val + 1); }
-    private static short GetNext(short val) { return (short) (val + 1); }
+    private static byte GetNext(byte val) { return (byte)(val + 1); }
+    private static short GetNext(short val) { return (short)(val + 1); }
     private static int GetNext(int val) { return val + 1; }
     private static long GetNext(long val) { return val + 1; }
-    private static sbyte GetNext(sbyte val) { return (sbyte) (val + 1); }
-    private static ushort GetNext(ushort val) { return (ushort) (val + 1); }
+    private static sbyte GetNext(sbyte val) { return (sbyte)(val + 1); }
+    private static ushort GetNext(ushort val) { return (ushort)(val + 1); }
     private static uint GetNext(uint val) { return val + 1; }
     private static ulong GetNext(ulong val) { return val + 1; }
     private static double GetNext(double val) { return val + 1; }
     private static float GetNext(float val) { return val + 1; }
     private static decimal GetNext(decimal val) { return val + 1; }
     private static DateTime GetNext(DateTime val) { return val.AddDays(1); }
-    private static char GetNext(char val) { return (char) (val + 1); }
+    private static char GetNext(char val) { return (char)(val + 1); }
 
 
 
@@ -118,12 +113,12 @@ namespace FCSlib.Data {
       return compare(value, start) >= 0 && compare(end, value) >= 0;
     }
 
-    IEnumerator<T> IEnumerable<T>.GetEnumerator( ) {
-      return sequence.GetEnumerator( );
+    IEnumerator<T> IEnumerable<T>.GetEnumerator() {
+      return sequence.GetEnumerator();
     }
 
-    IEnumerator IEnumerable.GetEnumerator( ) {
-      return ((IEnumerable<T>) this).GetEnumerator( );
+    IEnumerator IEnumerable.GetEnumerator() {
+      return ((IEnumerable<T>)this).GetEnumerator();
     }
   }
 }

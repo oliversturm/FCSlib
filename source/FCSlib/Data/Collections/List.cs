@@ -19,11 +19,6 @@
 // The algorithm in question is described in Figure 2.2.
 // Used with permission, C# code (C) Copyright 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 
-using System;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-
 namespace FCSlib.Data.Collections {
   public sealed class List<T> : System.Collections.Generic.IEnumerable<T>, IHaveCustomDefaultValue<List<T>> {
     #region Head, Tail and IsEmpty

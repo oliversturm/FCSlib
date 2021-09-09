@@ -14,15 +14,6 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-using FCSlib.Data;
-using FCSColl = FCSlib.Data.Collections;
-using System.Linq.Expressions;
-
 namespace FCSlib {
   public static partial class Functional {
     #region Basic Func, none or one parameter

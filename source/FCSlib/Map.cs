@@ -14,15 +14,6 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-using FCSlib.Data;
-using FCSColl = FCSlib.Data.Collections;
-using System.Linq.Expressions;
-
 namespace FCSlib {
   public static partial class Functional {
     public static IEnumerable<R> Map<T, R>(Converter<T, R> function, IEnumerable<T> list) {
@@ -31,5 +22,7 @@ namespace FCSlib {
     }
 
     public static Func<Converter<T, R>, IEnumerable<T>, IEnumerable<R>> MapDelegate<T, R>() => Map<T, R>;
+
+    public static Func<IEnumerable<T>, IEnumerable<R>> Map<T, R>(Converter<T, R> f) => list => Map(f, list);
   }
 }

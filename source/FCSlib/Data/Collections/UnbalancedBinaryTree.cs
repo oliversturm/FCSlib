@@ -19,13 +19,6 @@
 // The algorithm in question is described in Figure 5.2.
 // Used with permission, C# code (C) Copyright 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 
-using System;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-using System.Collections.Generic;
-using System.Collections;
-
 namespace FCSlib.Data.Collections {
   public sealed class UnbalancedBinaryTree<T> : IEnumerable<T?>, IHaveCustomDefaultValue<UnbalancedBinaryTree<T>> {
     private readonly bool isEmpty;

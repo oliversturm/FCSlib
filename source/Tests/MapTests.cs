@@ -34,5 +34,18 @@ public class MapTests {
     Assert.AreEqual(16, result[3]);
   }
 
+  [Test]
+  public void Curried() {
+    var square = Map<int, int>(x => x * x);
+
+    var result = square(new int[] { 1, 2, 3, 4 }).ToList();
+
+    Assert.AreEqual(4, result.Count);
+    Assert.AreEqual(1, result[0]);
+    Assert.AreEqual(4, result[1]);
+    Assert.AreEqual(9, result[2]);
+    Assert.AreEqual(16, result[3]);
+  }
+
 }
 

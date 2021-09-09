@@ -19,13 +19,6 @@
 // The algorithm in question is described in Figure 3.6.
 // Used with permission, C# code (C) Copyright 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 
-using System;
-using System.Linq;
-using System.Text;
-using System.Reflection;
-using System.Collections.Generic;
-using System.Collections;
-using System.Diagnostics;
 
 namespace FCSlib.Data.Collections {
   public sealed class RedBlackTree<T> : IEnumerable<T?>, IHaveCustomDefaultValue<RedBlackTree<T>> {
