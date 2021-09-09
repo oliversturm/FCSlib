@@ -25,12 +25,12 @@ using System.Linq.Expressions;
 
 namespace FCSlib {
   public static partial class Functional {
-    public static Func<P, R?> Memoize<P, R>(this Func<P, R?> f) where P : notnull {
+    public static Func<P, R?> Memoize<P, R>(Func<P, R?> f) where P : notnull {
       MethodInfo fInfo = f.Method;
       return Memoize<P, R?>(f, GetDefaultMemoryKey(fInfo));
     }
 
-    public static Func<P, R?> Memoize<P, R>(this Func<P, R?> f, string memoryKey) where P : notnull {
+    public static Func<P, R?> Memoize<P, R>(Func<P, R?> f, string memoryKey) where P : notnull {
       return arg => {
         var memory = Memoizer<P, R?>.GetMemory(memoryKey);
         if (!memory.HasResultFor(arg))
@@ -72,7 +72,7 @@ namespace FCSlib {
       return fInfo?.DeclaringType?.FullName + "+" + fInfo?.Name;
     }
 
-    public static Func<P, R?> DeepMemoize<P, R>(this Func<P, R?> f) where P : notnull {
+    public static Func<P, R?> DeepMemoize<P, R>(Func<P, R?> f) where P : notnull {
       return arg => {
         MethodInfo fInfo = f.Method;
         string memoryKey = GetDefaultMemoryKey(fInfo);

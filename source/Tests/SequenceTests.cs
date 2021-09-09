@@ -14,7 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
-using FCSlib;
+using static FCSlib.Functional;
 
 namespace Tests;
 
@@ -25,7 +25,7 @@ public class SequenceTests {
 
   [Test]
   public void Basic() {
-    var result = Functional.Sequence(x => x * x, 2, x => x > 1000).ToList();
+    var result = Sequence(x => x * x, 2, x => x > 1000).ToList();
 
     Assert.AreEqual(5, result.Count);
     Assert.AreEqual(2, result[0]);

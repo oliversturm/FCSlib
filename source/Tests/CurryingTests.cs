@@ -14,7 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
-using FCSlib;
+using static FCSlib.Functional;
 
 namespace Tests;
 
@@ -25,7 +25,7 @@ public class CurryingTests {
 
   [Test]
   public void TwoParamsFunc() {
-    var result = Functional.Curry<int, int, int>((one, two) => {
+    var result = Curry<int, int, int>((one, two) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       return 42;
@@ -36,7 +36,7 @@ public class CurryingTests {
 
   [Test]
   public void ThreeParamsFunc() {
-    var result = Functional.Curry<int, int, int, int>((one, two, three) => {
+    var result = Curry<int, int, int, int>((one, two, three) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -48,7 +48,7 @@ public class CurryingTests {
 
   [Test]
   public void FourParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int>((one, two, three, four) => {
+    var result = Curry<int, int, int, int, int>((one, two, three, four) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -61,7 +61,7 @@ public class CurryingTests {
 
   [Test]
   public void FiveParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int>((one, two, three, four, five) => {
+    var result = Curry<int, int, int, int, int, int>((one, two, three, four, five) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -75,7 +75,7 @@ public class CurryingTests {
 
   [Test]
   public void SixParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int>((one, two, three, four, five, six) => {
+    var result = Curry<int, int, int, int, int, int, int>((one, two, three, four, five, six) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -90,7 +90,7 @@ public class CurryingTests {
 
   [Test]
   public void SevenParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven) => {
+    var result = Curry<int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -106,7 +106,7 @@ public class CurryingTests {
 
   [Test]
   public void EightParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight) => {
+    var result = Curry<int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -123,7 +123,7 @@ public class CurryingTests {
 
   [Test]
   public void NineParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine) => {
+    var result = Curry<int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -141,7 +141,7 @@ public class CurryingTests {
 
   [Test]
   public void TenParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten) => {
+    var result = Curry<int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -160,7 +160,7 @@ public class CurryingTests {
 
   [Test]
   public void ElevenParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven) => {
+    var result = Curry<int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -180,7 +180,7 @@ public class CurryingTests {
 
   [Test]
   public void TwelveParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve) => {
+    var result = Curry<int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -201,7 +201,7 @@ public class CurryingTests {
 
   [Test]
   public void ThirteenParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen) => {
+    var result = Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -223,7 +223,7 @@ public class CurryingTests {
 
   [Test]
   public void FourteenParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen) => {
+    var result = Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -246,7 +246,7 @@ public class CurryingTests {
 
   [Test]
   public void FifteenParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen) => {
+    var result = Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -270,7 +270,7 @@ public class CurryingTests {
 
   [Test]
   public void SixteenParamsFunc() {
-    var result = Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen) => {
+    var result = Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -295,7 +295,7 @@ public class CurryingTests {
 
   [Test]
   public void TwoParamsAction() {
-    Functional.Curry<int, int>((one, two) => {
+    Curry<int, int>((one, two) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
     })(1)(2);
@@ -303,7 +303,7 @@ public class CurryingTests {
 
   [Test]
   public void ThreeParamsAction() {
-    Functional.Curry<int, int, int>((one, two, three) => {
+    Curry<int, int, int>((one, two, three) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -312,7 +312,7 @@ public class CurryingTests {
 
   [Test]
   public void FourParamsAction() {
-    Functional.Curry<int, int, int, int>((one, two, three, four) => {
+    Curry<int, int, int, int>((one, two, three, four) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -322,7 +322,7 @@ public class CurryingTests {
 
   [Test]
   public void FiveParamsAction() {
-    Functional.Curry<int, int, int, int, int>((one, two, three, four, five) => {
+    Curry<int, int, int, int, int>((one, two, three, four, five) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -333,7 +333,7 @@ public class CurryingTests {
 
   [Test]
   public void SixParamsAction() {
-    Functional.Curry<int, int, int, int, int, int>((one, two, three, four, five, six) => {
+    Curry<int, int, int, int, int, int>((one, two, three, four, five, six) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -345,7 +345,7 @@ public class CurryingTests {
 
   [Test]
   public void SevenParamsAction() {
-    Functional.Curry<int, int, int, int, int, int, int>((one, two, three, four, five, six, seven) => {
+    Curry<int, int, int, int, int, int, int>((one, two, three, four, five, six, seven) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -358,7 +358,7 @@ public class CurryingTests {
 
   [Test]
   public void EightParamsAction() {
-    Functional.Curry<int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight) => {
+    Curry<int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -372,7 +372,7 @@ public class CurryingTests {
 
   [Test]
   public void NineParamsAction() {
-    Functional.Curry<int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine) => {
+    Curry<int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -387,7 +387,7 @@ public class CurryingTests {
 
   [Test]
   public void TenParamsAction() {
-    Functional.Curry<int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten) => {
+    Curry<int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -403,7 +403,7 @@ public class CurryingTests {
 
   [Test]
   public void ElevenParamsAction() {
-    Functional.Curry<int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven) => {
+    Curry<int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -420,7 +420,7 @@ public class CurryingTests {
 
   [Test]
   public void TwelveParamsAction() {
-    Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve) => {
+    Curry<int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -438,7 +438,7 @@ public class CurryingTests {
 
   [Test]
   public void ThirteenParamsAction() {
-    Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen) => {
+    Curry<int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -457,7 +457,7 @@ public class CurryingTests {
 
   [Test]
   public void FourteenParamsAction() {
-    Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen) => {
+    Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -477,7 +477,7 @@ public class CurryingTests {
 
   [Test]
   public void FifteenParamsAction() {
-    Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen) => {
+    Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -498,7 +498,7 @@ public class CurryingTests {
 
   [Test]
   public void SixteenParamsAction() {
-    Functional.Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen) => {
+    Curry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen) => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);

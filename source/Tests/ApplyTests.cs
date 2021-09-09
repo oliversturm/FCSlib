@@ -14,7 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
-using FCSlib;
+using static FCSlib.Functional;
 
 namespace Tests;
 
@@ -27,7 +27,7 @@ public class ApplyTests {
 
   [Test]
   public void Func2ParamsApply1() {
-    var result = Functional.Apply<int, int, int>((p1, p2) => {
+    var result = Apply<int, int, int>((p1, p2) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       return 42;
@@ -42,7 +42,7 @@ public class ApplyTests {
 
   [Test]
   public void Func3ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int>((p1, p2, p3) => {
+    var result = Apply<int, int, int, int>((p1, p2, p3) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -54,7 +54,7 @@ public class ApplyTests {
 
   [Test]
   public void Func3ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int>((p1, p2, p3) => {
+    var result = Apply<int, int, int, int>((p1, p2, p3) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -70,7 +70,7 @@ public class ApplyTests {
 
   [Test]
   public void Func4ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int>((p1, p2, p3, p4) => {
+    var result = Apply<int, int, int, int, int>((p1, p2, p3, p4) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -83,7 +83,7 @@ public class ApplyTests {
 
   [Test]
   public void Func4ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int>((p1, p2, p3, p4) => {
+    var result = Apply<int, int, int, int, int>((p1, p2, p3, p4) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -96,7 +96,7 @@ public class ApplyTests {
 
   [Test]
   public void Func4ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int>((p1, p2, p3, p4) => {
+    var result = Apply<int, int, int, int, int>((p1, p2, p3, p4) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -113,7 +113,7 @@ public class ApplyTests {
 
   [Test]
   public void Func5ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5) => {
+    var result = Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -127,7 +127,7 @@ public class ApplyTests {
 
   [Test]
   public void Func5ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5) => {
+    var result = Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -141,7 +141,7 @@ public class ApplyTests {
 
   [Test]
   public void Func5ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5) => {
+    var result = Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -155,7 +155,7 @@ public class ApplyTests {
 
   [Test]
   public void Func5ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5) => {
+    var result = Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -173,7 +173,7 @@ public class ApplyTests {
 
   [Test]
   public void Func6ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
+    var result = Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -188,7 +188,7 @@ public class ApplyTests {
 
   [Test]
   public void Func6ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
+    var result = Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -203,7 +203,7 @@ public class ApplyTests {
 
   [Test]
   public void Func6ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
+    var result = Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -218,7 +218,7 @@ public class ApplyTests {
 
   [Test]
   public void Func6ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
+    var result = Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -233,7 +233,7 @@ public class ApplyTests {
 
   [Test]
   public void Func6ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
+    var result = Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -252,7 +252,7 @@ public class ApplyTests {
 
   [Test]
   public void Func7ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    var result = Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -268,7 +268,7 @@ public class ApplyTests {
 
   [Test]
   public void Func7ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    var result = Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -284,7 +284,7 @@ public class ApplyTests {
 
   [Test]
   public void Func7ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    var result = Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -300,7 +300,7 @@ public class ApplyTests {
 
   [Test]
   public void Func7ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    var result = Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -316,7 +316,7 @@ public class ApplyTests {
 
   [Test]
   public void Func7ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    var result = Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -332,7 +332,7 @@ public class ApplyTests {
 
   [Test]
   public void Func7ParamsApply6() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    var result = Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -352,7 +352,7 @@ public class ApplyTests {
 
   [Test]
   public void Func8ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -369,7 +369,7 @@ public class ApplyTests {
 
   [Test]
   public void Func8ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -386,7 +386,7 @@ public class ApplyTests {
 
   [Test]
   public void Func8ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -403,7 +403,7 @@ public class ApplyTests {
 
   [Test]
   public void Func8ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -420,7 +420,7 @@ public class ApplyTests {
 
   [Test]
   public void Func8ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -437,7 +437,7 @@ public class ApplyTests {
 
   [Test]
   public void Func8ParamsApply6() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -454,7 +454,7 @@ public class ApplyTests {
 
   [Test]
   public void Func8ParamsApply7() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -475,7 +475,7 @@ public class ApplyTests {
 
   [Test]
   public void Func9ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -493,7 +493,7 @@ public class ApplyTests {
 
   [Test]
   public void Func9ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -511,7 +511,7 @@ public class ApplyTests {
 
   [Test]
   public void Func9ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -529,7 +529,7 @@ public class ApplyTests {
 
   [Test]
   public void Func9ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -547,7 +547,7 @@ public class ApplyTests {
 
   [Test]
   public void Func9ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -565,7 +565,7 @@ public class ApplyTests {
 
   [Test]
   public void Func9ParamsApply6() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -583,7 +583,7 @@ public class ApplyTests {
 
   [Test]
   public void Func9ParamsApply7() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -601,7 +601,7 @@ public class ApplyTests {
 
   [Test]
   public void Func9ParamsApply8() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -623,7 +623,7 @@ public class ApplyTests {
 
   [Test]
   public void Func10ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -642,7 +642,7 @@ public class ApplyTests {
 
   [Test]
   public void Func10ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -661,7 +661,7 @@ public class ApplyTests {
 
   [Test]
   public void Func10ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -680,7 +680,7 @@ public class ApplyTests {
 
   [Test]
   public void Func10ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -699,7 +699,7 @@ public class ApplyTests {
 
   [Test]
   public void Func10ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -718,7 +718,7 @@ public class ApplyTests {
 
   [Test]
   public void Func10ParamsApply6() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -737,7 +737,7 @@ public class ApplyTests {
 
   [Test]
   public void Func10ParamsApply7() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -756,7 +756,7 @@ public class ApplyTests {
 
   [Test]
   public void Func10ParamsApply8() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -775,7 +775,7 @@ public class ApplyTests {
 
   [Test]
   public void Func10ParamsApply9() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -798,7 +798,7 @@ public class ApplyTests {
 
   [Test]
   public void Func11ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -818,7 +818,7 @@ public class ApplyTests {
 
   [Test]
   public void Func11ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -838,7 +838,7 @@ public class ApplyTests {
 
   [Test]
   public void Func11ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -858,7 +858,7 @@ public class ApplyTests {
 
   [Test]
   public void Func11ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -878,7 +878,7 @@ public class ApplyTests {
 
   [Test]
   public void Func11ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -898,7 +898,7 @@ public class ApplyTests {
 
   [Test]
   public void Func11ParamsApply6() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -918,7 +918,7 @@ public class ApplyTests {
 
   [Test]
   public void Func11ParamsApply7() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -938,7 +938,7 @@ public class ApplyTests {
 
   [Test]
   public void Func11ParamsApply8() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -958,7 +958,7 @@ public class ApplyTests {
 
   [Test]
   public void Func11ParamsApply9() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -978,7 +978,7 @@ public class ApplyTests {
 
   [Test]
   public void Func11ParamsApply10() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1002,7 +1002,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1023,7 +1023,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1044,7 +1044,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1065,7 +1065,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1086,7 +1086,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1107,7 +1107,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply6() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1128,7 +1128,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply7() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1149,7 +1149,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply8() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1170,7 +1170,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply9() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1191,7 +1191,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply10() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1212,7 +1212,7 @@ public class ApplyTests {
 
   [Test]
   public void Func12ParamsApply11() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1237,7 +1237,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1259,7 +1259,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1281,7 +1281,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1303,7 +1303,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1325,7 +1325,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1347,7 +1347,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply6() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1369,7 +1369,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply7() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1391,7 +1391,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply8() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1413,7 +1413,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply9() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1435,7 +1435,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply10() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1457,7 +1457,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply11() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1479,7 +1479,7 @@ public class ApplyTests {
 
   [Test]
   public void Func13ParamsApply12() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1505,7 +1505,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1528,7 +1528,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1551,7 +1551,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1574,7 +1574,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1597,7 +1597,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1620,7 +1620,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply6() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1643,7 +1643,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply7() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1666,7 +1666,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply8() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1689,7 +1689,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply9() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1712,7 +1712,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply10() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1735,7 +1735,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply11() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1758,7 +1758,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply12() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1781,7 +1781,7 @@ public class ApplyTests {
 
   [Test]
   public void Func14ParamsApply13() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1808,7 +1808,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1832,7 +1832,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1856,7 +1856,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1880,7 +1880,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1904,7 +1904,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1928,7 +1928,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply6() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1952,7 +1952,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply7() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -1976,7 +1976,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply8() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2000,7 +2000,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply9() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2024,7 +2024,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply10() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2048,7 +2048,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply11() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2072,7 +2072,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply12() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2096,7 +2096,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply13() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2120,7 +2120,7 @@ public class ApplyTests {
 
   [Test]
   public void Func15ParamsApply14() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2148,7 +2148,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply1() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2173,7 +2173,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply2() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2198,7 +2198,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply3() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2223,7 +2223,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply4() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2248,7 +2248,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply5() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2273,7 +2273,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply6() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2298,7 +2298,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply7() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2323,7 +2323,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply8() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2348,7 +2348,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply9() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2373,7 +2373,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply10() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2398,7 +2398,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply11() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2423,7 +2423,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply12() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2448,7 +2448,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply13() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2473,7 +2473,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply14() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2498,7 +2498,7 @@ public class ApplyTests {
 
   [Test]
   public void Func16ParamsApply15() {
-    var result = Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    var result = Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2528,7 +2528,7 @@ public class ApplyTests {
 
   [Test]
   public void Action2ParamsApply1() {
-    Functional.Apply<int, int>((p1, p2) => {
+    Apply<int, int>((p1, p2) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
     }, 1)(2);
@@ -2540,7 +2540,7 @@ public class ApplyTests {
 
   [Test]
   public void Action3ParamsApply1() {
-    Functional.Apply<int, int, int>((p1, p2, p3) => {
+    Apply<int, int, int>((p1, p2, p3) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2549,7 +2549,7 @@ public class ApplyTests {
 
   [Test]
   public void Action3ParamsApply2() {
-    Functional.Apply<int, int, int>((p1, p2, p3) => {
+    Apply<int, int, int>((p1, p2, p3) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2562,7 +2562,7 @@ public class ApplyTests {
 
   [Test]
   public void Action4ParamsApply1() {
-    Functional.Apply<int, int, int, int>((p1, p2, p3, p4) => {
+    Apply<int, int, int, int>((p1, p2, p3, p4) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2572,7 +2572,7 @@ public class ApplyTests {
 
   [Test]
   public void Action4ParamsApply2() {
-    Functional.Apply<int, int, int, int>((p1, p2, p3, p4) => {
+    Apply<int, int, int, int>((p1, p2, p3, p4) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2582,7 +2582,7 @@ public class ApplyTests {
 
   [Test]
   public void Action4ParamsApply3() {
-    Functional.Apply<int, int, int, int>((p1, p2, p3, p4) => {
+    Apply<int, int, int, int>((p1, p2, p3, p4) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2596,7 +2596,7 @@ public class ApplyTests {
 
   [Test]
   public void Action5ParamsApply1() {
-    Functional.Apply<int, int, int, int, int>((p1, p2, p3, p4, p5) => {
+    Apply<int, int, int, int, int>((p1, p2, p3, p4, p5) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2607,7 +2607,7 @@ public class ApplyTests {
 
   [Test]
   public void Action5ParamsApply2() {
-    Functional.Apply<int, int, int, int, int>((p1, p2, p3, p4, p5) => {
+    Apply<int, int, int, int, int>((p1, p2, p3, p4, p5) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2618,7 +2618,7 @@ public class ApplyTests {
 
   [Test]
   public void Action5ParamsApply3() {
-    Functional.Apply<int, int, int, int, int>((p1, p2, p3, p4, p5) => {
+    Apply<int, int, int, int, int>((p1, p2, p3, p4, p5) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2629,7 +2629,7 @@ public class ApplyTests {
 
   [Test]
   public void Action5ParamsApply4() {
-    Functional.Apply<int, int, int, int, int>((p1, p2, p3, p4, p5) => {
+    Apply<int, int, int, int, int>((p1, p2, p3, p4, p5) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2644,7 +2644,7 @@ public class ApplyTests {
 
   [Test]
   public void Action6ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
+    Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2656,7 +2656,7 @@ public class ApplyTests {
 
   [Test]
   public void Action6ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
+    Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2668,7 +2668,7 @@ public class ApplyTests {
 
   [Test]
   public void Action6ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
+    Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2680,7 +2680,7 @@ public class ApplyTests {
 
   [Test]
   public void Action6ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
+    Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2692,7 +2692,7 @@ public class ApplyTests {
 
   [Test]
   public void Action6ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
+    Apply<int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2708,7 +2708,7 @@ public class ApplyTests {
 
   [Test]
   public void Action7ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2721,7 +2721,7 @@ public class ApplyTests {
 
   [Test]
   public void Action7ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2734,7 +2734,7 @@ public class ApplyTests {
 
   [Test]
   public void Action7ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2747,7 +2747,7 @@ public class ApplyTests {
 
   [Test]
   public void Action7ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2760,7 +2760,7 @@ public class ApplyTests {
 
   [Test]
   public void Action7ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2773,7 +2773,7 @@ public class ApplyTests {
 
   [Test]
   public void Action7ParamsApply6() {
-    Functional.Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
+    Apply<int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2790,7 +2790,7 @@ public class ApplyTests {
 
   [Test]
   public void Action8ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2804,7 +2804,7 @@ public class ApplyTests {
 
   [Test]
   public void Action8ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2818,7 +2818,7 @@ public class ApplyTests {
 
   [Test]
   public void Action8ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2832,7 +2832,7 @@ public class ApplyTests {
 
   [Test]
   public void Action8ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2846,7 +2846,7 @@ public class ApplyTests {
 
   [Test]
   public void Action8ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2860,7 +2860,7 @@ public class ApplyTests {
 
   [Test]
   public void Action8ParamsApply6() {
-    Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2874,7 +2874,7 @@ public class ApplyTests {
 
   [Test]
   public void Action8ParamsApply7() {
-    Functional.Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
+    Apply<int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2892,7 +2892,7 @@ public class ApplyTests {
 
   [Test]
   public void Action9ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2907,7 +2907,7 @@ public class ApplyTests {
 
   [Test]
   public void Action9ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2922,7 +2922,7 @@ public class ApplyTests {
 
   [Test]
   public void Action9ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2937,7 +2937,7 @@ public class ApplyTests {
 
   [Test]
   public void Action9ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2952,7 +2952,7 @@ public class ApplyTests {
 
   [Test]
   public void Action9ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2967,7 +2967,7 @@ public class ApplyTests {
 
   [Test]
   public void Action9ParamsApply6() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2982,7 +2982,7 @@ public class ApplyTests {
 
   [Test]
   public void Action9ParamsApply7() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -2997,7 +2997,7 @@ public class ApplyTests {
 
   [Test]
   public void Action9ParamsApply8() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
+    Apply<int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3016,7 +3016,7 @@ public class ApplyTests {
 
   [Test]
   public void Action10ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3032,7 +3032,7 @@ public class ApplyTests {
 
   [Test]
   public void Action10ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3048,7 +3048,7 @@ public class ApplyTests {
 
   [Test]
   public void Action10ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3064,7 +3064,7 @@ public class ApplyTests {
 
   [Test]
   public void Action10ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3080,7 +3080,7 @@ public class ApplyTests {
 
   [Test]
   public void Action10ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3096,7 +3096,7 @@ public class ApplyTests {
 
   [Test]
   public void Action10ParamsApply6() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3112,7 +3112,7 @@ public class ApplyTests {
 
   [Test]
   public void Action10ParamsApply7() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3128,7 +3128,7 @@ public class ApplyTests {
 
   [Test]
   public void Action10ParamsApply8() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3144,7 +3144,7 @@ public class ApplyTests {
 
   [Test]
   public void Action10ParamsApply9() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
+    Apply<int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3164,7 +3164,7 @@ public class ApplyTests {
 
   [Test]
   public void Action11ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3181,7 +3181,7 @@ public class ApplyTests {
 
   [Test]
   public void Action11ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3198,7 +3198,7 @@ public class ApplyTests {
 
   [Test]
   public void Action11ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3215,7 +3215,7 @@ public class ApplyTests {
 
   [Test]
   public void Action11ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3232,7 +3232,7 @@ public class ApplyTests {
 
   [Test]
   public void Action11ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3249,7 +3249,7 @@ public class ApplyTests {
 
   [Test]
   public void Action11ParamsApply6() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3266,7 +3266,7 @@ public class ApplyTests {
 
   [Test]
   public void Action11ParamsApply7() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3283,7 +3283,7 @@ public class ApplyTests {
 
   [Test]
   public void Action11ParamsApply8() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3300,7 +3300,7 @@ public class ApplyTests {
 
   [Test]
   public void Action11ParamsApply9() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3317,7 +3317,7 @@ public class ApplyTests {
 
   [Test]
   public void Action11ParamsApply10() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3338,7 +3338,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3356,7 +3356,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3374,7 +3374,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3392,7 +3392,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3410,7 +3410,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3428,7 +3428,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply6() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3446,7 +3446,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply7() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3464,7 +3464,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply8() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3482,7 +3482,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply9() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3500,7 +3500,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply10() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3518,7 +3518,7 @@ public class ApplyTests {
 
   [Test]
   public void Action12ParamsApply11() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3540,7 +3540,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3559,7 +3559,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3578,7 +3578,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3597,7 +3597,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3616,7 +3616,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3635,7 +3635,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply6() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3654,7 +3654,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply7() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3673,7 +3673,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply8() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3692,7 +3692,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply9() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3711,7 +3711,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply10() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3730,7 +3730,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply11() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3749,7 +3749,7 @@ public class ApplyTests {
 
   [Test]
   public void Action13ParamsApply12() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3772,7 +3772,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3792,7 +3792,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3812,7 +3812,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3832,7 +3832,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3852,7 +3852,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3872,7 +3872,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply6() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3892,7 +3892,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply7() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3912,7 +3912,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply8() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3932,7 +3932,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply9() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3952,7 +3952,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply10() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3972,7 +3972,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply11() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -3992,7 +3992,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply12() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4012,7 +4012,7 @@ public class ApplyTests {
 
   [Test]
   public void Action14ParamsApply13() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4036,7 +4036,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4057,7 +4057,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4078,7 +4078,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4099,7 +4099,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4120,7 +4120,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4141,7 +4141,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply6() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4162,7 +4162,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply7() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4183,7 +4183,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply8() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4204,7 +4204,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply9() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4225,7 +4225,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply10() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4246,7 +4246,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply11() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4267,7 +4267,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply12() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4288,7 +4288,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply13() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4309,7 +4309,7 @@ public class ApplyTests {
 
   [Test]
   public void Action15ParamsApply14() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4334,7 +4334,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply1() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4356,7 +4356,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply2() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4378,7 +4378,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply3() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4400,7 +4400,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply4() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4422,7 +4422,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply5() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4444,7 +4444,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply6() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4466,7 +4466,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply7() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4488,7 +4488,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply8() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4510,7 +4510,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply9() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4532,7 +4532,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply10() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4554,7 +4554,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply11() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4576,7 +4576,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply12() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4598,7 +4598,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply13() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4620,7 +4620,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply14() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);
@@ -4642,7 +4642,7 @@ public class ApplyTests {
 
   [Test]
   public void Action16ParamsApply15() {
-    Functional.Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
+    Apply<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>((p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16) => {
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       Assert.AreEqual(3, p3);

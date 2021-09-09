@@ -37,7 +37,7 @@ namespace FCSlib {
 
     public static Func<IEnumerable<T>, IEnumerable<T>> ReverseDelegate<T>() => Reverse<T>;
 
-    public static T First<T>(this IEnumerable<T> source) {
+    public static T First<T>(IEnumerable<T> source) {
       var enumerator = source.GetEnumerator();
       enumerator.MoveNext();
       return enumerator.Current;
@@ -81,14 +81,14 @@ namespace FCSlib {
 
     public static Func<int, IEnumerable<T>, IEnumerable<T>> SkipDelegate<T>() => Skip<T>;
 
-    public static void Each<T>(this IEnumerable<T> source, Action<T> action) {
+    public static void Each<T>(IEnumerable<T> source, Action<T> action) {
       foreach (var item in source)
         action(item);
     }
 
     public static Action<IEnumerable<T>, Action<T>> EachDelegate<T>() => Each<T>;
 
-    public static void Each<T>(this IEnumerable<T> source, Action action) {
+    public static void Each<T>(IEnumerable<T> source, Action action) {
       foreach (var item in source)
         action();
     }

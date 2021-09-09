@@ -14,9 +14,9 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
-using FCSlib;
 using FCSlib.Data;
 using FCSColl = FCSlib.Data.Collections;
+using static FCSlib.Functional;
 
 namespace Tests;
 
@@ -107,12 +107,40 @@ public class OptionTests {
     Assert.IsTrue(o.IsNone);
   }
 
-  // Don't need this in current tests
-  // static void AssertIsNone(Option o) {
-  //   Assert.IsFalse(o.HasValue);
-  //   Assert.IsFalse(o.IsSome);
-  //   Assert.IsTrue(o.IsNone);
-  // }
+  static void AssertIsNone(Option o) {
+    Assert.IsFalse(o.HasValue);
+    Assert.IsFalse(o.IsSome);
+    Assert.IsTrue(o.IsNone);
+  }
+
+  [Test]
+  public void FunctionalSome() {
+    var o = Some(3);
+
+    AssertIsSome(o, 3);
+  }
+
+  [Test]
+  public void FunctionalNone() {
+    var o = None;
+
+    AssertIsNone(o);
+  }
+
+  [Test]
+  public void FunctionalOptionalSome() {
+    var o = Optional("this");
+
+    AssertIsSome(o, "this");
+  }
+
+  [Test]
+  public void FunctionalOptionalNone() {
+    int? i = null;
+    var o = Optional(i);
+
+    AssertIsNone(o);
+  }
 
   [Test]
   public void ToOption() {
@@ -361,7 +389,7 @@ public class OptionTests {
     // execution paths for this.
 
     var result =
-      tree.ToNonDefaultOption() &
+      Optional(tree) &
       (t => t?.Left) &
       (t => t?.Left);
 

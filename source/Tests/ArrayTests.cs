@@ -14,7 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
-using FCSlib;
+using static FCSlib.Functional;
 
 namespace Tests;
 
@@ -25,7 +25,7 @@ public class ArrayTests {
 
   [Test]
   public void BasicInit() {
-    var result = Functional.InitArray(5, i => i * i);
+    var result = InitArray(5, i => i * i);
 
     Assert.AreEqual(5, result.Length);
     Assert.AreEqual(0, result[0]);

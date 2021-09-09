@@ -14,8 +14,9 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
-using FCSlib;
 using FCSlib.Data;
+
+using static FCSlib.Functional;
 
 namespace Tests;
 
@@ -29,7 +30,7 @@ public class MemoizationTests {
     // "Always" return a new value, regardless of the argument
     Func<int, Guid> getUniqueValue = _ => Guid.NewGuid();
 
-    var getValue = Functional.Memoize(getUniqueValue);
+    var getValue = Memoize(getUniqueValue);
     var firstValue = getValue(10);
     var secondValue = getValue(10);
 
@@ -41,8 +42,8 @@ public class MemoizationTests {
     // "Always" return a new value, regardless of the argument
     Func<int, Guid> getUniqueValue = _ => Guid.NewGuid();
 
-    var getValue = Functional.Memoize(getUniqueValue);
-    var getValueCustom = Functional.Memoize(getUniqueValue, "customKey");
+    var getValue = Memoize(getUniqueValue);
+    var getValueCustom = Memoize(getUniqueValue, "customKey");
     var standardKeyValue = getValue(10);
     var standardKeyValue2 = getValue(10);
     var customKeyValue = getValueCustom(10);
@@ -59,7 +60,7 @@ public class MemoizationTests {
     // "Always" return a new value, regardless of the arguments
     Func<int, Func<int, Guid>> getUniqueValue = _ => __ => Guid.NewGuid();
 
-    var getValue = Functional.DeepMemoize(getUniqueValue);
+    var getValue = DeepMemoize(getUniqueValue);
     // Using "null-forgiving" operator on the first part of the
     // function call - obviously we expect this to be non-null
     // if the memoization works correctly.

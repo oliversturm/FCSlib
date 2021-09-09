@@ -14,7 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
-using FCSlib;
+using static FCSlib.Functional;
 
 namespace Tests;
 
@@ -25,7 +25,7 @@ public class SwapTests {
 
   [Test]
   public void SwapSameTypeArgs() {
-    var result = Functional.Swap<string, string, int>(one => two => {
+    var result = Swap<string, string, int>(one => two => {
       Assert.AreEqual("one", two);
       Assert.AreEqual("two", one);
       return 42;
@@ -36,7 +36,7 @@ public class SwapTests {
 
   [Test]
   public void SwapDifferentTypeArgs() {
-    var result = Functional.Swap<string, int, bool>(one => two => {
+    var result = Swap<string, int, bool>(one => two => {
       Assert.AreEqual(42, two);
       Assert.AreEqual("two", one);
       return true;

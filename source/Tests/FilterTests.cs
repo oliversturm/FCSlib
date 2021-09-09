@@ -14,7 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
-using FCSlib;
+using static FCSlib.Functional;
 
 namespace Tests;
 
@@ -25,7 +25,7 @@ public class FilterTests {
 
   [Test]
   public void Basic() {
-    var result = Functional.Filter(x => x >= 3, new int[] { 1, 2, 3, 4 }).ToList();
+    var result = Filter(x => x >= 3, new int[] { 1, 2, 3, 4 }).ToList();
 
     Assert.AreEqual(2, result.Count);
     Assert.AreEqual(3, result[0]);

@@ -14,7 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
-using FCSlib;
+using static FCSlib.Functional;
 
 namespace Tests;
 
@@ -25,7 +25,7 @@ public class UncurryingTests {
 
   [Test]
   public void TwoParamsFunc() {
-    var result = Functional.Uncurry<int, int, int>(one => two => {
+    var result = Uncurry<int, int, int>(one => two => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       return 42;
@@ -36,7 +36,7 @@ public class UncurryingTests {
 
   [Test]
   public void ThreeParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int>(one => two => three => {
+    var result = Uncurry<int, int, int, int>(one => two => three => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -48,7 +48,7 @@ public class UncurryingTests {
 
   [Test]
   public void FourParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int>(one => two => three => four => {
+    var result = Uncurry<int, int, int, int, int>(one => two => three => four => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -61,7 +61,7 @@ public class UncurryingTests {
 
   [Test]
   public void FiveParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int>(one => two => three => four => five => {
+    var result = Uncurry<int, int, int, int, int, int>(one => two => three => four => five => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -75,7 +75,7 @@ public class UncurryingTests {
 
   [Test]
   public void SixParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int>(one => two => three => four => five => six => {
+    var result = Uncurry<int, int, int, int, int, int, int>(one => two => three => four => five => six => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -90,7 +90,7 @@ public class UncurryingTests {
 
   [Test]
   public void SevenParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => {
+    var result = Uncurry<int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -106,7 +106,7 @@ public class UncurryingTests {
 
   [Test]
   public void EightParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => {
+    var result = Uncurry<int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -123,7 +123,7 @@ public class UncurryingTests {
 
   [Test]
   public void NineParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => {
+    var result = Uncurry<int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -141,7 +141,7 @@ public class UncurryingTests {
 
   [Test]
   public void TenParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => {
+    var result = Uncurry<int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -160,7 +160,7 @@ public class UncurryingTests {
 
   [Test]
   public void ElevenParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => {
+    var result = Uncurry<int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -180,7 +180,7 @@ public class UncurryingTests {
 
   [Test]
   public void TwelveParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => {
+    var result = Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -201,7 +201,7 @@ public class UncurryingTests {
 
   [Test]
   public void ThirteenParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => {
+    var result = Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -223,7 +223,7 @@ public class UncurryingTests {
 
   [Test]
   public void FourteenParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => {
+    var result = Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -246,7 +246,7 @@ public class UncurryingTests {
 
   [Test]
   public void FifteenParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => fifteen => {
+    var result = Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => fifteen => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -270,7 +270,7 @@ public class UncurryingTests {
 
   [Test]
   public void SixteenParamsFunc() {
-    var result = Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => fifteen => sixteen => {
+    var result = Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => fifteen => sixteen => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -295,7 +295,7 @@ public class UncurryingTests {
 
   [Test]
   public void TwoParamsAction() {
-    Functional.Uncurry<int, int>(one => two => {
+    Uncurry<int, int>(one => two => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
     })(1, 2);
@@ -303,7 +303,7 @@ public class UncurryingTests {
 
   [Test]
   public void ThreeParamsAction() {
-    Functional.Uncurry<int, int, int>(one => two => three => {
+    Uncurry<int, int, int>(one => two => three => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -312,7 +312,7 @@ public class UncurryingTests {
 
   [Test]
   public void FourParamsAction() {
-    Functional.Uncurry<int, int, int, int>(one => two => three => four => {
+    Uncurry<int, int, int, int>(one => two => three => four => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -322,7 +322,7 @@ public class UncurryingTests {
 
   [Test]
   public void FiveParamsAction() {
-    Functional.Uncurry<int, int, int, int, int>(one => two => three => four => five => {
+    Uncurry<int, int, int, int, int>(one => two => three => four => five => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -333,7 +333,7 @@ public class UncurryingTests {
 
   [Test]
   public void SixParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int>(one => two => three => four => five => six => {
+    Uncurry<int, int, int, int, int, int>(one => two => three => four => five => six => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -345,7 +345,7 @@ public class UncurryingTests {
 
   [Test]
   public void SevenParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => {
+    Uncurry<int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -358,7 +358,7 @@ public class UncurryingTests {
 
   [Test]
   public void EightParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => {
+    Uncurry<int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -372,7 +372,7 @@ public class UncurryingTests {
 
   [Test]
   public void NineParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => {
+    Uncurry<int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -387,7 +387,7 @@ public class UncurryingTests {
 
   [Test]
   public void TenParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => {
+    Uncurry<int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -403,7 +403,7 @@ public class UncurryingTests {
 
   [Test]
   public void ElevenParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => {
+    Uncurry<int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -420,7 +420,7 @@ public class UncurryingTests {
 
   [Test]
   public void TwelveParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => {
+    Uncurry<int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -438,7 +438,7 @@ public class UncurryingTests {
 
   [Test]
   public void ThirteenParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => {
+    Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -457,7 +457,7 @@ public class UncurryingTests {
 
   [Test]
   public void FourteenParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => {
+    Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -477,7 +477,7 @@ public class UncurryingTests {
 
   [Test]
   public void FifteenParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => fifteen => {
+    Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => fifteen => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);
@@ -498,7 +498,7 @@ public class UncurryingTests {
 
   [Test]
   public void SixteenParamsAction() {
-    Functional.Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => fifteen => sixteen => {
+    Uncurry<int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>(one => two => three => four => five => six => seven => eight => nine => ten => eleven => twelve => thirteen => fourteen => fifteen => sixteen => {
       Assert.AreEqual(1, one);
       Assert.AreEqual(2, two);
       Assert.AreEqual(3, three);

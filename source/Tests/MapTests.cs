@@ -14,7 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
-using FCSlib;
+using static FCSlib.Functional;
 
 namespace Tests;
 
@@ -25,7 +25,7 @@ public class MapTests {
 
   [Test]
   public void Basic() {
-    var result = Functional.Map(x => x * x, new int[] { 1, 2, 3, 4 }).ToList();
+    var result = Map(x => x * x, new int[] { 1, 2, 3, 4 }).ToList();
 
     Assert.AreEqual(4, result.Count);
     Assert.AreEqual(1, result[0]);

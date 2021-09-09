@@ -13,42 +13,20 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
-using NUnit.Framework;
-using static FCSlib.Functional;
 
-namespace Tests;
+using FCSlib.Data;
 
-public class FoldTests {
-  [SetUp]
-  public void Setup() {
-  }
+namespace FCSlib {
+  public static partial class Functional {
+    public static Option<T> Some<T>(T val) => Option.Some(val);
+    public static Option None => Option.None;
+    public static Option<T> Optional<T>(T val) => OptionHelpers.ToNonDefaultOption(val);
+    public static bool IsSome<T>(Option<T> o) => o.IsSome;
+    public static bool IsSome(Option o) => o.IsSome;
+    public static bool IsNone<T>(Option<T> o) => o.IsNone;
+    public static bool IsNone(Option o) => o.IsNone;
 
-  [Test]
-  public void FoldLeft() {
-    var result = FoldL((r, v) => r + v, 0, new int[] { 1, 2, 3, 4 });
-
-    Assert.AreEqual(10, result);
-  }
-
-  [Test]
-  public void FoldLeft1() {
-    var result = FoldL1((r, v) => r + v, new int[] { 1, 2, 3, 4 });
-
-    Assert.AreEqual(10, result);
-  }
-
-  [Test]
-  public void FoldRight() {
-    var result = FoldR((v, r) => r - v, 0, new int[] { 1, 2, 3, 4 });
-
-    Assert.AreEqual(-10, result);
-  }
-
-  [Test]
-  public void FoldRight1() {
-    var result = FoldR1((v, r) => r - v, new int[] { 1, 2, 3, 4 });
-
-    Assert.AreEqual(-2, result);
+    public static Option<R> Bind<T, R>(Option<T> o, Func<T?, Option<R>> g) => Option.Bind(o, g);
+    public static Option<R> Bind<T, R>(Option<T> o, Func<T?, R> g) => Option.Bind(o, g);
   }
 }
-
