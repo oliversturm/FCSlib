@@ -79,6 +79,14 @@ public class OptionTests {
   }
 
   [Test]
+  public void NoneThrowsOnValueAccess() {
+    var o1 = Option<int>.None;
+    Assert.Throws<InvalidOperationException>(() => {
+      int x = o1.Value + 1;
+    });
+  }
+
+  [Test]
   public void ListOfOptions() {
     List<Option<int>> os = new();
     os.Add(Option.Some(3));
@@ -264,11 +272,18 @@ public class OptionTests {
 
   [Test]
   public void SwitchOnOption() {
-    var result = 5.ToOption() &
-      (v => 7.ToOption() &
-        (v2 => (v + v2).ToOption()));
+    var result = 12.ToOption();
 
-    // Todo: consider adding deconstruct here
+    // I considered deconstructing the option in the "some"
+    // case - like I would expect to be able to do in JS
+    // for instance, but it turns out that
+    // * I can't deconstruct just one value - not supported
+    // * I can't deconstruct function parameters. I was confused
+    //   about that for a moment because there's a syntax
+    //   that accepts tuples as method arguments and it looks
+    //   rather like deconstruction, but it's not.
+    // Huh.
+
     var testResult = result switch { { IsSome: true } some => $"Result is {some.Value}",
       _ => "No idea what this is"
     };
@@ -308,14 +323,20 @@ public class OptionTests {
   //         \            /
   //       Bernie       Suzie
 
-  [Test]
-  public void GetThirdLeftChild() {
+  static FCSColl::UnbalancedBinaryTree<string> CreateTestTree() {
     var tree = new FCSColl::UnbalancedBinaryTree<string>();
     tree = tree.Insert("Paul");
     tree = tree.Insert("Adam");
     tree = tree.Insert("Bernie");
     tree = tree.Insert("Willy");
     tree = tree.Insert("Suzie");
+    return tree;
+  }
+
+  [Test]
+  public void GetThirdLeftChild() {
+    var tree = CreateTestTree();
+
     // Following the tree to the left three times should
     // find nothing - so we expect None. Point is, we
     // don't need any explicit checks and conditional
@@ -332,12 +353,8 @@ public class OptionTests {
 
   [Test]
   public void GetSecondLeftChildOperator() {
-    var tree = new FCSColl::UnbalancedBinaryTree<string>();
-    tree = tree.Insert("Paul");
-    tree = tree.Insert("Adam");
-    tree = tree.Insert("Bernie");
-    tree = tree.Insert("Willy");
-    tree = tree.Insert("Suzie");
+    var tree = CreateTestTree();
+
     // Following the tree to the left three times should
     // find nothing - so we expect None. Point is, we
     // don't need any explicit checks and conditional
@@ -353,12 +370,8 @@ public class OptionTests {
 
   [Test]
   public void GetThirdLeftChildOperator() {
-    var tree = new FCSColl::UnbalancedBinaryTree<string>();
-    tree = tree.Insert("Paul");
-    tree = tree.Insert("Adam");
-    tree = tree.Insert("Bernie");
-    tree = tree.Insert("Willy");
-    tree = tree.Insert("Suzie");
+    var tree = CreateTestTree();
+
     // Following the tree to the left three times should
     // find nothing - so we expect None. Point is, we
     // don't need any explicit checks and conditional
@@ -375,12 +388,8 @@ public class OptionTests {
 
   [Test]
   public void GetLeftRightChild() {
-    var tree = new FCSColl::UnbalancedBinaryTree<string>();
-    tree = tree.Insert("Paul");
-    tree = tree.Insert("Adam");
-    tree = tree.Insert("Bernie");
-    tree = tree.Insert("Willy");
-    tree = tree.Insert("Suzie");
+    var tree = CreateTestTree();
+
     // Following the tree to the left and then to the right
     // should yield Bernie
 
@@ -389,22 +398,13 @@ public class OptionTests {
         .Bind(tree, t => t?.Left)
         .Bind(t => t?.Right);
 
-    result =
-      tree.ToNonDefaultOption() &
-      (t => t?.Left) &
-      (t => t?.Right);
-
     Assert.AreEqual("Bernie", result.Value?.Value);
   }
 
   [Test]
   public void GetLeftRightChildOperator() {
-    var tree = new FCSColl::UnbalancedBinaryTree<string>();
-    tree = tree.Insert("Paul");
-    tree = tree.Insert("Adam");
-    tree = tree.Insert("Bernie");
-    tree = tree.Insert("Willy");
-    tree = tree.Insert("Suzie");
+    var tree = CreateTestTree();
+
     // Following the tree to the left and then to the right
     // should yield Bernie
 

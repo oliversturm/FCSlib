@@ -76,14 +76,21 @@ namespace FCSlib.Data {
   }
 
   public sealed class Option<T> {
-    public T? Value { get; init; }
+    private readonly T? value;
+    public T? Value {
+      get {
+        if (!HasValue)
+          throw new InvalidOperationException("Can't return value for None Option");
+        return value;
+      }
+    }
     public bool HasValue { get; init; }
 
     public bool IsSome => HasValue;
     public bool IsNone => !IsSome;
 
     public Option(T? value) {
-      this.Value = value;
+      this.value = value;
       this.HasValue = true;
     }
 
