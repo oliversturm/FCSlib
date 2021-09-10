@@ -312,7 +312,8 @@ public class OptionTests {
     //   rather like deconstruction, but it's not.
     // Huh.
 
-    var testResult = result switch { { IsSome: true } some => $"Result is {some.Value}",
+    var testResult = result switch
+    { { IsSome: true } some => $"Result is {some.Value}",
       _ => "No idea what this is"
     };
 
@@ -510,5 +511,28 @@ public class OptionTests {
     })(x => x * x)(None);
     Assert.AreEqual(42, result);
     Assert.IsTrue(calledThunk);
+  }
+
+  [Test]
+  public void SomeOptionToEither() {
+    var o = Some(5);
+    var result = FromRight(-1, OptionToEither(o));
+    Assert.AreEqual(5, result);
+  }
+
+  [Test]
+  public void NoneOptionToEither() {
+    var o = None;
+    var e = OptionToEither(o);
+    Assert.IsTrue(IsLeft(e));
+    Assert.AreSame(None, ((Left<Option>)e).Value);
+  }
+
+  [Test]
+  public void NoneIntOptionToEither() {
+    var o = Option<int>.None;
+    var e = OptionToEither(o);
+    Assert.IsTrue(IsLeft(e));
+    Assert.AreSame(None, ((Left<Option>)e).Value);
   }
 }

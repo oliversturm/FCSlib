@@ -36,5 +36,10 @@ namespace FCSlib {
     public static Func<Func<T?, T>, Func<Option<T>, T?>> Optionally<T>(T? defaultValue) => f => o => Optionally(defaultValue, f, o);
 
     public static Func<Func<T?, T>, Func<Option<T>, T?>> Optionally<T>(Func<T?> getDefaultValue) => f => o => Optionally(getDefaultValue, f, o);
+
+    public static Either OptionToEither<T>(Option<T> o) =>
+      IsNone(o) ? Left(None) : Right(o.Value);
+
+    public static Either OptionToEither(Option o) => Left(None);
   }
 }
