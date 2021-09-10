@@ -128,6 +128,29 @@ public class EitherTests {
   }
 
   [Test]
+  public void EitherTestRightCurried() {
+    var e = Right(101);
+    bool rightHandlerCalled = false;
+    bool leftHandlerCalled = false;
+
+    Func<int, int> rightHandler = i => {
+      Assert.AreEqual(101, i);
+      rightHandlerCalled = true;
+      return 42;
+    };
+
+    Func<string?, int> leftHandler = s => {
+      leftHandlerCalled = true;
+      return -1;
+    };
+
+    var result = Either<int, string, int>(rightHandler)(leftHandler)(e);
+    Assert.AreEqual(42, result);
+    Assert.IsTrue(rightHandlerCalled);
+    Assert.IsFalse(leftHandlerCalled);
+  }
+
+  [Test]
   public void EitherTestLeft() {
     string error = "something went wrong";
     var e = Left(error);
@@ -152,6 +175,30 @@ public class EitherTests {
   }
 
   [Test]
+  public void EitherTestLeftCurried() {
+    string error = "something went wrong";
+    var e = Left(error);
+    bool rightHandlerCalled = false;
+    bool leftHandlerCalled = false;
+
+    Func<int, int> rightHandler = i => {
+      rightHandlerCalled = true;
+      return 42;
+    };
+
+    Func<string?, int> leftHandler = s => {
+      Assert.AreEqual(error, s);
+      leftHandlerCalled = true;
+      return -1;
+    };
+
+    var result = Either<int, string, int>(rightHandler)(leftHandler)(e);
+    Assert.AreEqual(-1, result);
+    Assert.IsFalse(rightHandlerCalled);
+    Assert.IsTrue(leftHandlerCalled);
+  }
+
+  [Test]
   public void FromLeftValue() {
     var l = Left(42);
     var result = FromLeft(0, l);
@@ -166,6 +213,20 @@ public class EitherTests {
   }
 
   [Test]
+  public void FromLeftValueCurried() {
+    var l = Left(42);
+    var result = FromLeft(0)(l);
+    Assert.AreEqual(42, result);
+  }
+
+  [Test]
+  public void FromLeftDefaultCurried() {
+    var r = Right("error");
+    var result = FromLeft(0)(r);
+    Assert.AreEqual(0, result);
+  }
+
+  [Test]
   public void FromRightValue() {
     var r = Right("error");
     var result = FromRight("all good", r);
@@ -176,6 +237,20 @@ public class EitherTests {
   public void FromRightDefault() {
     var l = Left(42);
     var result = FromRight("all good", l);
+    Assert.AreEqual("all good", result);
+  }
+
+  [Test]
+  public void FromRightValueCurried() {
+    var r = Right("error");
+    var result = FromRight("all good")(r);
+    Assert.AreEqual("error", result);
+  }
+
+  [Test]
+  public void FromRightDefaultCurried() {
+    var l = Left(42);
+    var result = FromRight("all good")(l);
     Assert.AreEqual("all good", result);
   }
 
@@ -238,4 +313,74 @@ public class EitherTests {
   //   Assert.AreEqual(-1, result);
   // }
 
+  [Test]
+  public void TagRight() {
+    var result = FromRight(-1, Tag(x => x > 3, 5));
+    Assert.AreEqual(5, result);
+  }
+
+  [Test]
+  public void TagRightCurried() {
+    var result = FromRight(-1, Tag<int>(x => x > 3)(5));
+    Assert.AreEqual(5, result);
+  }
+
+  [Test]
+  public void TagLeft() {
+    var result = FromLeft(-1, Tag(x => x > 10, 5));
+    Assert.AreEqual(5, result);
+  }
+
+  [Test]
+  public void TagLeftCurried() {
+    var result = FromLeft(-1, Tag<int>(x => x > 10)(5));
+    Assert.AreEqual(5, result);
+  }
+
+  static int ReturningFunction(int x) {
+    return x * x;
+  }
+
+  static int ThrowingFunction(int x) {
+    throw new InvalidOperationException("something went wrong");
+  }
+
+  [Test]
+  public void EncaseSuccess() {
+    var e = Encase(ReturningFunction, 11);
+    var result = FromRight(-1, e);
+    Assert.AreEqual(121, result);
+  }
+
+  [Test]
+  public void EncaseFailure() {
+    var e = Encase(ThrowingFunction, 11);
+    var result = FromRight(-1, e);
+    Assert.AreEqual(-1, result);
+
+    var ex = FromLeft<Exception>(null, e);
+    Assert.AreEqual("something went wrong", ex?.Message);
+  }
+
+  [Test]
+  public void EncaseSuccessCurried() {
+    // Even in 2021, C# compiler nonsense. Why should it not 
+    // be possible to automatically detect the type parameters
+    // in this case?
+    var returningFunction = Encase<int, int>(ReturningFunction);
+    var e = returningFunction(11);
+    var result = FromRight(-1, e);
+    Assert.AreEqual(121, result);
+  }
+
+  [Test]
+  public void EncaseFailureCurried() {
+    var throwingFunction = Encase<int, int>(ThrowingFunction);
+    var e = throwingFunction(11);
+    var result = FromRight(-1, e);
+    Assert.AreEqual(-1, result);
+
+    var ex = FromLeft<Exception>(null, e);
+    Assert.AreEqual("something went wrong", ex?.Message);
+  }
 }

@@ -31,11 +31,15 @@ namespace FCSlib {
       _ => defaultValue
     };
 
+    public static Func<Either, T?> FromLeft<T>(T? defaultValue) => e => FromLeft(defaultValue, e);
+
     public static T? FromRight<T>(T? defaultValue, Either e) => e switch
     {
       Right<T> r => r.Value,
       _ => defaultValue
     };
+
+    public static Func<Either, T?> FromRight<T>(T? defaultValue) => e => FromRight(defaultValue, e);
 
     public static RES Either<R, L, RES>(
       Func<R?, RES> rightHandler,
@@ -46,6 +50,19 @@ namespace FCSlib {
         Left<L> l => leftHandler(l.Value),
         _ => throw new InvalidOperationException("Either must be Left or Light. You may be passing delegates with invalid types.")
       };
+
+    public static Func<Func<L?, RES>, Func<Either, RES>> Either<R, L, RES>(Func<R?, RES> rightHandler) => leftHandler => e => Either(rightHandler, leftHandler, e);
+
+    public static Either Tag<T>(Predicate<T> predicate, T value) => predicate(value) ? Right(value) : Left(value);
+
+    public static Func<T, Either> Tag<T>(Predicate<T> predicate) => value => Tag(predicate, value);
+
+    public static Either Encase<T, R>(Func<T, R> f, T value) {
+      try { return Right(f(value)); }
+      catch (Exception e) { return Left(e); }
+    }
+
+    public static Func<T, Either> Encase<T, R>(Func<T, R> f) => value => Encase(f, value);
   }
 }
 
