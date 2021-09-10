@@ -13,13 +13,34 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
-using FCSColl = FCSlib.Data.Collections;
+using NUnit.Framework;
+using static FCSlib.Functional;
 
-namespace FCSlib {
-  public static partial class Functional {
-    public static FCSColl::List<T> List<T>(T head) => new(head);
-    public static FCSColl::List<T> List<T>() => FCSColl::List<T>.Empty;
-    public static FCSColl::List<T> List<T>(T first, params T[] values) => new(first, values);
-    public static FCSColl::List<T> List<T>(IEnumerable<T> source) => new(source);
+namespace Tests;
+
+public class QueueTests {
+  [Test]
+  public void ThreeInts() {
+    var q = Queue(1, 2, 3);
+    Assert.AreEqual(1, q.Head);
+    q = q.Tail;
+    Assert.AreEqual(2, q.Head);
+    q = q.Tail;
+    Assert.AreEqual(3, q.Head);
+  }
+
+  [Test]
+  public void EmptyThenSnoc() {
+    var q = Queue<int>();
+    q = q.Snoc(1);
+    q = q.Snoc(2);
+    q = q.Snoc(3);
+
+    // FIFO
+    Assert.AreEqual(1, q.Head);
+    q = q.Tail;
+    Assert.AreEqual(2, q.Head);
+    q = q.Tail;
+    Assert.AreEqual(3, q.Head);
   }
 }

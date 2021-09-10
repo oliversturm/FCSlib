@@ -24,22 +24,21 @@ namespace FCSlib.Data.Collections {
     #region Head, Tail and IsEmpty
     private readonly T? head;
     private readonly List<T> tail;
-    private readonly bool isEmpty;
+    public bool IsEmpty { get; init; } = false;
     public T Head {
       get {
-        if (isEmpty)
+        if (IsEmpty)
           throw new InvalidOperationException("No head in an empty list");
         return head ?? throw new InvalidOperationException("Head uninitialized");
       }
     }
     public List<T> Tail {
       get {
-        if (isEmpty)
+        if (IsEmpty)
           throw new InvalidOperationException("No tail in an empty list");
         return tail;
       }
     }
-    public bool IsEmpty { get { return isEmpty; } }
     public static readonly List<T> Empty = new();
 
     public List<T> DefaultValue => Empty;
@@ -47,26 +46,24 @@ namespace FCSlib.Data.Collections {
     #endregion
 
     #region Cons
-    public static List<T> Cons(T element, List<T> list) {
-      if (list.IsEmpty)
-        return new List<T>(element);
-      else
-        return new List<T>(element, list);
-    }
+    public static List<T> Cons(T element, List<T> list) =>
+      list.IsEmpty ?
+        new List<T>(element) : new List<T>(element, list);
 
-    public List<T> Cons(T element) {
-      return List<T>.Cons(element, this);
-    }
+    public List<T> Cons(T element) =>
+      List<T>.Cons(element, this);
+
     #endregion
 
     #region Appending
     // This recursive implementation is of course much more elegant,
     // but can result in stack overflows when the 'one' list is long
-    public static List<T> AppendWithRecursion(List<T> one, List<T> other) {
-      if (one.IsEmpty)
-        return other;
-      return Cons(one.Head, AppendWithRecursion(one.Tail, other));
-    }
+    // Wonder if tail recursion is more generally available
+    // in C# now than it used to be, and where CPS could make
+    // this possible here?
+    public static List<T> AppendWithRecursion(List<T> one, List<T> other) =>
+      one.IsEmpty ? other :
+       Cons(one.Head, AppendWithRecursion(one.Tail, other));
 
     public static List<T> Append(List<T> one, List<T> other) {
       if (one.IsEmpty)
@@ -79,13 +76,12 @@ namespace FCSlib.Data.Collections {
       return newList;
     }
 
-    public List<T> Append(List<T> other) {
-      return List<T>.Append(this, other);
-    }
+    public List<T> Append(List<T> other) =>
+      List<T>.Append(this, other);
 
-    public List<T> AppendWithRecursion(List<T> other) {
-      return List<T>.AppendWithRecursion(this, other);
-    }
+    public List<T> AppendWithRecursion(List<T> other) =>
+      List<T>.AppendWithRecursion(this, other);
+
     #endregion
 
     #region Remove
@@ -110,18 +106,15 @@ namespace FCSlib.Data.Collections {
         return list;
     }
 
-    public List<T> Remove(T element) {
-      return List<T>.Remove(this, element);
-    }
+    public List<T> Remove(T element) =>
+      List<T>.Remove(this, element);
+
     #endregion
 
     #region Constructors
     public List(T head, List<T> tail) {
       this.head = head;
-      if (tail.IsEmpty)
-        this.tail = List<T>.Empty;
-      else
-        this.tail = tail;
+      this.tail = tail.IsEmpty ? List<T>.Empty : tail;
     }
 
     public List(T head) : this(head, List<T>.Empty) { }
@@ -139,7 +132,7 @@ namespace FCSlib.Data.Collections {
     }
 
     private List() {
-      isEmpty = true;
+      IsEmpty = true;
       // this.head is null in this case
       this.tail = List<T>.Empty;
     }
@@ -154,7 +147,7 @@ namespace FCSlib.Data.Collections {
           tail = tail.Cons(sa[i]);
       }
       else {
-        isEmpty = true;
+        IsEmpty = true;
         // this.head is null in this case
         this.tail = List<T>.Empty;
       }
@@ -167,12 +160,11 @@ namespace FCSlib.Data.Collections {
         yield return element.Head;
     }
 
-    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-      return this.GetEnumerator();
-    }
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => this.GetEnumerator();
+
     #endregion
 
-    #region ToString
+    #region ToString - for debug purposes
     public override string ToString() {
       var result = "[";
       if (!IsEmpty)

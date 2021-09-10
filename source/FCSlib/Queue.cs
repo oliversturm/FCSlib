@@ -17,9 +17,8 @@ using FCSColl = FCSlib.Data.Collections;
 
 namespace FCSlib {
   public static partial class Functional {
-    public static FCSColl::List<T> List<T>(T head) => new(head);
-    public static FCSColl::List<T> List<T>() => FCSColl::List<T>.Empty;
-    public static FCSColl::List<T> List<T>(T first, params T[] values) => new(first, values);
-    public static FCSColl::List<T> List<T>(IEnumerable<T> source) => new(source);
+    public static FCSColl::Queue<T> Queue<T>() => FCSColl::Queue<T>.Empty;
+    public static FCSColl::Queue<T> Queue<T>(IEnumerable<T> source) => new(source);
+    public static FCSColl::Queue<T> Queue<T>(T first, params T[] values) => new(first, values);
   }
 }
