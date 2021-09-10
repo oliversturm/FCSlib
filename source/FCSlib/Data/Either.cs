@@ -49,6 +49,14 @@ namespace FCSlib.Data {
       Func<T?, Either> f = x => Right(g(x));
       return Bind(f);
     }
+
+    // Would love to implement the & operator on this level, so
+    // that Either & Func<...> would also work. However, this 
+    // is not supported by C# for some reason:
+
+    // public static Either operator &<T>(Either e, Func<T?, Either> g) => e.Bind(g);
+
+    // public static Either operator &<T>(Either e, Func<T?, T?> g) => e.Bind(g);
   }
 
   public sealed class Left<T> : Either {
@@ -77,8 +85,10 @@ namespace FCSlib.Data {
     public override bool Equals(object? obj) =>
       base.Equals(obj);
 
-    public static Either operator &(Either e, Func)
+    // Leaving in as a reminder - see notes in test file
+    // public static Either operator &(Left<T> e, Func<T?, Either> g) => e.Bind(g);
 
+    // public static Either operator &(Left<T> e, Func<T?, T?> g) => e.Bind(g);
   }
 
   public sealed class Right<T> : Either {
@@ -106,38 +116,12 @@ namespace FCSlib.Data {
 
     public override bool Equals(object? obj) =>
       base.Equals(obj);
+
+    // Leaving in as a reminder - see notes in test file
+    // public static Either operator &(Right<T> e, Func<T?, Either> g) => e.Bind(g);
+
+    // public static Either operator &(Right<T> e, Func<T?, T?> g) => e.Bind(g);
+
   }
-
-  // public sealed class Either<T> {
-
-  //   readonly T? value;
-  //   readonly LeftRight type;
-
-  //   private Either(LeftRight type, T value) {
-  //     this.type = type;
-  //     this.value = value;
-  //   }
-
-  //   public static Either<T> Left(T value) =>
-  //     new(LeftRight.Left, value);
-  //   public static Either<T> Right(T value) =>
-  //     new(LeftRight.Right, value);
-
-  //   public static bool operator ==(Either<T> a, Either<T> b) =>
-  //     a.type == b.type &&
-  //       EqualityComparer<T>.Default.Equals(a.value, b.value);
-
-  //   public static bool operator !=(Either<T> a, Either<T> b) =>
-  //     !(a == b);
-
-  //   public override int GetHashCode() =>
-  //     type.GetHashCode() & (value?.GetHashCode() ?? 0);
-
-  //   public override bool Equals(object? obj) =>
-  //     base.Equals(obj);
-
-  //   public Either<R> Bind<R>(Func<T?, Either<R>> g) =>
-  //     type == LeftRight.Left ? new Either<R>(LeftRight.Left, value) : g(value);
-  // }
 }
 

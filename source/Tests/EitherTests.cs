@@ -199,13 +199,43 @@ public class EitherTests {
     Assert.AreEqual(-1, result);
   }
 
-  [Test]
-  public void EitherOperatorBindSuccess() {
-    Func<int, int> square = x => x * x;
+  // Leaving these in place as a reminder. To summarize:
+  // With the operator & implementation in the derived types
+  // I can run the xxxSuccess test as long as I hold a ref
+  // to the derived type, /not/ to the Either base class. Not
+  // very realistic, but perhaps potentially useful. However,
+  // I still can't run the xxxError test because the types
+  // are wrong - this is supposed to be resolved by the 
+  // non-generic base class. But I can't implement & in the 
+  // non-generic base class, even though that's where Bind
+  // lives happily - the reason is that C# does not allow me
+  // to specify a generic parameter for the operator static
+  // method - a rather random limitation in my eyes, but nothing
+  // I can change.
+  //
+  // [Test]
+  // public void EitherOperatorBindSuccess() {
+  //   Func<int, int> square = x => x * x;
+  //   var opResult = Right(42); //TestOperation(false);
 
-    var result = FromRight(-1, TestOperation(false) & square);
+  //   // Note that the operator based Bind only works if the local
+  //   // variable is typed as Left<T> or Right<T>, not for the base
+  //   // class Either.
+  //   var result = FromRight(-1, opResult & square);
 
-    Assert.AreEqual(42 * 42, result);
-  }
+  //   Assert.AreEqual(42 * 42, result);
+  // }
+
+  // [Test]
+  // public void EitherOperatorBindError() {
+  //   Func<int, int> square = x => x * x;
+  //   var opResult = Left("error"); //TestOperation(true);
+
+  //   // This doesn't work at all because now the either is typed
+  //   // and the delegate is not compatible.
+  //   var result = FromRight(-1, opResult & square);
+
+  //   Assert.AreEqual(-1, result);
+  // }
 
 }
