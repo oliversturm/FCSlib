@@ -70,6 +70,25 @@ namespace FCSlib.Data.Collections {
 
     #endregion
 
+    public static RedBlackTree<T> Init(T first, params T[] values) {
+      var tree = Insert(first, Empty);
+      foreach (var v in values) {
+        tree = Insert(v, tree);
+      }
+      return tree;
+    }
+
+    public static RedBlackTree<T> Init(IEnumerable<T> source) {
+      var sa = source.ToArray();
+      if (sa.Length == 0) return Empty;
+      var tree = Insert(sa.First(), Empty);
+      foreach (var v in sa.Skip(1)) {
+        tree = Insert(v, tree);
+      }
+      return tree;
+    }
+
+
     #region Balance
     private static RedBlackTree<T> Balance(Color nodeColor,
       RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
