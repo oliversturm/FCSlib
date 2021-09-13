@@ -27,29 +27,12 @@ namespace FCSlib.Data.Collections {
       Black
     }
 
-    private readonly bool isEmpty;
-    public bool IsEmpty { get { return isEmpty; } }
-    private readonly Color nodeColor;
-    public Color NodeColor { get { return nodeColor; } }
+    public bool IsEmpty { get; init; }
+    public Color NodeColor { get; init; }
 
-    private readonly RedBlackTree<T> left;
-    public RedBlackTree<T> Left {
-      get {
-        return left;
-      }
-    }
-    private readonly RedBlackTree<T> right;
-    public RedBlackTree<T> Right {
-      get {
-        return right;
-      }
-    }
-    private readonly T? value;
-    public T? Value {
-      get {
-        return value;
-      }
-    }
+    public RedBlackTree<T> Left { get; init; }
+    public RedBlackTree<T> Right { get; init; }
+    public T? Value { get; init; }
 
     public static readonly RedBlackTree<T> Empty = new();
 
@@ -57,15 +40,32 @@ namespace FCSlib.Data.Collections {
 
     #region Constructors
     private RedBlackTree() {
-      isEmpty = true;
-      this.left = this.right = RedBlackTree<T>.Empty;
+      IsEmpty = true;
+      Left = Right = RedBlackTree<T>.Empty;
     }
 
     public RedBlackTree(Color nodeColor, RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
-      this.nodeColor = nodeColor;
-      this.left = left;
-      this.right = right;
-      this.value = value;
+      NodeColor = nodeColor;
+      Left = left;
+      Right = right;
+      Value = value;
+    }
+
+    #endregion
+
+    #region Deconstructors
+
+    public void Deconstruct(out Color nodeColor, out RedBlackTree<T> left, out T? value, out RedBlackTree<T> right) {
+      nodeColor = NodeColor;
+      left = Left;
+      value = Value;
+      right = Right;
+    }
+
+    public void Deconstruct(out RedBlackTree<T> left, out T? value, out RedBlackTree<T> right) {
+      left = Left;
+      value = Value;
+      right = Right;
     }
 
     #endregion
@@ -90,53 +90,88 @@ namespace FCSlib.Data.Collections {
 
 
     #region Balance
-    private static RedBlackTree<T> Balance(Color nodeColor,
-      RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
-      if (nodeColor == RedBlackTree<T>.Color.Black) {
-        if (!(left.IsEmpty) &&
-          left.NodeColor == RedBlackTree<T>.Color.Red &&
-          !(left.Left.IsEmpty) &&
-          left.Left.NodeColor == RedBlackTree<T>.Color.Red)
-          return new RedBlackTree<T>(Color.Red,
-            new RedBlackTree<T>(Color.Black,
-              left.Left.Left, left.Left.Value, left.Left.Right),
-            left.Value,
-            new RedBlackTree<T>(Color.Black,
-              left.Right, value, right));
-        if (!(left.IsEmpty) &&
-          left.NodeColor == RedBlackTree<T>.Color.Red &&
-          !(left.Right.IsEmpty) &&
-          left.Right.NodeColor == RedBlackTree<T>.Color.Red)
-          return new RedBlackTree<T>(Color.Red,
-            new RedBlackTree<T>(Color.Black,
-              left.Left, left.Value, left.Right.Left),
-            left.Right.Value,
-            new RedBlackTree<T>(Color.Black,
-              left.Right.Right, value, right));
-        if (!(right.IsEmpty) &&
-          right.NodeColor == RedBlackTree<T>.Color.Red &&
-          !(right.Left.IsEmpty) &&
-          right.Left.NodeColor == RedBlackTree<T>.Color.Red)
-          return new RedBlackTree<T>(Color.Red,
-            new RedBlackTree<T>(Color.Black,
-              left, value, right.Left.Left),
-            right.Left.Value,
-            new RedBlackTree<T>(Color.Black,
-              right.Left.Right, right.Value, right.Right));
-        if (!(right.IsEmpty) &&
-          right.NodeColor == RedBlackTree<T>.Color.Red &&
-          !(right.Right.IsEmpty) &&
-          right.Right.NodeColor == RedBlackTree<T>.Color.Red)
-          return new RedBlackTree<T>(Color.Red,
-            new RedBlackTree<T>(Color.Black,
-              left, value, right.Left),
-            right.Value,
-            new RedBlackTree<T>(Color.Black,
-              right.Right.Left, right.Right.Value, right.Right.Right));
-      }
 
-      return new RedBlackTree<T>(nodeColor, left, value, right);
+    // Haskell:
+    //
+    // data Color = R | B
+    // data RedBlackSet a = E | T Color (RedBlackSet a) a (RedBlackSet a)
+    //
+    // balance B (T R (T R a x b) y c) z d = T R (T B a x b) y (T B c z d)
+    // balance B (T R a x (T R b y c)) z d = T R (T B a x b) y (T B c z d)
+    // balance B a x (T R (T R b y c) z d) = T R (T B a x b) y (T B c z d)
+    // balance B a x (T R b y (T R c z d)) = T R (T B a x b) y (T B c z d)
+    // balance color a x b = T color a x b
+
+    private static RedBlackTree<T> Balance(Color nodeColor,
+       RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
+      const Color R = Color.Red;
+      const Color B = Color.Black;
+      Func<Color, RedBlackTree<T>, T?, RedBlackTree<T>, RedBlackTree<T>> TT = (c, l, v, t) => new RedBlackTree<T>(c, l, v, t);
+
+      var result = (nodeColor, left, value, right) switch
+      {
+        (B, (R, (R, var a, var x, var b), var y, var c), var z, var d) =>
+          TT(R, TT(B, a, x, b), y, TT(B, c, z, d)),
+        (B, (R, var a, var x, (R, var b, var y, var c)), var z, var d) =>
+          TT(R, TT(B, a, x, b), y, TT(B, c, z, d)),
+        (B, var a, var x, (R, (R, var b, var y, var c), var z, var d)) =>
+          TT(R, TT(B, a, x, b), y, TT(B, c, z, d)),
+        (B, var a, var x, (R, var b, var y, (R, var c, var z, var d))) =>
+          TT(R, TT(B, a, x, b), y, TT(B, c, z, d)),
+        (var color, var a, var x, var b) => TT(color, a, x, b)
+      };
+
+      Console.WriteLine($"Result is {(result != null ? "not" : "")} null");
+      return result;
     }
+
+    // private static RedBlackTree<T> Balance(Color nodeColor,
+    //   RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
+    //   if (nodeColor == RedBlackTree<T>.Color.Black) {
+    //     if (!(left.IsEmpty) &&
+    //       left.NodeColor == RedBlackTree<T>.Color.Red &&
+    //       !(left.Left.IsEmpty) &&
+    //       left.Left.NodeColor == RedBlackTree<T>.Color.Red)
+    //       return new RedBlackTree<T>(Color.Red,
+    //         new RedBlackTree<T>(Color.Black,
+    //           left.Left.Left, left.Left.Value, left.Left.Right),
+    //         left.Value,
+    //         new RedBlackTree<T>(Color.Black,
+    //           left.Right, value, right));
+    //     if (!(left.IsEmpty) &&
+    //       left.NodeColor == RedBlackTree<T>.Color.Red &&
+    //       !(left.Right.IsEmpty) &&
+    //       left.Right.NodeColor == RedBlackTree<T>.Color.Red)
+    //       return new RedBlackTree<T>(Color.Red,
+    //         new RedBlackTree<T>(Color.Black,
+    //           left.Left, left.Value, left.Right.Left),
+    //         left.Right.Value,
+    //         new RedBlackTree<T>(Color.Black,
+    //           left.Right.Right, value, right));
+    //     if (!(right.IsEmpty) &&
+    //       right.NodeColor == RedBlackTree<T>.Color.Red &&
+    //       !(right.Left.IsEmpty) &&
+    //       right.Left.NodeColor == RedBlackTree<T>.Color.Red)
+    //       return new RedBlackTree<T>(Color.Red,
+    //         new RedBlackTree<T>(Color.Black,
+    //           left, value, right.Left.Left),
+    //         right.Left.Value,
+    //         new RedBlackTree<T>(Color.Black,
+    //           right.Left.Right, right.Value, right.Right));
+    //     if (!(right.IsEmpty) &&
+    //       right.NodeColor == RedBlackTree<T>.Color.Red &&
+    //       !(right.Right.IsEmpty) &&
+    //       right.Right.NodeColor == RedBlackTree<T>.Color.Red)
+    //       return new RedBlackTree<T>(Color.Red,
+    //         new RedBlackTree<T>(Color.Black,
+    //           left, value, right.Left),
+    //         right.Value,
+    //         new RedBlackTree<T>(Color.Black,
+    //           right.Right.Left, right.Right.Value, right.Right.Right));
+    //   }
+
+    //   return new RedBlackTree<T>(nodeColor, left, value, right);
+    // }
     #endregion
 
     #region Contains
@@ -154,34 +189,37 @@ namespace FCSlib.Data.Collections {
       }
     }
 
-    public bool Contains(T value) {
-      return RedBlackTree<T>.Contains(value, this);
-    }
+    public bool Contains(T value) =>
+      RedBlackTree<T>.Contains(value, this);
+
     #endregion
 
     #region Inserting
 
     public static RedBlackTree<T> Insert(T? value, RedBlackTree<T> tree) {
       Func<RedBlackTree<T>, RedBlackTree<T>> ins = default!;
+
       ins = t => {
-        if (t.IsEmpty)
-          return new RedBlackTree<T>(Color.Red, Empty, value, Empty);
-        var compareResult = Comparer<T>.Default.Compare(value, t.Value);
-        if (compareResult < 0)
-          return Balance(t.NodeColor, ins(t.Left), t.Value, t.Right);
-        else if (compareResult > 0)
-          return Balance(t.NodeColor, t.Left, t.Value, ins(t.Right));
-        else
-          return t;
+        if (t == null) {
+          Console.WriteLine("t is null !!!");
+        }
+        else Console.WriteLine("t is NOT null");
+        return t.IsEmpty ?
+        new RedBlackTree<T>(Color.Red, Empty, value, Empty) :
+        Comparer<T>.Default.Compare(value, t.Value) switch
+        {
+          < 0 => Balance(t.NodeColor, ins(t.Left), t.Value, t.Right),
+          > 0 => Balance(t.NodeColor, t.Left, t.Value, ins(t.Right)),
+          _ => t
+        };
       };
 
-      var insResult = ins(tree);
-      return new RedBlackTree<T>(Color.Black, insResult.Left, insResult.Value, insResult.Right);
+      var (l, v, r) = ins(tree);
+      return new RedBlackTree<T>(Color.Black, l, v, r);
     }
 
-    public RedBlackTree<T> Insert(T? value) {
-      return RedBlackTree<T>.Insert(value, this);
-    }
+    public RedBlackTree<T> Insert(T? value) =>
+      RedBlackTree<T>.Insert(value, this);
 
 
     #endregion
@@ -197,9 +235,8 @@ namespace FCSlib.Data.Collections {
         yield return val;
     }
 
-    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-      return ((IEnumerable<T?>)this).GetEnumerator();
-    }
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() =>
+      ((IEnumerable<T?>)this).GetEnumerator();
 
     public override string ToString() {
       string colStr = NodeColor == Color.Black ? "B" : "R";
