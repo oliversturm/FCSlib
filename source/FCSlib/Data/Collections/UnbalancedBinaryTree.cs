@@ -21,27 +21,12 @@
 
 namespace FCSlib.Data.Collections {
   public sealed class UnbalancedBinaryTree<T> : IEnumerable<T?>, IHaveCustomDefaultValue<UnbalancedBinaryTree<T>> {
-    private readonly bool isEmpty;
-    public bool IsEmpty { get { return isEmpty; } }
+    public bool IsEmpty { get; init; }
 
-    private readonly UnbalancedBinaryTree<T> left;
-    public UnbalancedBinaryTree<T> Left {
-      get {
-        return left;
-      }
-    }
-    private readonly UnbalancedBinaryTree<T> right;
-    public UnbalancedBinaryTree<T> Right {
-      get {
-        return right;
-      }
-    }
-    private readonly T? value;
-    public T? Value {
-      get {
-        return value;
-      }
-    }
+    public UnbalancedBinaryTree<T> Left { get; init; }
+    public UnbalancedBinaryTree<T> Right { get; init; }
+
+    public T? Value { get; init; }
 
     public static readonly UnbalancedBinaryTree<T> Empty = new();
 
@@ -49,14 +34,14 @@ namespace FCSlib.Data.Collections {
 
     #region Constructors
     public UnbalancedBinaryTree() {
-      isEmpty = true;
-      this.left = this.right = UnbalancedBinaryTree<T>.Empty;
+      IsEmpty = true;
+      Left = Right = UnbalancedBinaryTree<T>.Empty;
     }
 
     public UnbalancedBinaryTree(UnbalancedBinaryTree<T> left, T? value, UnbalancedBinaryTree<T> right) {
-      this.left = left;
-      this.right = right;
-      this.value = value;
+      Left = left;
+      Right = right;
+      Value = value;
     }
 
     #endregion
@@ -93,9 +78,8 @@ namespace FCSlib.Data.Collections {
       }
     }
 
-    public bool Contains(T value) {
-      return UnbalancedBinaryTree<T>.Contains(value, this);
-    }
+    public bool Contains(T value) =>
+      UnbalancedBinaryTree<T>.Contains(value, this);
 
     public static UnbalancedBinaryTree<T> Insert(T? value, UnbalancedBinaryTree<T> tree) {
       if (tree.IsEmpty) {
@@ -118,9 +102,8 @@ namespace FCSlib.Data.Collections {
       }
     }
 
-    public UnbalancedBinaryTree<T> Insert(T? value) {
-      return UnbalancedBinaryTree<T>.Insert(value, this);
-    }
+    public UnbalancedBinaryTree<T> Insert(T? value) =>
+      UnbalancedBinaryTree<T>.Insert(value, this);
 
     IEnumerator<T?> System.Collections.Generic.IEnumerable<T?>.GetEnumerator() {
       if (IsEmpty)
@@ -133,12 +116,10 @@ namespace FCSlib.Data.Collections {
         yield return val;
     }
 
-    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-      return ((IEnumerable<T?>)this).GetEnumerator();
-    }
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() =>
+      ((IEnumerable<T?>)this).GetEnumerator();
 
-    public override string ToString() {
-      return String.Format("[{0} {1} {2}]", Left, IsEmpty ? "Empty" : Value?.ToString(), Right);
-    }
+    public override string ToString() =>
+      String.Format("[{0} {1} {2}]", Left, IsEmpty ? "Empty" : Value?.ToString(), Right);
   }
 }
