@@ -105,8 +105,6 @@ namespace FCSlib.Data.Collections {
 
     private static RedBlackTree<T> Balance(Color nodeColor,
        RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
-      Console.WriteLine($"bal: entering with l={f(left)}, v={value}, r={f(right)}");
-
       const Color R = Color.Red;
       const Color B = Color.Black;
       Func<Color, RedBlackTree<T>, T?, RedBlackTree<T>, RedBlackTree<T>> TT = (c, l, v, t) => new RedBlackTree<T>(c, l, v, t);
@@ -117,7 +115,7 @@ namespace FCSlib.Data.Collections {
       // based pattern. To avoid this, the tree initializes with a 
       // None color, so that the B and R matches only catch trees that 
       // are not empty.
-      var result = (nodeColor, left, value, right) switch
+      return (nodeColor, left, value, right) switch
       {
         (B, (R, (R, var a, var x, var b), var y, var c), var z, var d) =>
           TT(R, TT(B, a, x, b), y, TT(B, c, z, d)),
@@ -129,58 +127,8 @@ namespace FCSlib.Data.Collections {
           TT(R, TT(B, a, x, b), y, TT(B, c, z, d)),
         (var color, var a, var x, var b) => TT(color, a, x, b)
       };
-
-      Console.WriteLine($"bal: returning {f(result)}");
-      return result;
     }
 
-    // private static RedBlackTree<T> Balance(Color nodeColor,
-    //   RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
-    //   if (nodeColor == RedBlackTree<T>.Color.Black) {
-    //     if (!(left.IsEmpty) &&
-    //       left.NodeColor == RedBlackTree<T>.Color.Red &&
-    //       !(left.Left.IsEmpty) &&
-    //       left.Left.NodeColor == RedBlackTree<T>.Color.Red)
-    //       return new RedBlackTree<T>(Color.Red,
-    //         new RedBlackTree<T>(Color.Black,
-    //           left.Left.Left, left.Left.Value, left.Left.Right),
-    //         left.Value,
-    //         new RedBlackTree<T>(Color.Black,
-    //           left.Right, value, right));
-    //     if (!(left.IsEmpty) &&
-    //       left.NodeColor == RedBlackTree<T>.Color.Red &&
-    //       !(left.Right.IsEmpty) &&
-    //       left.Right.NodeColor == RedBlackTree<T>.Color.Red)
-    //       return new RedBlackTree<T>(Color.Red,
-    //         new RedBlackTree<T>(Color.Black,
-    //           left.Left, left.Value, left.Right.Left),
-    //         left.Right.Value,
-    //         new RedBlackTree<T>(Color.Black,
-    //           left.Right.Right, value, right));
-    //     if (!(right.IsEmpty) &&
-    //       right.NodeColor == RedBlackTree<T>.Color.Red &&
-    //       !(right.Left.IsEmpty) &&
-    //       right.Left.NodeColor == RedBlackTree<T>.Color.Red)
-    //       return new RedBlackTree<T>(Color.Red,
-    //         new RedBlackTree<T>(Color.Black,
-    //           left, value, right.Left.Left),
-    //         right.Left.Value,
-    //         new RedBlackTree<T>(Color.Black,
-    //           right.Left.Right, right.Value, right.Right));
-    //     if (!(right.IsEmpty) &&
-    //       right.NodeColor == RedBlackTree<T>.Color.Red &&
-    //       !(right.Right.IsEmpty) &&
-    //       right.Right.NodeColor == RedBlackTree<T>.Color.Red)
-    //       return new RedBlackTree<T>(Color.Red,
-    //         new RedBlackTree<T>(Color.Black,
-    //           left, value, right.Left),
-    //         right.Value,
-    //         new RedBlackTree<T>(Color.Black,
-    //           right.Right.Left, right.Right.Value, right.Right.Right));
-    //   }
-
-    //   return new RedBlackTree<T>(nodeColor, left, value, right);
-    // }
     #endregion
 
     #region Contains
@@ -205,25 +153,18 @@ namespace FCSlib.Data.Collections {
 
     #region Inserting
 
-    static string f(RedBlackTree<T> t) => t == null ? "N" : t.IsEmpty ? "e" : $"({f(t.Left)}/{t.Value}/{f(t.Right)})";
-
     public static RedBlackTree<T> Insert(T? value, RedBlackTree<T> tree) {
       Func<RedBlackTree<T>, RedBlackTree<T>> ins = default!;
 
       ins = t => {
-        Console.WriteLine($"ins: entering with {f(t)}");
-
-        var result = t.IsEmpty ?
-        new RedBlackTree<T>(Color.Red, Empty, value, Empty) :
-        Comparer<T>.Default.Compare(value, t.Value) switch
-        {
-          < 0 => Balance(t.NodeColor, ins(t.Left), t.Value, t.Right),
-          > 0 => Balance(t.NodeColor, t.Left, t.Value, ins(t.Right)),
-          _ => t
-        };
-
-        Console.WriteLine($"ins: returning {f(result)}");
-        return result;
+        return t.IsEmpty ?
+          new RedBlackTree<T>(Color.Red, Empty, value, Empty) :
+          Comparer<T>.Default.Compare(value, t.Value) switch
+          {
+            < 0 => Balance(t.NodeColor, ins(t.Left), t.Value, t.Right),
+            > 0 => Balance(t.NodeColor, t.Left, t.Value, ins(t.Right)),
+            _ => t
+          };
       };
 
       var (l, v, r) = ins(tree);
