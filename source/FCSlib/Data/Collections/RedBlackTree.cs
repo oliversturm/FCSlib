@@ -23,12 +23,13 @@
 namespace FCSlib.Data.Collections {
   public sealed class RedBlackTree<T> : IEnumerable<T?>, IHaveCustomDefaultValue<RedBlackTree<T>> {
     public enum Color {
+      None,
       Red,
       Black
     }
 
     public bool IsEmpty { get; init; }
-    public Color NodeColor { get; init; }
+    public Color NodeColor { get; init; } = Color.None;
 
     public RedBlackTree<T> Left { get; init; }
     public RedBlackTree<T> Right { get; init; }
@@ -104,10 +105,18 @@ namespace FCSlib.Data.Collections {
 
     private static RedBlackTree<T> Balance(Color nodeColor,
        RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
+      Console.WriteLine($"bal: entering with l={f(left)}, v={value}, r={f(right)}");
+
       const Color R = Color.Red;
       const Color B = Color.Black;
       Func<Color, RedBlackTree<T>, T?, RedBlackTree<T>, RedBlackTree<T>> TT = (c, l, v, t) => new RedBlackTree<T>(c, l, v, t);
 
+      // Note that in contrast to Haskell, these patterns do not explicitly
+      // match T as opposed to E. If we wanted to determine explicitly
+      // that the tree is not empty, we'd need a more complex property
+      // based pattern. To avoid this, the tree initializes with a 
+      // None color, so that the B and R matches only catch trees that 
+      // are not empty.
       var result = (nodeColor, left, value, right) switch
       {
         (B, (R, (R, var a, var x, var b), var y, var c), var z, var d) =>
@@ -121,7 +130,7 @@ namespace FCSlib.Data.Collections {
         (var color, var a, var x, var b) => TT(color, a, x, b)
       };
 
-      Console.WriteLine($"Result is {(result != null ? "not" : "")} null");
+      Console.WriteLine($"bal: returning {f(result)}");
       return result;
     }
 
@@ -196,15 +205,15 @@ namespace FCSlib.Data.Collections {
 
     #region Inserting
 
+    static string f(RedBlackTree<T> t) => t == null ? "N" : t.IsEmpty ? "e" : $"({f(t.Left)}/{t.Value}/{f(t.Right)})";
+
     public static RedBlackTree<T> Insert(T? value, RedBlackTree<T> tree) {
       Func<RedBlackTree<T>, RedBlackTree<T>> ins = default!;
 
       ins = t => {
-        if (t == null) {
-          Console.WriteLine("t is null !!!");
-        }
-        else Console.WriteLine("t is NOT null");
-        return t.IsEmpty ?
+        Console.WriteLine($"ins: entering with {f(t)}");
+
+        var result = t.IsEmpty ?
         new RedBlackTree<T>(Color.Red, Empty, value, Empty) :
         Comparer<T>.Default.Compare(value, t.Value) switch
         {
@@ -212,6 +221,9 @@ namespace FCSlib.Data.Collections {
           > 0 => Balance(t.NodeColor, t.Left, t.Value, ins(t.Right)),
           _ => t
         };
+
+        Console.WriteLine($"ins: returning {f(result)}");
+        return result;
       };
 
       var (l, v, r) = ins(tree);
