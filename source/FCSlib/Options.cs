@@ -27,7 +27,7 @@ namespace FCSlib {
     public static bool IsNone(Option o) => o.IsNone;
 
     public static Option<R> Bind<T, R>(Option<T> o, Func<T?, Option<R>> g) => Option.Bind(o, g);
-    public static Option<R> Bind<T, R>(Option<T> o, Func<T?, R> g) => Option.Bind(o, g);
+    public static Option<R> Chain<T, R>(Option<T> o, Func<T?, R> g) => Option.Chain(o, g);
 
     public static T? Optionally<T>(T? defaultValue, Func<T?, T> f, Option<T> o) => IsSome(o) ? f(o.Value) : defaultValue;
 

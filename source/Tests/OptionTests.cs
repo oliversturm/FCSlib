@@ -329,18 +329,18 @@ public class OptionTests {
   }
 
   [Test]
-  public void BindSomeAutoConversion() {
+  public void ChainSomeAutoConversion() {
     var result = 5.ToOption().Bind(
-      v => 7.ToOption().Bind<int>(
+      v => 7.ToOption().Chain<int>(
         v2 => (v + v2)));
     AssertIsSome(result, 12);
   }
 
   [Test]
-  public void StaticOptionBindSomeAutoConversion() {
+  public void StaticOptionChainSomeAutoConversion() {
     var result =
       Option.Bind(5,
-        v => Option.Bind(7,
+        v => Option.Chain(7,
           v2 => v + v2));
 
     AssertIsSome(result, 12);
@@ -373,9 +373,9 @@ public class OptionTests {
 
     var result =
       Option
-        .Bind(tree, t => t?.Left)
-        .Bind(t => t?.Left)
-        .Bind(t => t?.Left);
+        .Chain(tree, t => t?.Left)
+        .Chain(t => t?.Left)
+        .Chain(t => t?.Left);
 
     AssertIsNone(result);
   }
@@ -424,8 +424,8 @@ public class OptionTests {
 
     var result =
       Option
-        .Bind(tree, t => t?.Left)
-        .Bind(t => t?.Right);
+        .Chain(tree, t => t?.Left)
+        .Chain(t => t?.Right);
 
     Assert.AreEqual("Bernie", result.Value?.Value);
   }

@@ -24,11 +24,11 @@ namespace FCSlib.Data {
 
     public static Option<R> Bind<T, R>(Option<T> o, Func<T?, Option<R>> g) => o.Bind(g);
 
-    public static Option<R> Bind<T, R>(Option<T> o, Func<T?, R> g) => o.Bind(g);
-
     public static Option<R> Bind<T, R>(T value, Func<T?, Option<R>> g) => value.ToNonDefaultOption().Bind(g);
 
-    public static Option<R> Bind<T, R>(T value, Func<T?, R> g) => value.ToNonDefaultOption().Bind(g);
+    public static Option<R> Chain<T, R>(Option<T> o, Func<T?, R> g) => o.Chain(g);
+
+    public static Option<R> Chain<T, R>(T value, Func<T?, R> g) => value.ToNonDefaultOption().Chain(g);
 
 
     // Just for consistency - this type is only used to 
@@ -116,7 +116,7 @@ namespace FCSlib.Data {
     public Option<R> Bind<R>(Func<T?, Option<R>> g) =>
       IsNone ? Option.None : g(Value);
 
-    public Option<R> Bind<R>(Func<T?, R> g) {
+    public Option<R> Chain<R>(Func<T?, R> g) {
       Func<T?, Option<R>> f = t => g(t).ToNonDefaultOption();
       return Bind(f);
     }
@@ -125,9 +125,11 @@ namespace FCSlib.Data {
     // return type is the same as the input type, since operators
     // can't have extra generic types. Optimally it would be 
     // operator &<R>, to mirror the signature of Bind<R> above.
+    // Even so these operators can often be used to shorten syntax,
+    // so I'll leave them in place.
     public static Option<T?> operator &(Option<T> o, Func<T?, Option<T?>> g) => o.Bind(g);
 
-    public static Option<T?> operator &(Option<T> o, Func<T?, T?> g) => o.Bind(g);
+    public static Option<T?> operator &(Option<T> o, Func<T?, T?> g) => o.Chain(g);
 
   }
 }
