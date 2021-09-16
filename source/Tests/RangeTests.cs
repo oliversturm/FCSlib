@@ -32,8 +32,8 @@ public class RangeTests {
 
   [Test]
   public void CustomIntRange() {
-    Comparison<int> compare = (x, y) => x - y;
-    Func<int, int> getNext = x => x + 1;
+    int compare(int x, int y) => x - y;
+    int getNext(int x) => x + 1;
     var expected = new List<int> { 1, 2, 3, 4, 5 };
     var r = Range(compare, getNext, 1, 5).ToList();
     Assert.That(r, Is.EquivalentTo(expected));
@@ -42,7 +42,8 @@ public class RangeTests {
   [Test]
   public void ArbitraryRange() {
     // x is current value, y is end value
-    Comparison<string> compare = (x, y) => x switch {
+    int compare(string x, string y) => x switch
+    {
       "one" => y switch
       {
         "one" => 0, // values are same, will be included

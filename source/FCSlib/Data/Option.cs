@@ -117,7 +117,7 @@ namespace FCSlib.Data {
       IsNone ? Option.None : g(Value);
 
     public Option<R> Chain<R>(Func<T?, R> g) {
-      Func<T?, Option<R>> f = t => g(t).ToNonDefaultOption();
+      Option<R> f(T? t) => g(t).ToNonDefaultOption();
       return Bind(f);
     }
 

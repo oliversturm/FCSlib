@@ -30,6 +30,14 @@ public class MemoizationTests {
     // "Always" return a new value, regardless of the argument
     Func<int, Guid> getUniqueValue = _ => Guid.NewGuid();
 
+    // Btw, C# - surely this declaration would be regarded the same
+    // by pretty much anybody - but then I can't call Memoize
+    // without explicit type arguments when I use it.
+    // I haven't checked it out in detail, but clearly even C# 10.0
+    // still has differences in type recognition between functions
+    // and delegates.
+    // Guid getUniqueValue(int x) => Guid.NewGuid();
+
     var getValue = Memoize(getUniqueValue);
     var firstValue = getValue(10);
     var secondValue = getValue(10);
