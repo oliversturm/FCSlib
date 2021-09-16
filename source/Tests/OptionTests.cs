@@ -384,7 +384,7 @@ public class OptionTests {
   public void GetSecondLeftChildOperator() {
     var tree = CreateTestTree();
 
-    // Following the tree to the left three times should
+    // Following the tree to the left two times should
     // find nothing - so we expect None. Point is, we
     // don't need any explicit checks and conditional
     // execution paths for this.

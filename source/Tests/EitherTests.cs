@@ -260,7 +260,7 @@ public class EitherTests {
   public void EitherBindSuccess() {
     Func<int, int> square = x => x * x;
     var opResult = TestOperation(false);
-    var squareResult = opResult.Bind(square);
+    var squareResult = opResult.Chain(square);
     var result = FromRight(-1, squareResult);
     Assert.AreEqual(42 * 42, result);
   }
@@ -269,7 +269,7 @@ public class EitherTests {
   public void EitherBindError() {
     Func<int, int> square = x => x * x;
     var opResult = TestOperation(true);
-    var squareResult = opResult.Bind(square);
+    var squareResult = opResult.Chain(square);
     var result = FromRight(-1, squareResult);
     Assert.AreEqual(-1, result);
   }

@@ -45,7 +45,7 @@ namespace FCSlib.Data {
       _ => throw new InvalidOperationException("Either must be Left or Right. You may be passing a delegate with an incompatible input type.")
     };
 
-    public Either Bind<T, R>(Func<T?, R> g) {
+    public Either Chain<T, R>(Func<T?, R> g) {
       Func<T?, Either> f = x => Right(g(x));
       return Bind(f);
     }
