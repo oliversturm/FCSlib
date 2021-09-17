@@ -57,7 +57,8 @@ public class RangeTests {
       (_, _) => 1
     };
 
-    Func<string, string> getNext = c => c switch {
+    string getNext(string c) => c switch
+    {
       "one" => "two",
       "two" => "three",
       _ => "impossible"
