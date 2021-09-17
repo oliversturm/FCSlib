@@ -2,7 +2,7 @@
        RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
       const Color R = Color.Red;
       const Color B = Color.Black;
-      Func<Color, RedBlackTree<T>, T?, RedBlackTree<T>, RedBlackTree<T>> TT = (c, l, v, t) => new RedBlackTree<T>(c, l, v, t);
+      RedBlackTree<T> TT(Color c, RedBlackTree<T> l, T? v, RedBlackTree<T> r) => new(c, l, v, r);
 
       // Note that in contrast to Haskell, these patterns do not explicitly
       // match T as opposed to E. If we wanted to determine explicitly
