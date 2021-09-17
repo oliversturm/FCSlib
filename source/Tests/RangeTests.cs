@@ -43,7 +43,7 @@ public class RangeTests {
   public void ArbitraryRange() {
     // x is current value, y is end value
 
-    int compare(string x, string y) => (x, y) switch
+    static int compare(string x, string y) => (x, y) switch
     {
       ("one", "one") => 0, // values are same, will be included
       ("one", "two") => -1, // "one" < "two"
@@ -57,7 +57,7 @@ public class RangeTests {
       (_, _) => 1
     };
 
-    string getNext(string c) => c switch
+    static string getNext(string c) => c switch
     {
       "one" => "two",
       "two" => "three",
