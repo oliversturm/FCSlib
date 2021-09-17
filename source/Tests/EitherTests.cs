@@ -256,8 +256,12 @@ public class EitherTests {
 
   static FCSlib.Data.Either TestOperation(bool fail) => fail ? Left("Operation went wrong") : Right(42);
 
+  // The following two tests combine an initial operation
+  // (TestOperation) which can fail or succeed, with a 
+  // second step that would always succeed (since Chain
+  // always returns a Right at this time).
   [Test]
-  public void EitherBindSuccess() {
+  public void EitherChainSuccess() {
     Func<int, int> square = x => x * x;
     var opResult = TestOperation(false);
     var squareResult = opResult.Chain(square);
@@ -266,12 +270,32 @@ public class EitherTests {
   }
 
   [Test]
-  public void EitherBindError() {
+  public void EitherChainError() {
     Func<int, int> square = x => x * x;
     var opResult = TestOperation(true);
     var squareResult = opResult.Chain(square);
-    var result = FromRight(-1, squareResult);
-    Assert.AreEqual(-1, result);
+    Assert.IsTrue(IsLeft(squareResult));
+  }
+
+  // The following two tests use a Right starting value
+  // with a division operation that is encased to 
+  // convert a divide-by-zero exception to a Left.
+  [Test]
+  public void EitherBindSuccess() {
+    Func<int, int> divide = x => 240 / x;
+    var safeDivide = Encase(divide);
+    var divideResult = Right(10).Bind(safeDivide);
+    Assert.IsTrue(IsRight(divideResult));
+    var result = FromRight(-1, divideResult);
+    Assert.AreEqual(24, result);
+  }
+
+  [Test]
+  public void EitherBindError() {
+    Func<int, int> divide = x => 240 / x;
+    var safeDivide = Encase(divide);
+    var divideResult = Right(0).Bind(safeDivide);
+    Assert.IsTrue(IsLeft(divideResult));
   }
 
   // Leaving these in place as a reminder. To summarize:

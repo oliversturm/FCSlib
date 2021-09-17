@@ -45,6 +45,12 @@ namespace FCSlib.Data {
       _ => throw new InvalidOperationException("Either must be Left or Right. You may be passing a delegate with an incompatible input type.")
     };
 
+    // The Chain function is of limited use for Either, because
+    // it needs to make assumptions to automatically decide to use 
+    // a Right or a Left. For now I just return a Right, assuming
+    // that a calculation which does not return Either is always
+    // Right - that's likely not the best solution. Bind will be
+    // more commonly used with Either, in any case.
     public Either Chain<T, R>(Func<T?, R> g) {
       Func<T?, Either> f = x => Right(g(x));
       return Bind(f);
