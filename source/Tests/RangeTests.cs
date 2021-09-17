@@ -42,28 +42,21 @@ public class RangeTests {
   [Test]
   public void ArbitraryRange() {
     // x is current value, y is end value
-    int compare(string x, string y) => x switch
+
+    int compare(string x, string y) => (x, y) switch
     {
-      "one" => y switch
-      {
-        "one" => 0, // values are same, will be included
-        "two" => -1, // "one" < "two"
-        "three" => -1, // "one" < "three"
-        _ => 1 // return 1 to end range immediately
-      },
-      "two" => y switch
-      {
-        "two" => 0, // values are same, will be included
-        "three" => -1, // "two" < "three"
-        _ => 1 // return 1 to end range immediately
-      },
-      "three" => y switch
-      {
-        "three" => 0, // values are same, will be included
-        _ => 1 // return 1 to end range immediately
-      },
-      _ => 1 // return 1 to end range immediately
+      ("one", "one") => 0, // values are same, will be included
+      ("one", "two") => -1, // "one" < "two"
+      ("one", "three") => -1, // "one" < "three"
+      ("one", _) => 1, // return 1 to end range immediately
+      ("two", "two") => 0, // values are same, will be included
+      ("two", "three") => -1, // "two" < "three"
+      ("two", _) => 1, // return 1 to end range immediately
+      ("three", "three") => 0, // values are same, will be included
+      ("three", _) => 1, // return 1 to end range immediately
+      (_, _) => 1
     };
+
     Func<string, string> getNext = c => c switch {
       "one" => "two",
       "two" => "three",
