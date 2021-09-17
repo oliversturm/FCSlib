@@ -104,29 +104,51 @@ namespace FCSlib.Data.Collections {
     // balance color a x b = T color a x b
 
     private static RedBlackTree<T> Balance(Color nodeColor,
-       RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
-      const Color R = Color.Red;
-      const Color B = Color.Black;
-      Func<Color, RedBlackTree<T>, T?, RedBlackTree<T>, RedBlackTree<T>> TT = (c, l, v, t) => new RedBlackTree<T>(c, l, v, t);
+      RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
+      if (nodeColor == RedBlackTree<T>.Color.Black) {
+        if (!(left.IsEmpty) &&
+          left.NodeColor == RedBlackTree<T>.Color.Red &&
+          !(left.Left.IsEmpty) &&
+          left.Left.NodeColor == RedBlackTree<T>.Color.Red)
+          return new RedBlackTree<T>(Color.Red,
+            new RedBlackTree<T>(Color.Black,
+              left.Left.Left, left.Left.Value, left.Left.Right),
+            left.Value,
+            new RedBlackTree<T>(Color.Black,
+              left.Right, value, right));
+        if (!(left.IsEmpty) &&
+          left.NodeColor == RedBlackTree<T>.Color.Red &&
+          !(left.Right.IsEmpty) &&
+          left.Right.NodeColor == RedBlackTree<T>.Color.Red)
+          return new RedBlackTree<T>(Color.Red,
+            new RedBlackTree<T>(Color.Black,
+              left.Left, left.Value, left.Right.Left),
+            left.Right.Value,
+            new RedBlackTree<T>(Color.Black,
+              left.Right.Right, value, right));
+        if (!(right.IsEmpty) &&
+          right.NodeColor == RedBlackTree<T>.Color.Red &&
+          !(right.Left.IsEmpty) &&
+          right.Left.NodeColor == RedBlackTree<T>.Color.Red)
+          return new RedBlackTree<T>(Color.Red,
+            new RedBlackTree<T>(Color.Black,
+              left, value, right.Left.Left),
+            right.Left.Value,
+            new RedBlackTree<T>(Color.Black,
+              right.Left.Right, right.Value, right.Right));
+        if (!(right.IsEmpty) &&
+          right.NodeColor == RedBlackTree<T>.Color.Red &&
+          !(right.Right.IsEmpty) &&
+          right.Right.NodeColor == RedBlackTree<T>.Color.Red)
+          return new RedBlackTree<T>(Color.Red,
+            new RedBlackTree<T>(Color.Black,
+              left, value, right.Left),
+            right.Value,
+            new RedBlackTree<T>(Color.Black,
+              right.Right.Left, right.Right.Value, right.Right.Right));
+      }
 
-      // Note that in contrast to Haskell, these patterns do not explicitly
-      // match T as opposed to E. If we wanted to determine explicitly
-      // that the tree is not empty, we'd need a more complex property
-      // based pattern. To avoid this, the tree initializes with a 
-      // None color, so that the B and R matches only catch trees that 
-      // are not empty.
-      return (nodeColor, left, value, right) switch
-      {
-        (B, (R, (R, var a, var x, var b), var y, var c), var z, var d) =>
-          TT(R, TT(B, a, x, b), y, TT(B, c, z, d)),
-        (B, (R, var a, var x, (R, var b, var y, var c)), var z, var d) =>
-          TT(R, TT(B, a, x, b), y, TT(B, c, z, d)),
-        (B, var a, var x, (R, (R, var b, var y, var c), var z, var d)) =>
-          TT(R, TT(B, a, x, b), y, TT(B, c, z, d)),
-        (B, var a, var x, (R, var b, var y, (R, var c, var z, var d))) =>
-          TT(R, TT(B, a, x, b), y, TT(B, c, z, d)),
-        (var color, var a, var x, var b) => TT(color, a, x, b)
-      };
+      return new RedBlackTree<T>(nodeColor, left, value, right);
     }
 
     #endregion
