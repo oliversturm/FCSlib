@@ -17,10 +17,7 @@
 namespace FCSlib {
   public static partial class Functional {
     public static T?[] InitArray<T>(int length, Func<int, T> elementInit) {
-      var array = Array.CreateInstance(typeof(T), length) as T?[];
-      // Somehow C# thinks that array could be null at this point. Don't know how but let's catch it.
-      if (array == null)
-        throw new InvalidOperationException("Pray for your array!");
+      var array = (T?[])Array.CreateInstance(typeof(T), length);
       for (int i = 0; i < length; i++)
         array[i] = elementInit(i);
       return array;
