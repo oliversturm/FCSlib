@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
 
 // Loosely based on the algorithm described by Chris Okasaki in his book
 // "Purely Functional Data Structures", published by Cambridge University Press.
@@ -20,11 +21,14 @@
 // Used with permission, C# code (C) Copyright 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 
 namespace FCSlib.Data.Collections {
-  public sealed class List<T> : System.Collections.Generic.IEnumerable<T>, IHaveCustomDefaultValue<List<T>> {
+  public sealed class List<T> : System.Collections.Generic.IEnumerable<T>,
+    IHaveCustomDefaultValue<List<T>> {
     #region Head, Tail and IsEmpty
+
     private readonly T? head;
     private readonly List<T> tail;
     public bool IsEmpty { get; init; } = false;
+
     public T Head {
       get {
         if (IsEmpty)
@@ -32,6 +36,7 @@ namespace FCSlib.Data.Collections {
         return head ?? throw new InvalidOperationException("Head uninitialized");
       }
     }
+
     public List<T> Tail {
       get {
         if (IsEmpty)
@@ -39,6 +44,7 @@ namespace FCSlib.Data.Collections {
         return tail;
       }
     }
+
     public static readonly List<T> Empty = new();
 
     public List<T> DefaultValue => Empty;
@@ -46,9 +52,9 @@ namespace FCSlib.Data.Collections {
     #endregion
 
     #region Cons
+
     public static List<T> Cons(T element, List<T> list) =>
-      list.IsEmpty ?
-        new List<T>(element) : new List<T>(element, list);
+      list.IsEmpty ? new List<T>(element) : new List<T>(element, list);
 
     public List<T> Cons(T element) =>
       List<T>.Cons(element, this);
@@ -56,14 +62,14 @@ namespace FCSlib.Data.Collections {
     #endregion
 
     #region Appending
+
     // This recursive implementation is of course much more elegant,
     // but can result in stack overflows when the 'one' list is long
     // Wonder if tail recursion is more generally available
     // in C# now than it used to be, and where CPS could make
     // this possible here?
     public static List<T> AppendWithRecursion(List<T> one, List<T> other) =>
-      one.IsEmpty ? other :
-       Cons(one.Head, AppendWithRecursion(one.Tail, other));
+      one.IsEmpty ? other : Cons(one.Head, AppendWithRecursion(one.Tail, other));
 
     public static List<T> Append(List<T> one, List<T> other) {
       if (one.IsEmpty)
@@ -85,13 +91,16 @@ namespace FCSlib.Data.Collections {
     #endregion
 
     #region Remove
+
     public static List<T> Remove(List<T> list, T element) {
       var memory = List<T>.Empty;
       var temp = list;
-      while (!temp.IsEmpty && !System.Collections.Generic.EqualityComparer<T>.Default.Equals(temp.Head, element)) {
+      while (!temp.IsEmpty &&
+             !System.Collections.Generic.EqualityComparer<T>.Default.Equals(temp.Head, element)) {
         memory = memory.Cons(temp.Head);
         temp = temp.Tail;
       }
+
       if (!temp.IsEmpty) {
         // forget the element itself
         temp = temp.Tail;
@@ -99,6 +108,7 @@ namespace FCSlib.Data.Collections {
         foreach (var item in memory) {
           temp = temp.Cons(item);
         }
+
         return temp;
       }
       else
@@ -112,6 +122,7 @@ namespace FCSlib.Data.Collections {
     #endregion
 
     #region Constructors
+
     public List(T head, List<T> tail) {
       this.head = head;
       this.tail = tail.IsEmpty ? List<T>.Empty : tail;
@@ -152,29 +163,32 @@ namespace FCSlib.Data.Collections {
         this.tail = List<T>.Empty;
       }
     }
+
     #endregion
 
     #region IEnumerable support
+
     public System.Collections.Generic.IEnumerator<T> GetEnumerator() {
       for (var element = this; element != List<T>.Empty; element = element.Tail)
         yield return element.Head;
     }
 
-    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => this.GetEnumerator();
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() =>
+      this.GetEnumerator();
 
     #endregion
 
     #region ToString - for debug purposes
+
     public override string ToString() {
       var result = "[";
       if (!IsEmpty)
-        result +=
-          Functional.FoldL1(
-            (r, x) => r + ", " + x,
-            Functional.Map(x => x?.ToString(), this));
+        result += Functional.FoldL1((r, x) => r + ", " + x,
+          Functional.Map(x => x?.ToString(), this));
       result += "]";
       return result;
     }
+
     #endregion
   }
 }

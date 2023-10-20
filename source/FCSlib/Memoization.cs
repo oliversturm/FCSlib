@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
+
 using System.Reflection;
 using FCSlib.Data;
 
@@ -40,15 +42,18 @@ namespace FCSlib {
     // but I don't think that's possible.
 
     private static MethodInfo? deepMemoizeMethodInfo;
+
     private static MethodInfo DeepMemoizeMethodInfo {
       get {
         if (deepMemoizeMethodInfo == null) {
-          deepMemoizeMethodInfo = typeof(Functional).GetMethod("DeepMemoize", BindingFlags.Public | BindingFlags.Static);
+          deepMemoizeMethodInfo = typeof(Functional).GetMethod("DeepMemoize",
+            BindingFlags.Public | BindingFlags.Static);
           if (deepMemoizeMethodInfo == null) {
             // Can't really happen - we know this
             throw new InvalidOperationException("Hell has frozen over");
           }
         }
+
         return deepMemoizeMethodInfo;
       }
     }
@@ -76,13 +81,15 @@ namespace FCSlib {
           if (typeof(System.Delegate).IsAssignableFrom(resultType)) {
             Type[] parameterTypes = resultType.GetGenericArguments();
 
-            MethodInfo typedDeepMemoizeMethod = DeepMemoizeMethodInfo.MakeGenericMethod(parameterTypes);
+            MethodInfo typedDeepMemoizeMethod =
+              DeepMemoizeMethodInfo.MakeGenericMethod(parameterTypes);
             var memoizedResult = (R?)typedDeepMemoizeMethod.Invoke(null, new object?[] { result });
             memory.Remember(arg, memoizedResult);
           }
           else
             memory.Remember(arg, result);
         }
+
         return memory.ResultFor(arg);
       };
     }

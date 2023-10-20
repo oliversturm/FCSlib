@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
+
 
 namespace FCSlib {
   public static partial class Functional {
@@ -22,8 +24,10 @@ namespace FCSlib {
           yield return val;
     }
 
-    public static Func<Predicate<T>, IEnumerable<T>, IEnumerable<T>> FilterDelegate<T>() => Filter<T>;
+    public static Func<Predicate<T>, IEnumerable<T>, IEnumerable<T>> FilterDelegate<T>() =>
+      Filter<T>;
 
-    public static Func<IEnumerable<T>, IEnumerable<T>> Filter<T>(Predicate<T> predicate) => list => Filter(predicate, list);
+    public static Func<IEnumerable<T>, IEnumerable<T>> Filter<T>(Predicate<T> predicate) =>
+      list => Filter(predicate, list);
   }
 }

@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
 
 namespace FCSlib.Data {
   public sealed class Option {
@@ -24,11 +25,13 @@ namespace FCSlib.Data {
 
     public static Option<R> Bind<T, R>(Option<T> o, Func<T?, Option<R>> g) => o.Bind(g);
 
-    public static Option<R> Bind<T, R>(T value, Func<T?, Option<R>> g) => value.ToNonDefaultOption().Bind(g);
+    public static Option<R> Bind<T, R>(T value, Func<T?, Option<R>> g) =>
+      value.ToNonDefaultOption().Bind(g);
 
     public static Option<R> Chain<T, R>(Option<T> o, Func<T?, R> g) => o.Chain(g);
 
-    public static Option<R> Chain<T, R>(T value, Func<T?, R> g) => value.ToNonDefaultOption().Chain(g);
+    public static Option<R> Chain<T, R>(T value, Func<T?, R> g) =>
+      value.ToNonDefaultOption().Chain(g);
 
 
     // Just for consistency - this type is only used to 
@@ -63,14 +66,13 @@ namespace FCSlib.Data {
         defaultValue = haveCustomDefaultValue.DefaultValue;
       }
 
-      return EqualityComparer<T>.Default.Equals(
-          val, defaultValue) ?
-          Option.None : val.ToOption();
+      return EqualityComparer<T>.Default.Equals(val, defaultValue) ? Option.None : val.ToOption();
     }
   }
 
   public sealed class Option<T> {
     private readonly T? value;
+
     public T? Value {
       get {
         if (!HasValue)
@@ -78,6 +80,7 @@ namespace FCSlib.Data {
         return value;
       }
     }
+
     public bool HasValue { get; init; }
 
     public bool IsSome => HasValue;
@@ -94,8 +97,7 @@ namespace FCSlib.Data {
     public static readonly Option<T> None = new();
 
     public static bool operator ==(Option<T> a, Option<T> b) =>
-      a.HasValue == b.HasValue &&
-        EqualityComparer<T>.Default.Equals(a.Value, b.Value);
+      a.HasValue == b.HasValue && EqualityComparer<T>.Default.Equals(a.Value, b.Value);
 
     public static bool operator !=(Option<T> a, Option<T> b) =>
       !(a == b);
@@ -130,6 +132,5 @@ namespace FCSlib.Data {
     public static Option<T?> operator &(Option<T> o, Func<T?, Option<T?>> g) => o.Bind(g);
 
     public static Option<T?> operator &(Option<T> o, Func<T?, T?> g) => o.Chain(g);
-
   }
 }

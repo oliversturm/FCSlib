@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
 
 // Loosely based on the algorithm described by Chris Okasaki in his book
 // "Purely Functional Data Structures", published by Cambridge University Press.
@@ -40,6 +41,7 @@ namespace FCSlib.Data.Collections {
     public RedBlackTree<T> DefaultValue => Empty;
 
     #region Constructors
+
     private RedBlackTree() {
       IsEmpty = true;
       Left = Right = RedBlackTree<T>.Empty;
@@ -56,7 +58,8 @@ namespace FCSlib.Data.Collections {
 
     #region Deconstructors
 
-    public void Deconstruct(out Color nodeColor, out RedBlackTree<T> left, out T? value, out RedBlackTree<T> right) {
+    public void Deconstruct(out Color nodeColor, out RedBlackTree<T> left, out T? value,
+      out RedBlackTree<T> right) {
       nodeColor = NodeColor;
       left = Left;
       value = Value;
@@ -76,6 +79,7 @@ namespace FCSlib.Data.Collections {
       foreach (var v in values) {
         tree = Insert(v, tree);
       }
+
       return tree;
     }
 
@@ -86,6 +90,7 @@ namespace FCSlib.Data.Collections {
       foreach (var v in sa.Skip(1)) {
         tree = Insert(v, tree);
       }
+
       return tree;
     }
 
@@ -103,49 +108,30 @@ namespace FCSlib.Data.Collections {
     // balance B a x (T R b y (T R c z d)) = T R (T B a x b) y (T B c z d)
     // balance color a x b = T color a x b
 
-    private static RedBlackTree<T> Balance(Color nodeColor,
-      RedBlackTree<T> left, T? value, RedBlackTree<T> right) {
+    private static RedBlackTree<T> Balance(Color nodeColor, RedBlackTree<T> left, T? value,
+      RedBlackTree<T> right) {
       if (nodeColor == RedBlackTree<T>.Color.Black) {
-        if (!(left.IsEmpty) &&
-          left.NodeColor == RedBlackTree<T>.Color.Red &&
-          !(left.Left.IsEmpty) &&
-          left.Left.NodeColor == RedBlackTree<T>.Color.Red)
+        if (!(left.IsEmpty) && left.NodeColor == RedBlackTree<T>.Color.Red &&
+            !(left.Left.IsEmpty) && left.Left.NodeColor == RedBlackTree<T>.Color.Red)
           return new RedBlackTree<T>(Color.Red,
-            new RedBlackTree<T>(Color.Black,
-              left.Left.Left, left.Left.Value, left.Left.Right),
-            left.Value,
-            new RedBlackTree<T>(Color.Black,
-              left.Right, value, right));
-        if (!(left.IsEmpty) &&
-          left.NodeColor == RedBlackTree<T>.Color.Red &&
-          !(left.Right.IsEmpty) &&
-          left.Right.NodeColor == RedBlackTree<T>.Color.Red)
+            new RedBlackTree<T>(Color.Black, left.Left.Left, left.Left.Value, left.Left.Right),
+            left.Value, new RedBlackTree<T>(Color.Black, left.Right, value, right));
+        if (!(left.IsEmpty) && left.NodeColor == RedBlackTree<T>.Color.Red &&
+            !(left.Right.IsEmpty) && left.Right.NodeColor == RedBlackTree<T>.Color.Red)
           return new RedBlackTree<T>(Color.Red,
-            new RedBlackTree<T>(Color.Black,
-              left.Left, left.Value, left.Right.Left),
-            left.Right.Value,
-            new RedBlackTree<T>(Color.Black,
-              left.Right.Right, value, right));
-        if (!(right.IsEmpty) &&
-          right.NodeColor == RedBlackTree<T>.Color.Red &&
-          !(right.Left.IsEmpty) &&
-          right.Left.NodeColor == RedBlackTree<T>.Color.Red)
+            new RedBlackTree<T>(Color.Black, left.Left, left.Value, left.Right.Left),
+            left.Right.Value, new RedBlackTree<T>(Color.Black, left.Right.Right, value, right));
+        if (!(right.IsEmpty) && right.NodeColor == RedBlackTree<T>.Color.Red &&
+            !(right.Left.IsEmpty) && right.Left.NodeColor == RedBlackTree<T>.Color.Red)
           return new RedBlackTree<T>(Color.Red,
-            new RedBlackTree<T>(Color.Black,
-              left, value, right.Left.Left),
-            right.Left.Value,
-            new RedBlackTree<T>(Color.Black,
-              right.Left.Right, right.Value, right.Right));
-        if (!(right.IsEmpty) &&
-          right.NodeColor == RedBlackTree<T>.Color.Red &&
-          !(right.Right.IsEmpty) &&
-          right.Right.NodeColor == RedBlackTree<T>.Color.Red)
+            new RedBlackTree<T>(Color.Black, left, value, right.Left.Left), right.Left.Value,
+            new RedBlackTree<T>(Color.Black, right.Left.Right, right.Value, right.Right));
+        if (!(right.IsEmpty) && right.NodeColor == RedBlackTree<T>.Color.Red &&
+            !(right.Right.IsEmpty) && right.Right.NodeColor == RedBlackTree<T>.Color.Red)
           return new RedBlackTree<T>(Color.Red,
-            new RedBlackTree<T>(Color.Black,
-              left, value, right.Left),
-            right.Value,
-            new RedBlackTree<T>(Color.Black,
-              right.Right.Left, right.Right.Value, right.Right.Right));
+            new RedBlackTree<T>(Color.Black, left, value, right.Left), right.Value,
+            new RedBlackTree<T>(Color.Black, right.Right.Left, right.Right.Value,
+              right.Right.Right));
       }
 
       return new RedBlackTree<T>(nodeColor, left, value, right);
@@ -154,6 +140,7 @@ namespace FCSlib.Data.Collections {
     #endregion
 
     #region Contains
+
     public static bool Contains(T value, RedBlackTree<T> tree) {
       if (tree.IsEmpty)
         return false;
@@ -179,10 +166,9 @@ namespace FCSlib.Data.Collections {
       Func<RedBlackTree<T>, RedBlackTree<T>> ins = default!;
 
       ins = t => {
-        return t.IsEmpty ?
-          new RedBlackTree<T>(Color.Red, Empty, value, Empty) :
-          Comparer<T>.Default.Compare(value, t.Value) switch
-          {
+        return t.IsEmpty
+          ? new RedBlackTree<T>(Color.Red, Empty, value, Empty)
+          : Comparer<T>.Default.Compare(value, t.Value) switch {
             < 0 => Balance(t.NodeColor, ins(t.Left), t.Value, t.Right),
             > 0 => Balance(t.NodeColor, t.Left, t.Value, ins(t.Right)),
             _ => t
@@ -195,7 +181,6 @@ namespace FCSlib.Data.Collections {
 
     public RedBlackTree<T> Insert(T? value) =>
       RedBlackTree<T>.Insert(value, this);
-
 
     #endregion
 

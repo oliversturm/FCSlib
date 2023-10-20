@@ -13,12 +13,15 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
+
 
 namespace FCSlib.Data.Collections {
   public static class CollectionExtensions {
     public static List<T> ToList<T>(this System.Collections.Generic.IEnumerable<T> source) {
       return new List<T>(source);
     }
+
     public static Queue<T> ToQueue<T>(this System.Collections.Generic.IEnumerable<T> source) {
       return new Queue<T>(source);
     }

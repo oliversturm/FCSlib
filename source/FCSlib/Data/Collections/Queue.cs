@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
 
 // Loosely based on the algorithm described by Chris Okasaki in his book
 // "Purely Functional Data Structures", published by Cambridge University Press.
@@ -36,8 +37,7 @@ namespace FCSlib.Data.Collections {
       this.r = r;
     }
 
-    public Queue()
-      : this(List<T>.Empty, List<T>.Empty) {
+    public Queue() : this(List<T>.Empty, List<T>.Empty) {
     }
 
     public Queue(System.Collections.Generic.IEnumerable<T> source) {

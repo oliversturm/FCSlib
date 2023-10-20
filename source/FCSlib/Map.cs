@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
 
 namespace FCSlib {
   public static partial class Functional {
@@ -21,8 +22,10 @@ namespace FCSlib {
         yield return function(sourceVal);
     }
 
-    public static Func<Converter<T, R>, IEnumerable<T>, IEnumerable<R>> MapDelegate<T, R>() => Map<T, R>;
+    public static Func<Converter<T, R>, IEnumerable<T>, IEnumerable<R>> MapDelegate<T, R>() =>
+      Map<T, R>;
 
-    public static Func<IEnumerable<T>, IEnumerable<R>> Map<T, R>(Converter<T, R> f) => list => Map(f, list);
+    public static Func<IEnumerable<T>, IEnumerable<R>> Map<T, R>(Converter<T, R> f) =>
+      list => Map(f, list);
   }
 }

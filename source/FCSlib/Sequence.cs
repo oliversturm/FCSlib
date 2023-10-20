@@ -13,10 +13,12 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
 
 namespace FCSlib {
   public static partial class Functional {
-    public static IEnumerable<T> Sequence<T>(Func<T, T> getNext, T startVal, Func<T, bool> endReached) {
+    public static IEnumerable<T> Sequence<T>(Func<T, T> getNext, T startVal,
+      Func<T, bool> endReached) {
       if (getNext == null)
         yield break;
       yield return startVal;
@@ -27,6 +29,7 @@ namespace FCSlib {
       }
     }
 
-    public static Func<Func<T, T>, T, Func<T, bool>, IEnumerable<T>> SequenceDelegate<T>() => Sequence<T>;
+    public static Func<Func<T, T>, T, Func<T, bool>, IEnumerable<T>> SequenceDelegate<T>() =>
+      Sequence<T>;
   }
 }

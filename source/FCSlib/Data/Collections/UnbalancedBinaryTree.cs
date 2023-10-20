@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
+
 
 // Loosely based on the algorithm described by Chris Okasaki in his book
 // "Purely Functional Data Structures", published by Cambridge University Press.
@@ -20,7 +22,8 @@
 // Used with permission, C# code (C) Copyright 2008-2021 Oliver Sturm <oliver@oliversturm.com>
 
 namespace FCSlib.Data.Collections {
-  public sealed class UnbalancedBinaryTree<T> : IEnumerable<T?>, IHaveCustomDefaultValue<UnbalancedBinaryTree<T>> {
+  public sealed class UnbalancedBinaryTree<T> : IEnumerable<T?>,
+    IHaveCustomDefaultValue<UnbalancedBinaryTree<T>> {
     public bool IsEmpty { get; init; }
 
     public UnbalancedBinaryTree<T> Left { get; init; }
@@ -33,12 +36,14 @@ namespace FCSlib.Data.Collections {
     public UnbalancedBinaryTree<T> DefaultValue => Empty;
 
     #region Constructors
+
     public UnbalancedBinaryTree() {
       IsEmpty = true;
       Left = Right = UnbalancedBinaryTree<T>.Empty;
     }
 
-    public UnbalancedBinaryTree(UnbalancedBinaryTree<T> left, T? value, UnbalancedBinaryTree<T> right) {
+    public UnbalancedBinaryTree(UnbalancedBinaryTree<T> left, T? value,
+      UnbalancedBinaryTree<T> right) {
       Left = left;
       Right = right;
       Value = value;
@@ -51,6 +56,7 @@ namespace FCSlib.Data.Collections {
       foreach (var v in values) {
         tree = Insert(v, tree);
       }
+
       return tree;
     }
 
@@ -61,6 +67,7 @@ namespace FCSlib.Data.Collections {
       foreach (var v in sa.Skip(1)) {
         tree = Insert(v, tree);
       }
+
       return tree;
     }
 
@@ -88,15 +95,9 @@ namespace FCSlib.Data.Collections {
       else {
         int compareResult = Comparer<T>.Default.Compare(value, tree.Value);
         if (compareResult < 0)
-          return new UnbalancedBinaryTree<T>(
-            Insert(value, tree.Left),
-            tree.Value,
-            tree.Right);
+          return new UnbalancedBinaryTree<T>(Insert(value, tree.Left), tree.Value, tree.Right);
         else if (compareResult > 0)
-          return new UnbalancedBinaryTree<T>(
-            tree.Left,
-            tree.Value,
-            Insert(value, tree.Right));
+          return new UnbalancedBinaryTree<T>(tree.Left, tree.Value, Insert(value, tree.Right));
         else
           return tree;
       }

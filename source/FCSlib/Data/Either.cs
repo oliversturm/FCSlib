@@ -13,6 +13,8 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+// ReSharper disable All
+
 
 namespace FCSlib.Data {
   public abstract class Either {
@@ -38,11 +40,11 @@ namespace FCSlib.Data {
       base.Equals(obj);
 
 
-    public Either Bind<T>(Func<T?, Either> g) => this switch
-    {
+    public Either Bind<T>(Func<T?, Either> g) => this switch {
       { IsLeft: true } => this,
       Right<T> r => g(r.Value),
-      _ => throw new InvalidOperationException("Either must be Left or Right. You may be passing a delegate with an incompatible input type.")
+      _ => throw new InvalidOperationException(
+        "Either must be Left or Right. You may be passing a delegate with an incompatible input type.")
     };
 
     // The Chain function is of limited use for Either, because
@@ -67,6 +69,7 @@ namespace FCSlib.Data {
 
   public sealed class Left<T> : Either {
     public T? Value { get; init; }
+
     public Left(T? value) {
       this.Value = value;
     }
@@ -99,6 +102,7 @@ namespace FCSlib.Data {
 
   public sealed class Right<T> : Either {
     public T? Value { get; init; }
+
     public Right(T? value) {
       this.Value = value;
     }
@@ -127,7 +131,5 @@ namespace FCSlib.Data {
     // public static Either operator &(Right<T> e, Func<T?, Either> g) => e.Bind(g);
 
     // public static Either operator &(Right<T> e, Func<T?, T?> g) => e.Bind(g);
-
   }
 }
-
