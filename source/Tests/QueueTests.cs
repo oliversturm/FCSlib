@@ -14,6 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using static FCSlib.Functional;
 
 namespace Tests;
@@ -22,11 +23,11 @@ public class QueueTests {
   [Test]
   public void ThreeInts() {
     var q = Queue(1, 2, 3);
-    Assert.AreEqual(1, q.Head);
+    ClassicAssert.AreEqual(1, q.Head);
     q = q.Tail;
-    Assert.AreEqual(2, q.Head);
+    ClassicAssert.AreEqual(2, q.Head);
     q = q.Tail;
-    Assert.AreEqual(3, q.Head);
+    ClassicAssert.AreEqual(3, q.Head);
   }
 
   [Test]
@@ -37,10 +38,10 @@ public class QueueTests {
     q = q.Snoc(3);
 
     // FIFO
-    Assert.AreEqual(1, q.Head);
+    ClassicAssert.AreEqual(1, q.Head);
     q = q.Tail;
-    Assert.AreEqual(2, q.Head);
+    ClassicAssert.AreEqual(2, q.Head);
     q = q.Tail;
-    Assert.AreEqual(3, q.Head);
+    ClassicAssert.AreEqual(3, q.Head);
   }
 }

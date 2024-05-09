@@ -14,6 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using static FCSlib.Functional;
 
 namespace Tests;
@@ -27,28 +28,28 @@ public class FoldTests {
   public void FoldLeft() {
     var result = FoldL((r, v) => r + v, 0, new int[] { 1, 2, 3, 4 });
 
-    Assert.AreEqual(10, result);
+    ClassicAssert.AreEqual(10, result);
   }
 
   [Test]
   public void FoldLeft1() {
     var result = FoldL1((r, v) => r + v, new int[] { 1, 2, 3, 4 });
 
-    Assert.AreEqual(10, result);
+    ClassicAssert.AreEqual(10, result);
   }
 
   [Test]
   public void FoldRight() {
     var result = FoldR((v, r) => r - v, 0, new int[] { 1, 2, 3, 4 });
 
-    Assert.AreEqual(-10, result);
+    ClassicAssert.AreEqual(-10, result);
   }
 
   [Test]
   public void FoldRight1() {
     var result = FoldR1((v, r) => r - v, new int[] { 1, 2, 3, 4 });
 
-    Assert.AreEqual(-2, result);
+    ClassicAssert.AreEqual(-2, result);
   }
 }
 

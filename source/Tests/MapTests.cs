@@ -14,6 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using static FCSlib.Functional;
 
 namespace Tests;
@@ -27,11 +28,11 @@ public class MapTests {
   public void Basic() {
     var result = Map(x => x * x, new int[] { 1, 2, 3, 4 }).ToList();
 
-    Assert.AreEqual(4, result.Count);
-    Assert.AreEqual(1, result[0]);
-    Assert.AreEqual(4, result[1]);
-    Assert.AreEqual(9, result[2]);
-    Assert.AreEqual(16, result[3]);
+    ClassicAssert.AreEqual(4, result.Count);
+    ClassicAssert.AreEqual(1, result[0]);
+    ClassicAssert.AreEqual(4, result[1]);
+    ClassicAssert.AreEqual(9, result[2]);
+    ClassicAssert.AreEqual(16, result[3]);
   }
 
   [Test]
@@ -40,11 +41,11 @@ public class MapTests {
 
     var result = square(new int[] { 1, 2, 3, 4 }).ToList();
 
-    Assert.AreEqual(4, result.Count);
-    Assert.AreEqual(1, result[0]);
-    Assert.AreEqual(4, result[1]);
-    Assert.AreEqual(9, result[2]);
-    Assert.AreEqual(16, result[3]);
+    ClassicAssert.AreEqual(4, result.Count);
+    ClassicAssert.AreEqual(1, result[0]);
+    ClassicAssert.AreEqual(4, result[1]);
+    ClassicAssert.AreEqual(9, result[2]);
+    ClassicAssert.AreEqual(16, result[3]);
   }
 
 }

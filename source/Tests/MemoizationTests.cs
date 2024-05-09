@@ -15,7 +15,7 @@
 
 using NUnit.Framework;
 using FCSlib.Data;
-
+using NUnit.Framework.Legacy;
 using static FCSlib.Functional;
 
 namespace Tests;
@@ -42,7 +42,7 @@ public class MemoizationTests {
     var firstValue = getValue(10);
     var secondValue = getValue(10);
 
-    Assert.AreEqual(firstValue, secondValue);
+    ClassicAssert.AreEqual(firstValue, secondValue);
   }
 
   [Test]
@@ -57,10 +57,10 @@ public class MemoizationTests {
     var customKeyValue = getValueCustom(10);
     var customKeyValue2 = getValueCustom(10);
 
-    Assert.AreNotEqual(standardKeyValue, customKeyValue);
+    ClassicAssert.AreNotEqual(standardKeyValue, customKeyValue);
 
-    Assert.AreEqual(standardKeyValue, standardKeyValue2);
-    Assert.AreEqual(customKeyValue, customKeyValue2);
+    ClassicAssert.AreEqual(standardKeyValue, standardKeyValue2);
+    ClassicAssert.AreEqual(customKeyValue, customKeyValue2);
   }
 
   [Test]
@@ -75,19 +75,19 @@ public class MemoizationTests {
     var firstValue = getValue(10)!(20);
     var secondValue = getValue(10)!(20);
 
-    Assert.AreEqual(firstValue, secondValue);
+    ClassicAssert.AreEqual(firstValue, secondValue);
   }
 
   [Test]
   public void CreateMemoryUsingKey() {
     var memory = Memoizer<int, int>.CreateMemory("creatememoryusingkey_testkey");
-    Assert.IsNotNull(memory);
+    ClassicAssert.IsNotNull(memory);
   }
 
   [Test]
   public void CreateExistingMemory() {
     var memory = Memoizer<int, int>.CreateMemory("createexistingmemory_testkey");
-    Assert.Throws<InvalidOperationException>(() => {
+    ClassicAssert.Throws<InvalidOperationException>(() => {
       var memory2 = Memoizer<int, int>.CreateMemory("createexistingmemory_testkey");
     });
   }
@@ -95,15 +95,15 @@ public class MemoizationTests {
   [Test]
   public void GetNewMemory() {
     var memory = Memoizer<int, int>.GetMemory("getnewmemory_testkey");
-    Assert.IsNotNull(memory);
+    ClassicAssert.IsNotNull(memory);
   }
 
   [Test]
   public void GetExistingMemory() {
     var memory = Memoizer<int, int>.GetMemory("getexistingmemory_testkey");
     var memory2 = Memoizer<int, int>.GetMemory("getexistingmemory_testkey");
-    Assert.IsNotNull(memory2);
-    Assert.AreSame(memory, memory2);
+    ClassicAssert.IsNotNull(memory2);
+    ClassicAssert.AreSame(memory, memory2);
   }
 
   [Test]
@@ -118,8 +118,8 @@ public class MemoizationTests {
   public void MemoryHasResultFor() {
     var memory = Memoizer<int, int>.GetMemory("memoryhasresultfor_testkey");
     memory.Remember(1, 42);
-    Assert.IsTrue(memory.HasResultFor(1));
-    Assert.IsFalse(memory.HasResultFor(2));
+    ClassicAssert.IsTrue(memory.HasResultFor(1));
+    ClassicAssert.IsFalse(memory.HasResultFor(2));
   }
 
   [Test]
@@ -129,8 +129,8 @@ public class MemoizationTests {
     memory.Remember(2, 52);
     memory.Remember(2, 104);
 
-    Assert.AreEqual(42, memory.ResultFor(1));
-    Assert.AreEqual(104, memory.ResultFor(2));
+    ClassicAssert.AreEqual(42, memory.ResultFor(1));
+    ClassicAssert.AreEqual(104, memory.ResultFor(2));
   }
 
   [Test]
@@ -140,7 +140,7 @@ public class MemoizationTests {
     memory.Remember(2, 52);
     memory.Remember(2, 104);
 
-    Assert.Throws<KeyNotFoundException>(() => {
+    ClassicAssert.Throws<KeyNotFoundException>(() => {
       memory.ResultFor(3);
     });
   }

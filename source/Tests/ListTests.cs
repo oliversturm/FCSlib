@@ -14,6 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using static FCSlib.Functional;
 
 namespace Tests;

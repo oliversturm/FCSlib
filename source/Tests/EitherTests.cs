@@ -14,6 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using static FCSlib.Functional;
 
 namespace Tests;
@@ -27,16 +28,16 @@ public class EitherTests {
   public void BasicLeft() {
     var l1 = Left("things went wrong");
 
-    Assert.IsTrue(IsLeft(l1));
-    Assert.IsFalse(IsRight(l1));
+    ClassicAssert.IsTrue(IsLeft(l1));
+    ClassicAssert.IsFalse(IsRight(l1));
   }
 
   [Test]
   public void BasicRight() {
     var r1 = Right(42);
 
-    Assert.IsTrue(IsRight(r1));
-    Assert.IsFalse(IsLeft(r1));
+    ClassicAssert.IsTrue(IsRight(r1));
+    ClassicAssert.IsFalse(IsLeft(r1));
   }
 
   [Test]
@@ -44,7 +45,7 @@ public class EitherTests {
     var r1 = Right(42);
     var r2 = Right(42);
 
-    Assert.IsTrue(r1 == r2);
+    ClassicAssert.IsTrue(r1 == r2);
   }
 
   [Test]
@@ -52,7 +53,7 @@ public class EitherTests {
     var r1 = Right(42);
     var r2 = Right(31);
 
-    Assert.IsTrue(r1 != r2);
+    ClassicAssert.IsTrue(r1 != r2);
   }
 
   [Test]
@@ -60,7 +61,7 @@ public class EitherTests {
     var l1 = Left(42);
     var l2 = Left(42);
 
-    Assert.IsTrue(l1 == l2);
+    ClassicAssert.IsTrue(l1 == l2);
   }
 
   [Test]
@@ -68,7 +69,7 @@ public class EitherTests {
     var l1 = Left(42);
     var l2 = Left(31);
 
-    Assert.IsTrue(l1 != l2);
+    ClassicAssert.IsTrue(l1 != l2);
   }
 
   [Test]
@@ -76,7 +77,7 @@ public class EitherTests {
     var l = Left(42);
     var r = Right(42);
 
-    Assert.IsTrue(l != r);
+    ClassicAssert.IsTrue(l != r);
   }
 
   [Test]
@@ -84,7 +85,7 @@ public class EitherTests {
     var l = Left(42);
     var r = Right(42);
 
-    Assert.IsTrue(r != l);
+    ClassicAssert.IsTrue(r != l);
   }
 
   [Test]
@@ -92,7 +93,7 @@ public class EitherTests {
     var l = Left("error!");
     var r = Right(42);
 
-    Assert.IsTrue(l != r);
+    ClassicAssert.IsTrue(l != r);
   }
 
   [Test]
@@ -100,7 +101,7 @@ public class EitherTests {
     var l = Left("error!");
     var r = Right(42);
 
-    Assert.IsTrue(r != l);
+    ClassicAssert.IsTrue(r != l);
   }
 
 
@@ -111,7 +112,7 @@ public class EitherTests {
     bool leftHandlerCalled = false;
 
     Func<int, int> rightHandler = i => {
-      Assert.AreEqual(101, i);
+      ClassicAssert.AreEqual(101, i);
       rightHandlerCalled = true;
       return 42;
     };
@@ -122,9 +123,9 @@ public class EitherTests {
     };
 
     var result = Either(rightHandler, leftHandler, e);
-    Assert.AreEqual(42, result);
-    Assert.IsTrue(rightHandlerCalled);
-    Assert.IsFalse(leftHandlerCalled);
+    ClassicAssert.AreEqual(42, result);
+    ClassicAssert.IsTrue(rightHandlerCalled);
+    ClassicAssert.IsFalse(leftHandlerCalled);
   }
 
   [Test]
@@ -134,7 +135,7 @@ public class EitherTests {
     bool leftHandlerCalled = false;
 
     Func<int, int> rightHandler = i => {
-      Assert.AreEqual(101, i);
+      ClassicAssert.AreEqual(101, i);
       rightHandlerCalled = true;
       return 42;
     };
@@ -145,9 +146,9 @@ public class EitherTests {
     };
 
     var result = Either<int, string, int>(rightHandler)(leftHandler)(e);
-    Assert.AreEqual(42, result);
-    Assert.IsTrue(rightHandlerCalled);
-    Assert.IsFalse(leftHandlerCalled);
+    ClassicAssert.AreEqual(42, result);
+    ClassicAssert.IsTrue(rightHandlerCalled);
+    ClassicAssert.IsFalse(leftHandlerCalled);
   }
 
   [Test]
@@ -163,15 +164,15 @@ public class EitherTests {
     };
 
     Func<string?, int> leftHandler = s => {
-      Assert.AreEqual(error, s);
+      ClassicAssert.AreEqual(error, s);
       leftHandlerCalled = true;
       return -1;
     };
 
     var result = Either(rightHandler, leftHandler, e);
-    Assert.AreEqual(-1, result);
-    Assert.IsFalse(rightHandlerCalled);
-    Assert.IsTrue(leftHandlerCalled);
+    ClassicAssert.AreEqual(-1, result);
+    ClassicAssert.IsFalse(rightHandlerCalled);
+    ClassicAssert.IsTrue(leftHandlerCalled);
   }
 
   [Test]
@@ -187,71 +188,71 @@ public class EitherTests {
     };
 
     Func<string?, int> leftHandler = s => {
-      Assert.AreEqual(error, s);
+      ClassicAssert.AreEqual(error, s);
       leftHandlerCalled = true;
       return -1;
     };
 
     var result = Either<int, string, int>(rightHandler)(leftHandler)(e);
-    Assert.AreEqual(-1, result);
-    Assert.IsFalse(rightHandlerCalled);
-    Assert.IsTrue(leftHandlerCalled);
+    ClassicAssert.AreEqual(-1, result);
+    ClassicAssert.IsFalse(rightHandlerCalled);
+    ClassicAssert.IsTrue(leftHandlerCalled);
   }
 
   [Test]
   public void FromLeftValue() {
     var l = Left(42);
     var result = FromLeft(0, l);
-    Assert.AreEqual(42, result);
+    ClassicAssert.AreEqual(42, result);
   }
 
   [Test]
   public void FromLeftDefault() {
     var r = Right("error");
     var result = FromLeft(0, r);
-    Assert.AreEqual(0, result);
+    ClassicAssert.AreEqual(0, result);
   }
 
   [Test]
   public void FromLeftValueCurried() {
     var l = Left(42);
     var result = FromLeft(0)(l);
-    Assert.AreEqual(42, result);
+    ClassicAssert.AreEqual(42, result);
   }
 
   [Test]
   public void FromLeftDefaultCurried() {
     var r = Right("error");
     var result = FromLeft(0)(r);
-    Assert.AreEqual(0, result);
+    ClassicAssert.AreEqual(0, result);
   }
 
   [Test]
   public void FromRightValue() {
     var r = Right("error");
     var result = FromRight("all good", r);
-    Assert.AreEqual("error", result);
+    ClassicAssert.AreEqual("error", result);
   }
 
   [Test]
   public void FromRightDefault() {
     var l = Left(42);
     var result = FromRight("all good", l);
-    Assert.AreEqual("all good", result);
+    ClassicAssert.AreEqual("all good", result);
   }
 
   [Test]
   public void FromRightValueCurried() {
     var r = Right("error");
     var result = FromRight("all good")(r);
-    Assert.AreEqual("error", result);
+    ClassicAssert.AreEqual("error", result);
   }
 
   [Test]
   public void FromRightDefaultCurried() {
     var l = Left(42);
     var result = FromRight("all good")(l);
-    Assert.AreEqual("all good", result);
+    ClassicAssert.AreEqual("all good", result);
   }
 
   static FCSlib.Data.Either TestOperation(bool fail) => fail ? Left("Operation went wrong") : Right(42);
@@ -266,7 +267,7 @@ public class EitherTests {
     var opResult = TestOperation(false);
     var squareResult = opResult.Chain(square);
     var result = FromRight(-1, squareResult);
-    Assert.AreEqual(42 * 42, result);
+    ClassicAssert.AreEqual(42 * 42, result);
   }
 
   [Test]
@@ -274,7 +275,7 @@ public class EitherTests {
     Func<int, int> square = x => x * x;
     var opResult = TestOperation(true);
     var squareResult = opResult.Chain(square);
-    Assert.IsTrue(IsLeft(squareResult));
+    ClassicAssert.IsTrue(IsLeft(squareResult));
   }
 
   // The following two tests use a Right starting value
@@ -285,9 +286,9 @@ public class EitherTests {
     Func<int, int> divide = x => 240 / x;
     var safeDivide = Encase(divide);
     var divideResult = Right(10).Bind(safeDivide);
-    Assert.IsTrue(IsRight(divideResult));
+    ClassicAssert.IsTrue(IsRight(divideResult));
     var result = FromRight(-1, divideResult);
-    Assert.AreEqual(24, result);
+    ClassicAssert.AreEqual(24, result);
   }
 
   [Test]
@@ -295,7 +296,7 @@ public class EitherTests {
     Func<int, int> divide = x => 240 / x;
     var safeDivide = Encase(divide);
     var divideResult = Right(0).Bind(safeDivide);
-    Assert.IsTrue(IsLeft(divideResult));
+    ClassicAssert.IsTrue(IsLeft(divideResult));
   }
 
   // Leaving these in place as a reminder. To summarize:
@@ -322,7 +323,7 @@ public class EitherTests {
   //   // class Either.
   //   var result = FromRight(-1, opResult & square);
 
-  //   Assert.AreEqual(42 * 42, result);
+  //   ClassicAssert.AreEqual(42 * 42, result);
   // }
 
   // [Test]
@@ -334,31 +335,31 @@ public class EitherTests {
   //   // and the delegate is not compatible.
   //   var result = FromRight(-1, opResult & square);
 
-  //   Assert.AreEqual(-1, result);
+  //   ClassicAssert.AreEqual(-1, result);
   // }
 
   [Test]
   public void TagRight() {
     var result = FromRight(-1, Tag(x => x > 3, 5));
-    Assert.AreEqual(5, result);
+    ClassicAssert.AreEqual(5, result);
   }
 
   [Test]
   public void TagRightCurried() {
     var result = FromRight(-1, Tag<int>(x => x > 3)(5));
-    Assert.AreEqual(5, result);
+    ClassicAssert.AreEqual(5, result);
   }
 
   [Test]
   public void TagLeft() {
     var result = FromLeft(-1, Tag(x => x > 10, 5));
-    Assert.AreEqual(5, result);
+    ClassicAssert.AreEqual(5, result);
   }
 
   [Test]
   public void TagLeftCurried() {
     var result = FromLeft(-1, Tag<int>(x => x > 10)(5));
-    Assert.AreEqual(5, result);
+    ClassicAssert.AreEqual(5, result);
   }
 
   static int ReturningFunction(int x) {
@@ -373,17 +374,17 @@ public class EitherTests {
   public void EncaseSuccess() {
     var e = Encase(ReturningFunction, 11);
     var result = FromRight(-1, e);
-    Assert.AreEqual(121, result);
+    ClassicAssert.AreEqual(121, result);
   }
 
   [Test]
   public void EncaseFailure() {
     var e = Encase(ThrowingFunction, 11);
     var result = FromRight(-1, e);
-    Assert.AreEqual(-1, result);
+    ClassicAssert.AreEqual(-1, result);
 
     var ex = FromLeft<Exception>(null, e);
-    Assert.AreEqual("something went wrong", ex?.Message);
+    ClassicAssert.AreEqual("something went wrong", ex?.Message);
   }
 
   [Test]
@@ -394,7 +395,7 @@ public class EitherTests {
     var returningFunction = Encase<int, int>(ReturningFunction);
     var e = returningFunction(11);
     var result = FromRight(-1, e);
-    Assert.AreEqual(121, result);
+    ClassicAssert.AreEqual(121, result);
   }
 
   [Test]
@@ -402,9 +403,9 @@ public class EitherTests {
     var throwingFunction = Encase<int, int>(ThrowingFunction);
     var e = throwingFunction(11);
     var result = FromRight(-1, e);
-    Assert.AreEqual(-1, result);
+    ClassicAssert.AreEqual(-1, result);
 
     var ex = FromLeft<Exception>(null, e);
-    Assert.AreEqual("something went wrong", ex?.Message);
+    ClassicAssert.AreEqual("something went wrong", ex?.Message);
   }
 }

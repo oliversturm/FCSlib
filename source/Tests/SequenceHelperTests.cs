@@ -14,6 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using static FCSlib.Functional;
 using FCSColl = FCSlib.Data.Collections;
 
@@ -28,45 +29,45 @@ public class SequenceHelperTests {
   public void ReverseTest() {
     var result = Reverse(new int[] { 1, 2, 3, 4 }).ToList();
 
-    Assert.AreEqual(4, result.Count);
-    Assert.AreEqual(4, result[0]);
-    Assert.AreEqual(3, result[1]);
-    Assert.AreEqual(2, result[2]);
-    Assert.AreEqual(1, result[3]);
+    ClassicAssert.AreEqual(4, result.Count);
+    ClassicAssert.AreEqual(4, result[0]);
+    ClassicAssert.AreEqual(3, result[1]);
+    ClassicAssert.AreEqual(2, result[2]);
+    ClassicAssert.AreEqual(1, result[3]);
   }
 
   [Test]
   public void FirstTest() {
     var result = First(new int[] { 1, 2, 3, 4 });
 
-    Assert.AreEqual(1, result);
+    ClassicAssert.AreEqual(1, result);
   }
 
   [Test]
   public void TakeTest() {
     var result = Take(2, new int[] { 1, 2, 3, 4 }).ToList();
 
-    Assert.AreEqual(2, result.Count);
-    Assert.AreEqual(1, result[0]);
-    Assert.AreEqual(2, result[1]);
+    ClassicAssert.AreEqual(2, result.Count);
+    ClassicAssert.AreEqual(1, result[0]);
+    ClassicAssert.AreEqual(2, result[1]);
   }
 
   [Test]
   public void TakeWhileTest() {
     var result = TakeWhile(x => x < 3, new int[] { 1, 2, 3, 4 }).ToList();
 
-    Assert.AreEqual(2, result.Count);
-    Assert.AreEqual(1, result[0]);
-    Assert.AreEqual(2, result[1]);
+    ClassicAssert.AreEqual(2, result.Count);
+    ClassicAssert.AreEqual(1, result[0]);
+    ClassicAssert.AreEqual(2, result[1]);
   }
 
   [Test]
   public void SkipTest() {
     var result = Skip(2, new int[] { 1, 2, 3, 4 }).ToList();
 
-    Assert.AreEqual(2, result.Count);
-    Assert.AreEqual(3, result[0]);
-    Assert.AreEqual(4, result[1]);
+    ClassicAssert.AreEqual(2, result.Count);
+    ClassicAssert.AreEqual(3, result[0]);
+    ClassicAssert.AreEqual(4, result[1]);
   }
 
   [Test]
@@ -77,11 +78,11 @@ public class SequenceHelperTests {
     });
     var result = target.ToList();
 
-    Assert.AreEqual(4, result.Count);
-    Assert.AreEqual(4, result[0]);
-    Assert.AreEqual(3, result[1]);
-    Assert.AreEqual(2, result[2]);
-    Assert.AreEqual(1, result[3]);
+    ClassicAssert.AreEqual(4, result.Count);
+    ClassicAssert.AreEqual(4, result[0]);
+    ClassicAssert.AreEqual(3, result[1]);
+    ClassicAssert.AreEqual(2, result[2]);
+    ClassicAssert.AreEqual(1, result[3]);
   }
 
   [Test]
@@ -91,7 +92,7 @@ public class SequenceHelperTests {
       calls++;
     });
 
-    Assert.AreEqual(4, calls);
+    ClassicAssert.AreEqual(4, calls);
   }
 
   [Test]
@@ -101,13 +102,13 @@ public class SequenceHelperTests {
       new int[] { 3, 4 },
       new int[] { 5, 6 } }).ToList();
 
-    Assert.AreEqual(6, result.Count);
-    Assert.AreEqual(1, result[0]);
-    Assert.AreEqual(2, result[1]);
-    Assert.AreEqual(3, result[2]);
-    Assert.AreEqual(4, result[3]);
-    Assert.AreEqual(5, result[4]);
-    Assert.AreEqual(6, result[5]);
+    ClassicAssert.AreEqual(6, result.Count);
+    ClassicAssert.AreEqual(1, result[0]);
+    ClassicAssert.AreEqual(2, result[1]);
+    ClassicAssert.AreEqual(3, result[2]);
+    ClassicAssert.AreEqual(4, result[3]);
+    ClassicAssert.AreEqual(5, result[4]);
+    ClassicAssert.AreEqual(6, result[5]);
   }
 
   [Test]
@@ -117,12 +118,12 @@ public class SequenceHelperTests {
       s => Map(toInt, s.Split(',')),
        new string[] { "1,2", "3,4,5" }).ToList();
 
-    Assert.AreEqual(5, result.Count);
-    Assert.AreEqual(1, result[0]);
-    Assert.AreEqual(2, result[1]);
-    Assert.AreEqual(3, result[2]);
-    Assert.AreEqual(4, result[3]);
-    Assert.AreEqual(5, result[4]);
+    ClassicAssert.AreEqual(5, result.Count);
+    ClassicAssert.AreEqual(1, result[0]);
+    ClassicAssert.AreEqual(2, result[1]);
+    ClassicAssert.AreEqual(3, result[2]);
+    ClassicAssert.AreEqual(4, result[3]);
+    ClassicAssert.AreEqual(5, result[4]);
   }
 
 }

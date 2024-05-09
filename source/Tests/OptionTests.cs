@@ -15,6 +15,7 @@
 
 using NUnit.Framework;
 using FCSlib.Data;
+using NUnit.Framework.Legacy;
 using FCSColl = FCSlib.Data.Collections;
 using static FCSlib.Functional;
 
@@ -29,19 +30,19 @@ public class OptionTests {
   public void BasicSome() {
     var o = Option.Some(3);
 
-    Assert.IsTrue(o.HasValue);
-    Assert.AreEqual(3, o.Value);
-    Assert.IsTrue(o.IsSome);
-    Assert.IsFalse(o.IsNone);
+    ClassicAssert.IsTrue(o.HasValue);
+    ClassicAssert.AreEqual(3, o.Value);
+    ClassicAssert.IsTrue(o.IsSome);
+    ClassicAssert.IsFalse(o.IsNone);
   }
 
   [Test]
   public void BasicNone() {
     var o = Option.None;
 
-    Assert.IsFalse(o.HasValue);
-    Assert.IsFalse(o.IsSome);
-    Assert.IsTrue(o.IsNone);
+    ClassicAssert.IsFalse(o.HasValue);
+    ClassicAssert.IsFalse(o.IsSome);
+    ClassicAssert.IsTrue(o.IsNone);
   }
 
   [Test]
@@ -49,7 +50,7 @@ public class OptionTests {
     var o1 = Option.Some(3);
     var o2 = Option.Some(3);
 
-    Assert.IsTrue(o1 == o2);
+    ClassicAssert.IsTrue(o1 == o2);
   }
 
   [Test]
@@ -57,8 +58,8 @@ public class OptionTests {
     var o1 = Option.Some(3);
     var o2 = Option.Some(4);
 
-    Assert.IsFalse(o1 == o2);
-    Assert.IsTrue(o1 != o2);
+    ClassicAssert.IsFalse(o1 == o2);
+    ClassicAssert.IsTrue(o1 != o2);
   }
 
   [Test]
@@ -66,7 +67,7 @@ public class OptionTests {
     var o1 = Option.None;
     var o2 = Option.None;
 
-    Assert.IsTrue(o1 == o2);
+    ClassicAssert.IsTrue(o1 == o2);
   }
 
   [Test]
@@ -74,14 +75,14 @@ public class OptionTests {
     var o1 = Option.Some(3);
     var o2 = Option.None;
 
-    Assert.IsFalse(o1 == o2);
-    Assert.IsTrue(o1 != o2);
+    ClassicAssert.IsFalse(o1 == o2);
+    ClassicAssert.IsTrue(o1 != o2);
   }
 
   [Test]
   public void NoneThrowsOnValueAccess() {
     var o1 = Option<int>.None;
-    Assert.Throws<InvalidOperationException>(() => {
+    ClassicAssert.Throws<InvalidOperationException>(() => {
       int x = o1.Value + 1;
     });
   }
@@ -95,22 +96,22 @@ public class OptionTests {
   }
 
   static void AssertIsSome<T>(Option<T> o, T? val) {
-    Assert.IsTrue(o.HasValue);
-    Assert.AreEqual(val, o.Value);
-    Assert.IsTrue(o.IsSome);
-    Assert.IsFalse(o.IsNone);
+    ClassicAssert.IsTrue(o.HasValue);
+    ClassicAssert.AreEqual(val, o.Value);
+    ClassicAssert.IsTrue(o.IsSome);
+    ClassicAssert.IsFalse(o.IsNone);
   }
 
   static void AssertIsNone<T>(Option<T> o) {
-    Assert.IsFalse(o.HasValue);
-    Assert.IsFalse(o.IsSome);
-    Assert.IsTrue(o.IsNone);
+    ClassicAssert.IsFalse(o.HasValue);
+    ClassicAssert.IsFalse(o.IsSome);
+    ClassicAssert.IsTrue(o.IsNone);
   }
 
   static void AssertIsNone(Option o) {
-    Assert.IsFalse(o.HasValue);
-    Assert.IsFalse(o.IsSome);
-    Assert.IsTrue(o.IsNone);
+    ClassicAssert.IsFalse(o.HasValue);
+    ClassicAssert.IsFalse(o.IsSome);
+    ClassicAssert.IsTrue(o.IsNone);
   }
 
   [Test]
@@ -317,7 +318,7 @@ public class OptionTests {
       _ => "No idea what this is"
     };
 
-    Assert.AreEqual("Result is 12", testResult);
+    ClassicAssert.AreEqual("Result is 12", testResult);
   }
 
   [Test]
@@ -427,7 +428,7 @@ public class OptionTests {
         .Chain(tree, t => t?.Left)
         .Chain(t => t?.Right);
 
-    Assert.AreEqual("Bernie", result.Value?.Value);
+    ClassicAssert.AreEqual("Bernie", result.Value?.Value);
   }
 
   [Test]
@@ -442,13 +443,13 @@ public class OptionTests {
       (t => t?.Left) &
       (t => t?.Right);
 
-    Assert.AreEqual("Bernie", result.Value?.Value);
+    ClassicAssert.AreEqual("Bernie", result.Value?.Value);
   }
 
   [Test]
   public void OptionallyTestSome() {
     var result = Optionally(42, x => x * x, Some(3));
-    Assert.AreEqual(9, result);
+    ClassicAssert.AreEqual(9, result);
   }
 
   [Test]
@@ -458,14 +459,14 @@ public class OptionTests {
       calledThunk = true;
       return 42;
     }, x => x * x, Some(3));
-    Assert.AreEqual(9, result);
-    Assert.IsFalse(calledThunk);
+    ClassicAssert.AreEqual(9, result);
+    ClassicAssert.IsFalse(calledThunk);
   }
 
   [Test]
   public void OptionallyTestSomeCurried() {
     var result = Optionally(42)(x => x * x)(Some(3));
-    Assert.AreEqual(9, result);
+    ClassicAssert.AreEqual(9, result);
   }
 
   [Test]
@@ -475,14 +476,14 @@ public class OptionTests {
       calledThunk = true;
       return 42;
     })(x => x * x)(Some(3));
-    Assert.AreEqual(9, result);
-    Assert.IsFalse(calledThunk);
+    ClassicAssert.AreEqual(9, result);
+    ClassicAssert.IsFalse(calledThunk);
   }
 
   [Test]
   public void OptionallyTestNone() {
     var result = Optionally(42, x => x * x, None);
-    Assert.AreEqual(42, result);
+    ClassicAssert.AreEqual(42, result);
   }
 
   [Test]
@@ -492,14 +493,14 @@ public class OptionTests {
       calledThunk = true;
       return 42;
     }, x => x * x, None);
-    Assert.AreEqual(42, result);
-    Assert.IsTrue(calledThunk);
+    ClassicAssert.AreEqual(42, result);
+    ClassicAssert.IsTrue(calledThunk);
   }
 
   [Test]
   public void OptionallyTestNoneCurried() {
     var result = Optionally(42)(x => x * x)(None);
-    Assert.AreEqual(42, result);
+    ClassicAssert.AreEqual(42, result);
   }
 
   [Test]
@@ -509,30 +510,30 @@ public class OptionTests {
       calledThunk = true;
       return 42;
     })(x => x * x)(None);
-    Assert.AreEqual(42, result);
-    Assert.IsTrue(calledThunk);
+    ClassicAssert.AreEqual(42, result);
+    ClassicAssert.IsTrue(calledThunk);
   }
 
   [Test]
   public void SomeOptionToEither() {
     var o = Some(5);
     var result = FromRight(-1, OptionToEither(o));
-    Assert.AreEqual(5, result);
+    ClassicAssert.AreEqual(5, result);
   }
 
   [Test]
   public void NoneOptionToEither() {
     var o = None;
     var e = OptionToEither(o);
-    Assert.IsTrue(IsLeft(e));
-    Assert.AreSame(None, ((Left<Option>)e).Value);
+    ClassicAssert.IsTrue(IsLeft(e));
+    ClassicAssert.AreSame(None, ((Left<Option>)e).Value);
   }
 
   [Test]
   public void NoneIntOptionToEither() {
     var o = Option<int>.None;
     var e = OptionToEither(o);
-    Assert.IsTrue(IsLeft(e));
-    Assert.AreSame(None, ((Left<Option>)e).Value);
+    ClassicAssert.IsTrue(IsLeft(e));
+    ClassicAssert.AreSame(None, ((Left<Option>)e).Value);
   }
 }

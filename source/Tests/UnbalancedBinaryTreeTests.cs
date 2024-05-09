@@ -14,6 +14,7 @@
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using static FCSlib.Functional;
 
 namespace Tests;
@@ -40,12 +41,12 @@ public class UnbalancedBinaryTreeTests {
   [Test]
   public void DoesContain() {
     var t = UnbalancedBinaryTree(5, 11, 1, 13, 47);
-    Assert.IsTrue(t.Contains(11));
+    ClassicAssert.IsTrue(t.Contains(11));
   }
 
   [Test]
   public void DoesNotContain() {
     var t = UnbalancedBinaryTree(5, 11, 1, 13, 47);
-    Assert.IsFalse(t.Contains(33));
+    ClassicAssert.IsFalse(t.Contains(33));
   }
 }
