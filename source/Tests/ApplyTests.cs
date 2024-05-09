@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2021 Oliver Sturm <oliver@oliversturm.com>
+// Copyright (C) 2008-2024 Oliver Sturm <oliver@oliversturm.com>
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,6 +28,7 @@ public class ApplyTests {
   [Test]
   public void Func2ParamsApply1() {
     var result = Apply<int, int, int>((p1, p2) => {
+      Assert.
       Assert.AreEqual(1, p1);
       Assert.AreEqual(2, p2);
       return 42;
