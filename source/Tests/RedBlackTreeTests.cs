@@ -13,6 +13,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with this library; if not, see <http://www.gnu.org/licenses/>.
 
+using FCSlib.Data.Collections;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
 using static FCSlib.Functional;
@@ -69,5 +70,51 @@ public class RedBlackTreeTests {
   public void DoesNotContain() {
     var t = RedBlackTree(5, 11, 1, 13, 47);
     ClassicAssert.IsFalse(t.Contains(33));
+  }
+
+  [Test]
+  public void NoBalance() {
+    var t = RedBlackTree(5);
+    t = t.Insert(4);
+    t = t.Insert(6);
+    Assert.That(t.Value, Is.EqualTo(5));
+    Assert.That(t.Left.Value, Is.EqualTo(4));
+    Assert.That(t.Right.Value, Is.EqualTo(6));
+  }
+
+  // These tests don't aim to cover all balancing cases, but a few basic
+  // ones so that a badly broken balance function can be detected.
+  [Test]
+  public void Balance1() {
+    var t = RedBlackTree(2);
+    t = t.Insert(3);
+    t = t.Insert(4);
+    Assert.That(t.Value, Is.EqualTo(3));
+    Assert.That(t.Left.Value, Is.EqualTo(2));
+    Assert.That(t.Right.Value, Is.EqualTo(4));
+  }
+
+  [Test]
+  public void Balance2() {
+    var t = RedBlackTree(4);
+    t = t.Insert(3);
+    t = t.Insert(2);
+    Assert.That(t.Value, Is.EqualTo(3));
+    Assert.That(t.Left.Value, Is.EqualTo(2));
+    Assert.That(t.Right.Value, Is.EqualTo(4));
+  }
+
+  [Test]
+  public void Balance3() {
+    var t = RedBlackTree(2);
+    t = t.Insert(12);
+    t = t.Insert(22);
+    t = t.Insert(3);
+    t = t.Insert(4);
+    Assert.That(t.Value, Is.EqualTo(12));
+    Assert.That(t.Left.Value, Is.EqualTo(3));
+    Assert.That(t.Right.Value, Is.EqualTo(22));
+    Assert.That(t.Left.Left.Value, Is.EqualTo(2));
+    Assert.That(t.Left.Right.Value, Is.EqualTo(4));
   }
 }
