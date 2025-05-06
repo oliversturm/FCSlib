@@ -47,7 +47,7 @@ namespace FCSlib {
       Right<R> r => rightHandler(r.Value),
       Left<L> l => leftHandler(l.Value),
       _ => throw new InvalidOperationException(
-        "Either must be Left or Light. You may be passing delegates with invalid types.")
+        "Either must be Left or Right. You may be passing delegates with invalid types.")
     };
 
     public static Func<Func<L?, RES>, Func<Either, RES>>

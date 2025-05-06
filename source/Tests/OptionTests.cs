@@ -314,7 +314,8 @@ public class OptionTests {
     // Huh.
 
     var testResult = result switch
-    { { IsSome: true } some => $"Result is {some.Value}",
+    {
+      { IsSome: true } some => $"Result is {some.Value}",
       _ => "No idea what this is"
     };
 
