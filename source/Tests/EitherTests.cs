@@ -313,7 +313,18 @@ public class EitherTests {
       return x;
     };
 
+    // This would be the functional way - we're ignoring the result here,
+    // but this approach would make sure that in error cases we do what we must to
+    // fall back to some valid state and then go from there.
     Either(successHandler, errorHandler, resultOfChain);
+
+    // Or of course we could be imperative now and simply check what the result is:
+    if (IsLeft(resultOfChain)) {
+      // Bad luck, things went wrong, check out the error result, handle it, or simply do nothing?
+    }
+    else if (IsRight(resultOfChain)) {
+      // All good, save the world
+    }
   }
 
   // The following two tests use a Right starting value
