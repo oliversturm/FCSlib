@@ -47,14 +47,12 @@ namespace FCSlib.Data {
         "Either must be Left or Right. You may be passing a delegate with an incompatible input type.")
     };
 
-    // The Chain function is of limited use for Either, because
-    // it needs to make assumptions to automatically decide to use 
-    // a Right or a Left. For now I just return a Right, assuming
-    // that a calculation which does not return Either is always
-    // Right - that's likely not the best solution. Bind will be
-    // more commonly used with Either, in any case.
+    // The Chain function assumes that since the given function g
+    // is not itself Either-aware, we use .NET semantics -- and that
+    // means Exceptions, which are handled by the Encase utility automatically.
+    // For Chain we don't have an alternative right now, go use Bind :-)
     public Either Chain<T, R>(Func<T?, R> g) {
-      Func<T?, Either> f = x => Right(g(x));
+      Func<T?, Either> f = Functional.Encase(g);
       return Bind(f);
     }
 
