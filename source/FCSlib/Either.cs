@@ -63,7 +63,12 @@ namespace FCSlib {
       try { return Right(f(value)); }
       catch (Exception e) { return Left(e); }
     }
+    public static Either EncaseAction<R>(Func<R> f) {
+      try { return Right(f()); }
+      catch (Exception e) { return Left(e); }
+    }
 
     public static Func<T, Either> Encase<T, R>(Func<T, R> f) => value => Encase(f, value);
+    public static Func<Either> Encase<R>(Func<R> f) => () => EncaseAction(f);
   }
 }
