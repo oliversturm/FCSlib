@@ -278,6 +278,44 @@ public class EitherTests {
     ClassicAssert.IsTrue(IsLeft(squareResult));
   }
 
+  [Test]
+  public void EitherChainErrorIllustration() {
+    // This is where the value comes from - let's say this completes normally
+    Func<FCSlib.Data.Either> loadFromDisk = () => Right(42);
+
+    // We have various processing functions that may fail
+    Func<int,int> parseValue = x => x switch
+    {
+
+      42 => x,
+      _ => throw new Exception("Couldn't parse")
+    };
+    Func<int, int> square = x => x * x;
+    Func<int,int> doSecretMagic = x => x < 42 ? 101: throw new Exception("No magic today");
+
+    // Now we execute a chain of operations. Any of these steps could fail,
+    // but with Monad magic we don't need to stop all the time and double-check.
+    var resultOfChain = loadFromDisk().Chain(parseValue).Chain(doSecretMagic).Chain(square);
+
+    // We expect a Left result here
+    ClassicAssert.IsTrue(IsLeft(resultOfChain));
+
+    // But in reality, we might just process the result further. Let's say we have an error handler:
+    Func<Exception?, int> errorHandler = ex => {
+      Console.WriteLine($"(EitherChainErrorIllustration) Error in chain: {ex?.Message}");
+      // Fall back to 42, what can we do.
+      return 42;
+    };
+
+    // And this is, hypothetically, where we go if all is good:
+    Func<int, int> successHandler = x => {
+      Console.WriteLine($"(EitherChainErrorIllustration) Now saving the world with {x}");
+      return x;
+    };
+
+    Either(successHandler, errorHandler, resultOfChain);
+  }
+
   // The following two tests use a Right starting value
   // with a division operation that is encased to 
   // convert a divide-by-zero exception to a Left.
