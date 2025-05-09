@@ -280,8 +280,28 @@ public class EitherTests {
 
   [Test]
   public void EitherChainErrorIllustration() {
-    // This is where the value comes from - let's say this completes normally
-    Func<FCSlib.Data.Either> loadFromDisk = () => Right(42);
+    // This is where the value comes from.
+
+    Func<int> loadFromDiskBasic = () => {
+      // This could go wrong, like
+      // if (!File.Exists("data")) throw new FileNotFoundException();
+      // ...and so on...
+      // Let's be optimistic and assume it works.
+      return 42;
+    };
+
+    // If we decide to work with Either directly, we can return Left or Right values:
+    Func<FCSlib.Data.Either> loadFromDiskEither = () => {
+      // If things go wrong, we return a Left value:
+      // if (!File.Exists("data")) return Left("File not found");
+      // ...and so on...
+      // But if all is good, we return a Right value. Get it? A Right value!
+      return Right(42);
+    };
+
+    // If we want to automatically handle the results from a function
+    // that may throw an exception, there's a helper for that: Encase
+    Func<FCSlib.Data.Either> loadFromDisk = FCSlib.Functional.Encase(loadFromDiskBasic);
 
     // We have various processing functions that may fail
     Func<int,int> parseValue = x => x switch
